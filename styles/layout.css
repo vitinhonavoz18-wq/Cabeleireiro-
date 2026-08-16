@@ -1,0 +1,188 @@
+/* ==========================================================================
+   LAYOUT — contêineres, grid e ritmo de seções
+   Mobile-first. Escala até ultrawide sem depender de zoom.
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: var(--content-narrow);
+}
+
+.container--wide {
+  max-width: var(--content-wide);
+}
+
+/* Full-bleed controlado: em ultrawide a mídia não estica sem limite */
+.container--bleed {
+  width: 100%;
+  max-width: 2200px;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+/* ---------- Seções ---------- */
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--flush-top {
+  padding-block-start: 0;
+}
+
+.section--tight {
+  padding-block: calc(var(--section-y) * 0.6);
+}
+
+/* Alternância sutil de superfície entre seções vizinhas */
+.section--elevated {
+  background: var(--bg-elevated);
+}
+
+/* Filete separador no topo da seção */
+.section--divided::before {
+  content: "";
+  position: absolute;
+  inset-inline: var(--gutter);
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--hairline) 50%,
+    transparent
+  );
+}
+
+/* Cabeçalho de seção — eyebrow + título + lead */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: var(--content-narrow);
+  margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+
+.section-head--center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* ---------- Grid utilitário ---------- */
+.grid {
+  display: grid;
+  gap: clamp(1.25rem, 0.8rem + 1.6vw, 2.5rem);
+}
+
+@media (min-width: 640px) {
+  .grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  /* Editorial: coluna de texto + coluna de mídia */
+  .grid--editorial {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > * + * {
+  margin-top: var(--stack-gap, var(--space-md));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ---------- Proporções de mídia (evita layout shift / CLS) ---------- */
+.ratio {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ratio > img,
+.ratio > video,
+.ratio > iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ratio--portrait {
+  aspect-ratio: 3 / 4;
+}
+.ratio--tall {
+  aspect-ratio: 4 / 5;
+}
+.ratio--square {
+  aspect-ratio: 1 / 1;
+}
+.ratio--landscape {
+  aspect-ratio: 16 / 10;
+}
+.ratio--cinema {
+  aspect-ratio: 21 / 9;
+}
+.ratio--story {
+  aspect-ratio: 9 / 16;
+}
+
+/* ---------- Placeholder de fase (removido nas fases 2-4) ---------- */
+.phase-slot {
+  position: relative;
+  border: 1px dashed var(--hairline);
+  border-radius: var(--radius-md);
+  padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  background: linear-gradient(
+    180deg,
+    rgba(207, 167, 79, 0.035),
+    rgba(207, 167, 79, 0)
+  );
+}
+
+.phase-slot__tag {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.phase-slot__note {
+  color: var(--text-faint);
+  font-size: var(--fs-small);
+  max-width: 60ch;
+}

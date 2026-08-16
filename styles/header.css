@@ -1,0 +1,370 @@
+/* ==========================================================================
+   HEADER PREMIUM
+   Transparente sobre o hero → preto translúcido com blur ao rolar.
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: height var(--dur-slow) var(--ease-lux),
+    background-color var(--dur-slow) var(--ease-lux),
+    border-color var(--dur-slow) var(--ease-lux),
+    backdrop-filter var(--dur-slow) var(--ease-lux),
+    transform var(--dur-slow) var(--ease-lux);
+}
+
+/* Véu superior: garante legibilidade da logo sobre fotos claras do hero */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.62) 0%,
+    rgba(5, 5, 5, 0) 100%
+  );
+  opacity: 1;
+  transition: opacity var(--dur-slow) var(--ease-lux);
+}
+
+/* Estado rolado */
+.site-header.is-scrolled {
+  height: var(--header-h-scrolled);
+  background-color: rgba(5, 5, 5, 0.78);
+  border-bottom-color: var(--hairline);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.site-header.is-scrolled::before {
+  opacity: 0;
+}
+
+/* Esconde ao descer, revela ao subir — foco total na fotografia */
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* O header cria contexto de empilhamento próprio: para a logo e o botão de
+   fechar ficarem acima do overlay, é o header inteiro que precisa subir. */
+.site-header.is-menu-open {
+  z-index: calc(var(--z-menu) + 1);
+  background-color: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: none;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Logo ---------- */
+.brand {
+  position: relative;
+  z-index: calc(var(--z-menu) + 1);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.brand:hover {
+  opacity: 0.82;
+}
+
+.brand__logo {
+  height: clamp(2.1rem, 1.6rem + 1.6vw, 2.9rem);
+  width: auto;
+  transition: height var(--dur-slow) var(--ease-lux);
+}
+
+.site-header.is-scrolled .brand__logo {
+  height: clamp(1.85rem, 1.45rem + 1.2vw, 2.35rem);
+}
+
+/* Fallback tipográfico enquanto o PNG da logo não estiver no repositório.
+   Não é uma logo nova — é apenas o nome na tipografia da marca. */
+.brand__fallback {
+  display: none;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand__fallback-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.9rem + 0.7vw, 1.4rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.brand__fallback-role {
+  margin-top: 0.35rem;
+  font-size: 0.6rem;
+  letter-spacing: var(--ls-label-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.brand.is-fallback .brand__logo {
+  display: none;
+}
+
+.brand.is-fallback .brand__fallback {
+  display: flex;
+}
+
+/* ---------- Navegação desktop ---------- */
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 0.5rem + 1.8vw, 2.75rem);
+    margin-inline: auto;
+  }
+}
+
+.nav__link {
+  position: relative;
+  padding-block: 0.4rem;
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(246, 243, 238, 0.72);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold-400);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible,
+.nav__link.is-active {
+  color: var(--bone-50);
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after,
+.nav__link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav__link.is-active {
+  color: var(--gold-200);
+}
+
+/* ---------- Ações ---------- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.header__cta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header__cta {
+    display: inline-flex;
+  }
+}
+
+/* ---------- Botão hambúrguer ---------- */
+.menu-toggle {
+  position: relative;
+  z-index: calc(var(--z-menu) + 1);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  align-items: flex-end;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.menu-toggle__bar {
+  display: block;
+  height: 1px;
+  background: var(--bone-50);
+  transition: width var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.menu-toggle__bar:nth-child(1) {
+  width: 26px;
+}
+.menu-toggle__bar:nth-child(2) {
+  width: 18px;
+}
+
+.menu-toggle:hover .menu-toggle__bar:nth-child(2) {
+  width: 26px;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar {
+  width: 26px;
+  background: var(--gold-300);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   MENU MOBILE — overlay em tela cheia
+   ========================================================================== */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-h) + 2rem) var(--gutter) var(--space-2xl);
+  /* Opaco: a 97% o gradiente do hero vazava como um retângulo visível. */
+  background: radial-gradient(
+      120% 70% at 50% 0%,
+      rgba(207, 167, 79, 0.07),
+      transparent 62%
+    ),
+    var(--ink-900);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1.5%);
+  transition: opacity var(--dur-slow) var(--ease-lux),
+    transform var(--dur-slow) var(--ease-lux),
+    visibility 0s linear var(--dur-slow);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 0.3rem + 2vw, 1.5rem);
+}
+
+.mobile-menu__link {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.2rem + 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: var(--ls-title);
+  color: var(--bone-50);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-slow) var(--ease-lux),
+    transform var(--dur-slow) var(--ease-lux), color var(--dur-base) var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Entrada em cascata dos itens */
+.mobile-menu.is-open .mobile-menu__item:nth-child(1) .mobile-menu__link {
+  transition-delay: 90ms;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(2) .mobile-menu__link {
+  transition-delay: 150ms;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(3) .mobile-menu__link {
+  transition-delay: 210ms;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(4) .mobile-menu__link {
+  transition-delay: 270ms;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(5) .mobile-menu__link {
+  transition-delay: 330ms;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(6) .mobile-menu__link {
+  transition-delay: 390ms;
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link:focus-visible {
+  color: var(--gold-300);
+}
+
+.mobile-menu__index {
+  margin-right: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: var(--ls-label);
+  color: var(--gold-500);
+  vertical-align: super;
+}
+
+.mobile-menu__footer {
+  margin-top: clamp(2rem, 1rem + 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mobile-menu__meta {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}

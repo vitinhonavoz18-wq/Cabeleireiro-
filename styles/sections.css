@@ -1,0 +1,308 @@
+/* ==========================================================================
+   SEÇÕES — estrutura da fundação (Fase 1)
+   As seções das fases 2-4 já existem como containers preparados.
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO (estrutura base — desenvolvimento completo na Fase 2)
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  /* 100svh evita o "pulo" da barra de endereço em iOS/Android */
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 3rem) clamp(3rem, 2rem + 4vw, 6rem);
+  overflow: hidden;
+  background-color: var(--ink-1000);
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__media img,
+.hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+/* Véus de contraste: garantem AA no texto sobre qualquer fotografia */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      180deg,
+      rgba(5, 5, 5, 0.72) 0%,
+      rgba(5, 5, 5, 0.25) 35%,
+      rgba(5, 5, 5, 0.82) 82%,
+      var(--ink-900) 100%
+    ),
+    radial-gradient(
+      120% 80% at 50% 100%,
+      rgba(5, 5, 5, 0.6) 0%,
+      rgba(5, 5, 5, 0) 60%
+    );
+}
+
+.hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Largura em rem (não em ch): o título serif é muito mais largo que a
+   medida do corpo em sans — usar ch aqui recortava a headline no desktop. */
+.hero__content {
+  max-width: min(100%, 48rem);
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
+}
+
+.hero__eyebrow-line {
+  display: block;
+  width: clamp(2.5rem, 1rem + 5vw, 5rem);
+  height: 1px;
+  background: var(--gold-400);
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__lead {
+  margin-top: clamp(1.25rem, 0.8rem + 1.6vw, 2rem);
+  max-width: 46ch;
+}
+
+.hero__actions {
+  margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  gap: var(--space-md) var(--space-lg);
+}
+
+@media (max-width: 479px) {
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+/* Indicador de rolagem */
+.scroll-hint {
+  display: none;
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+  gap: 0.9rem;
+  writing-mode: vertical-rl;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+@media (min-width: 900px) {
+  .scroll-hint {
+    display: flex;
+  }
+}
+
+.scroll-hint__line {
+  display: block;
+  width: 1px;
+  height: 3.5rem;
+  background: linear-gradient(180deg, var(--gold-400), transparent);
+}
+
+/* ==========================================================================
+   FAIXA DE AUTORIDADE (âncora de posicionamento sob o hero)
+   ========================================================================== */
+
+.authority {
+  border-block: 1px solid var(--hairline-neutral);
+  background: var(--ink-850);
+}
+
+.authority__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-block: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+}
+
+@media (min-width: 900px) {
+  .authority__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.authority__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.authority__value {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--gold-200);
+  line-height: 1;
+}
+
+.authority__label {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem) clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+  background: var(--ink-1000);
+  border-top: 1px solid var(--hairline);
+}
+
+.footer__top {
+  display: grid;
+  gap: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+}
+
+@media (min-width: 900px) {
+  .footer__top {
+    grid-template-columns: minmax(0, 4fr) repeat(2, minmax(0, 3fr));
+  }
+}
+
+.footer__brand-logo {
+  height: clamp(3rem, 2.2rem + 2.5vw, 4.25rem);
+  width: auto;
+  margin-bottom: var(--space-lg);
+}
+
+.footer__tagline {
+  max-width: 38ch;
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+
+.footer__title {
+  margin-bottom: var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer__list a,
+.footer__list span {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.footer__list a:hover {
+  color: var(--bone-50);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: clamp(2.5rem, 1.8rem + 3vw, 4rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--hairline-neutral);
+}
+
+.footer__legal {
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hairline-neutral);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  transition: color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.social__link:hover {
+  color: var(--gold-300);
+  border-color: var(--hairline-strong);
+  transform: translateY(-2px);
+}
+
+.social__link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   CTA FLUTUANTE DE AGENDAMENTO (mobile) — ativado na Fase 4
+   ========================================================================== */
+
+.floating-cta {
+  position: fixed;
+  inset-inline: var(--gutter);
+  bottom: 1rem;
+  z-index: var(--z-raised);
+  display: none;
+  opacity: 0;
+  transform: translateY(120%);
+  transition: opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-slow) var(--ease-lux);
+}
+
+.floating-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

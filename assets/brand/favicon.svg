@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Robson Lopes">
+  <!-- Favicon provisório: apenas as iniciais na tipografia da marca.
+       Substituir por recorte do monograma da logo oficial (ver MEDIA.md). -->
+  <rect width="64" height="64" fill="#050505" />
+  <text
+    x="32"
+    y="43"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Times New Roman, Georgia, serif"
+    font-size="34"
+    letter-spacing="1"
+    fill="#CFA74F"
+  >RL</text>
+</svg>
