@@ -51,6 +51,9 @@
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/hero.css" />
     <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/showcase.css" />
+    <link rel="stylesheet" href="styles/compare.css" />
+    <link rel="stylesheet" href="styles/lightbox.css" />
     <link rel="stylesheet" href="styles/sections.css" />
 
     <!-- Marca "com JavaScript" antes da primeira pintura: os estados iniciais
@@ -416,25 +419,501 @@
           </div>
         </div>
       </section>
-
       <!-- ==================================================================
-           CARROSSEL DE FOTOS E VÍDEOS — FASE 3/4
+           TRANSFORMAÇÕES — parede diagonal de trabalhos — FASE 3/4
            ================================================================== -->
-      <section class="section section--elevated" id="midia" aria-labelledby="midia-title">
+      <section class="section" id="transformacoes" aria-labelledby="transformacoes-title">
         <div class="container">
           <header class="section-head" data-reveal>
-            <span class="eyebrow">Galeria</span>
-            <h2 class="title-section" id="midia-title">Fotos e vídeos</h2>
+            <span class="eyebrow">Transformações</span>
+            <h2 class="title-section" id="transformacoes-title">
+              Resultados que falam por si.
+            </h2>
+            <p class="lead">
+              Cada cabelo carrega uma história — e um ponto de partida
+              diferente. Abaixo, alguns dos trabalhos realizados por Robson
+              Lopes: cortes, tratamentos, colorações e, com presença especial,
+              os loiros que se tornaram sua assinatura.
+            </p>
           </header>
         </div>
 
-        <div class="container--bleed">
-          <div class="container">
-            <div class="phase-slot" data-phase="3" data-reveal>
-              <span class="phase-slot__tag">Fase 3/4</span>
-              <p class="phase-slot__note">
-                Carrossel dinâmico full-bleed com fotos e vídeos, lazy loading,
-                navegação por teclado e gesto de arraste. Estrutura preparada.
+        <!-- Parede diagonal: duas trilhas contínuas em direções opostas -->
+        <div class="showcase" data-showcase>
+          <div class="wall">
+            <div
+              class="track"
+              data-track
+              data-speed="20"
+              data-direction="left"
+              role="list"
+              aria-label="Trabalhos realizados, primeira fileira"
+            >
+              <div class="track__group" data-track-group>
+                <figure
+                  class="tile tile--signature tile--labelled"
+                  data-ratio="tall"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/loiro-01.jpg"
+                  data-tag="Loiro"
+                  data-label="Loiro iluminado com raiz esfumada"
+                  data-alt="Cabelo loiro iluminado com raiz esfumada"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Loiro iluminado com raiz esfumada"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/loiro-01.webp" type="image/webp" />
+                      <img src="assets/fotos/loiro-01.jpg" alt="Cabelo loiro iluminado com raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Loiro</span>
+                    <span class="tile__label">Loiro iluminado com raiz esfumada</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/corte-01.jpg"
+                  data-tag="Corte"
+                  data-label="Corte repicado com movimento"
+                  data-alt="Corte repicado com camadas e movimento"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Corte repicado com movimento"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/corte-01.webp" type="image/webp" />
+                      <img src="assets/fotos/corte-01.jpg" alt="Corte repicado com camadas e movimento" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Corte</span>
+                    <span class="tile__label">Corte repicado com movimento</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="story"
+                  data-lightbox
+                  data-type="video" data-full="assets/videos/procedimento-01.mp4" data-poster="assets/videos/procedimento-01-poster.jpg"
+                  data-tag="Processo"
+                  data-label="Mechas em construção"
+                  data-alt="Vídeo do processo de construção de mechas"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Mechas em construção"
+                >
+                  <div class="tile__media media" data-media>
+                    <video
+                      data-src="assets/videos/procedimento-01.mp4"
+                      poster="assets/videos/procedimento-01-poster.jpg"
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      aria-label="Vídeo do processo de construção de mechas"
+                    ></video>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <span class="tile__play">
+                    <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l6 4-6 4z" /></svg>
+                    Vídeo
+                  </span>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Processo</span>
+                    <span class="tile__label">Mechas em construção</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile tile--signature"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/loiro-02.jpg"
+                  data-tag="Loiro"
+                  data-label="Loiro acinzentado"
+                  data-alt="Cabelo loiro acinzentado em close frontal"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Loiro acinzentado"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/loiro-02.webp" type="image/webp" />
+                      <img src="assets/fotos/loiro-02.jpg" alt="Cabelo loiro acinzentado em close frontal" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Loiro</span>
+                    <span class="tile__label">Loiro acinzentado</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="landscape"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/tratamento-01.jpg"
+                  data-tag="Tratamento"
+                  data-label="Brilho e reconstrução do fio"
+                  data-alt="Resultado de tratamento de reconstrução com brilho"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Brilho e reconstrução do fio"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/tratamento-01.webp" type="image/webp" />
+                      <img src="assets/fotos/tratamento-01.jpg" alt="Resultado de tratamento de reconstrução com brilho" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Tratamento</span>
+                    <span class="tile__label">Brilho e reconstrução do fio</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/morena-01.jpg"
+                  data-tag="Morena iluminada"
+                  data-label="Morena iluminada com ondas"
+                  data-alt="Cabelo castanho iluminado com ondas"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Morena iluminada com ondas"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/morena-01.webp" type="image/webp" />
+                      <img src="assets/fotos/morena-01.jpg" alt="Cabelo castanho iluminado com ondas" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Morena iluminada</span>
+                    <span class="tile__label">Morena iluminada com ondas</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile tile--signature"
+                  data-ratio="tall"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/loiro-03.jpg"
+                  data-tag="Loiro"
+                  data-label="Loiro mel com franja"
+                  data-alt="Cabelo loiro mel com franja"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Loiro mel com franja"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/loiro-03.webp" type="image/webp" />
+                      <img src="assets/fotos/loiro-03.jpg" alt="Cabelo loiro mel com franja" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Loiro</span>
+                    <span class="tile__label">Loiro mel com franja</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="square"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/finalizacao-01.jpg"
+                  data-tag="Finalização"
+                  data-label="Ondas amplas e definidas"
+                  data-alt="Finalização em ondas amplas e definidas"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Ondas amplas e definidas"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/finalizacao-01.webp" type="image/webp" />
+                      <img src="assets/fotos/finalizacao-01.jpg" alt="Finalização em ondas amplas e definidas" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Finalização</span>
+                    <span class="tile__label">Ondas amplas e definidas</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div
+              class="track track--offset"
+              data-track
+              data-speed="15"
+              data-direction="right"
+              role="list"
+              aria-label="Trabalhos realizados, segunda fileira"
+            >
+              <div class="track__group" data-track-group>
+                <figure
+                  class="tile tile--signature"
+                  data-ratio="story"
+                  data-lightbox
+                  data-type="video" data-full="assets/videos/resultado-01.mp4" data-poster="assets/videos/resultado-01-poster.jpg"
+                  data-tag="Resultado"
+                  data-label="Movimento do loiro"
+                  data-alt="Vídeo mostrando o movimento do cabelo loiro finalizado"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Movimento do loiro"
+                >
+                  <div class="tile__media media" data-media>
+                    <video
+                      data-src="assets/videos/resultado-01.mp4"
+                      poster="assets/videos/resultado-01-poster.jpg"
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      aria-label="Vídeo mostrando o movimento do cabelo loiro finalizado"
+                    ></video>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <span class="tile__play">
+                    <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l6 4-6 4z" /></svg>
+                    Vídeo
+                  </span>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Resultado</span>
+                    <span class="tile__label">Movimento do loiro</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/corte-02.jpg"
+                  data-tag="Corte"
+                  data-label="Corte médio com franja cortina"
+                  data-alt="Corte médio com franja cortina"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Corte médio com franja cortina"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/corte-02.webp" type="image/webp" />
+                      <img src="assets/fotos/corte-02.jpg" alt="Corte médio com franja cortina" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Corte</span>
+                    <span class="tile__label">Corte médio com franja cortina</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile tile--signature tile--labelled"
+                  data-ratio="tall"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/loiro-04.jpg"
+                  data-tag="Loiro"
+                  data-label="Loiro frio de raiz esfumada"
+                  data-alt="Cabelo loiro frio com raiz esfumada"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Loiro frio de raiz esfumada"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/loiro-04.webp" type="image/webp" />
+                      <img src="assets/fotos/loiro-04.jpg" alt="Cabelo loiro frio com raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Loiro</span>
+                    <span class="tile__label">Loiro frio de raiz esfumada</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="landscape"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/coloracao-01.jpg"
+                  data-tag="Coloração"
+                  data-label="Ruivo acobreado"
+                  data-alt="Resultado de coloração em ruivo acobreado"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Ruivo acobreado"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/coloracao-01.webp" type="image/webp" />
+                      <img src="assets/fotos/coloracao-01.jpg" alt="Resultado de coloração em ruivo acobreado" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Coloração</span>
+                    <span class="tile__label">Ruivo acobreado</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile tile--signature"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/loiro-05.jpg"
+                  data-tag="Loiro"
+                  data-label="Mechas douradas"
+                  data-alt="Cabelo com mechas douradas"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Mechas douradas"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/loiro-05.webp" type="image/webp" />
+                      <img src="assets/fotos/loiro-05.jpg" alt="Cabelo com mechas douradas" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Loiro</span>
+                    <span class="tile__label">Mechas douradas</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="square"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/detalhe-01.jpg"
+                  data-tag="Detalhe"
+                  data-label="Transição de raiz"
+                  data-alt="Detalhe da transição de raiz esfumada"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Transição de raiz"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/detalhe-01.webp" type="image/webp" />
+                      <img src="assets/fotos/detalhe-01.jpg" alt="Detalhe da transição de raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Detalhe</span>
+                    <span class="tile__label">Transição de raiz</span>
+                  </figcaption>
+                </figure>
+                <figure
+                  class="tile"
+                  data-ratio="portrait"
+                  data-lightbox
+                  data-type="image" data-full="assets/fotos/transformacao-01.jpg"
+                  data-tag="Transformação"
+                  data-label="Do escuro ao loiro em etapas"
+                  data-alt="Transformação completa do escuro ao loiro"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Ampliar: Do escuro ao loiro em etapas"
+                >
+                  <div class="tile__media media" data-media>
+                    <picture>
+                      <source srcset="assets/fotos/transformacao-01.webp" type="image/webp" />
+                      <img src="assets/fotos/transformacao-01.jpg" alt="Transformação completa do escuro ao loiro" loading="lazy" decoding="async" width="900" height="1200" />
+                    </picture>
+                    <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+                  </div>
+                  <figcaption class="tile__caption">
+                    <span class="tile__tag">Transformação</span>
+                    <span class="tile__label">Do escuro ao loiro em etapas</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="showcase__foot" data-reveal>
+            <span class="showcase__hint">Toque em uma imagem para ampliar</span>
+            <a class="btn btn--ghost link-underline" href="#portfolio">Ver portfólio completo</a>
+          </div>
+
+          <!-- ANTES E DEPOIS
+               O bloco só entra no ar quando as DUAS imagens do par existirem
+               (ver scripts/compare.js). Nenhum par é montado artificialmente. -->
+          <div class="compare-block" data-compare-block hidden>
+            <div class="compare-block__media">
+              <div
+                class="compare ratio ratio--landscape"
+                data-compare
+                hidden
+                aria-label="Comparação entre antes e depois"
+              >
+                <div class="compare__layer compare__layer--before">
+                  <img
+                    src="assets/fotos/antes-01.jpg"
+                    alt="Cabelo antes do procedimento"
+                    loading="lazy"
+                    decoding="async"
+                    data-compare-before
+                  />
+                </div>
+                <div class="compare__layer compare__layer--after">
+                  <img
+                    src="assets/fotos/depois-01.jpg"
+                    alt="Cabelo depois do procedimento realizado por Robson Lopes"
+                    loading="lazy"
+                    decoding="async"
+                    data-compare-after
+                  />
+                </div>
+
+                <span class="compare__tag compare__tag--before">Antes</span>
+                <span class="compare__tag compare__tag--after">Depois</span>
+
+                <div class="compare__handle" aria-hidden="true"></div>
+                <button
+                  class="compare__grip"
+                  type="button"
+                  data-compare-grip
+                  role="slider"
+                  aria-label="Arraste para comparar antes e depois"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="50"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 7 5 12l4 5M15 7l4 5-4 5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="stack compare-block__text">
+              <span class="eyebrow" data-reveal>Antes e depois</span>
+              <h3 class="title-section" data-reveal data-reveal-delay="1">
+                A mesma cliente, dois momentos.
+              </h3>
+              <p class="lead" data-reveal data-reveal-delay="2">
+                Arraste o divisor para ver a transformação por inteiro — mesmo
+                enquadramento, mesma luz, sem edição entre uma foto e outra.
+              </p>
+              <p class="compare__note" data-reveal data-reveal-delay="3">
+                Comparações só entram no site quando as duas fotos pertencem
+                ao mesmo atendimento.
               </p>
             </div>
           </div>
@@ -461,46 +940,163 @@
         </div>
       </section>
 
+
       <!-- ==================================================================
-           PORTFÓLIO — FASE 3/4
+           PORTFÓLIO — grade editorial — FASE 3/4
            ================================================================== -->
       <section class="section section--elevated" id="portfolio" aria-labelledby="portfolio-title">
         <div class="container">
           <header class="section-head" data-reveal>
             <span class="eyebrow">Portfólio</span>
             <h2 class="title-section" id="portfolio-title">Trabalhos autorais</h2>
+            <p class="lead">
+              Uma seleção em ritmo editorial. Clique em qualquer imagem para
+              ver em tela cheia.
+            </p>
           </header>
 
-          <div class="phase-slot" data-phase="3" data-reveal>
-            <span class="phase-slot__tag">Fase 3/4</span>
-            <p class="phase-slot__note">
-              Grade editorial de fotografias em destaque, com ampliação em
-              lightbox. Estrutura preparada.
-            </p>
+          <div class="gallery" data-reveal>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-01.jpg"
+              data-tag="Loiro"
+              data-label="Loiro platinado com brilho"
+              data-alt="Resultado de loiro platinado com brilho"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Loiro platinado com brilho"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-01.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-01.jpg" alt="Resultado de loiro platinado com brilho" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Loiro</span>
+                <span class="tile__label">Loiro platinado com brilho</span>
+              </figcaption>
+            </figure>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-02.jpg"
+              data-tag="Corte"
+              data-label="Corte longo em camadas"
+              data-alt="Corte longo repicado em camadas"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Corte longo em camadas"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-02.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-02.jpg" alt="Corte longo repicado em camadas" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Corte</span>
+                <span class="tile__label">Corte longo em camadas</span>
+              </figcaption>
+            </figure>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-03.jpg"
+              data-tag="Loiro"
+              data-label="Mechas iluminadas"
+              data-alt="Mechas iluminadas em cabelo longo"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Mechas iluminadas"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-03.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-03.jpg" alt="Mechas iluminadas em cabelo longo" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Loiro</span>
+                <span class="tile__label">Mechas iluminadas</span>
+              </figcaption>
+            </figure>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-04.jpg"
+              data-tag="Coloração"
+              data-label="Castanho iluminado"
+              data-alt="Coloração em castanho iluminado"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Castanho iluminado"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-04.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-04.jpg" alt="Coloração em castanho iluminado" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Coloração</span>
+                <span class="tile__label">Castanho iluminado</span>
+              </figcaption>
+            </figure>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-05.jpg"
+              data-tag="Loiro"
+              data-label="Loiro dourado"
+              data-alt="Resultado de loiro dourado com ondas"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Loiro dourado"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-05.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-05.jpg" alt="Resultado de loiro dourado com ondas" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Loiro</span>
+                <span class="tile__label">Loiro dourado</span>
+              </figcaption>
+            </figure>
+            <figure
+              class="gallery__item ratio ratio--tall media"
+              data-media
+              data-lightbox
+              data-type="image"
+              data-full="assets/fotos/portfolio-06.jpg"
+              data-tag="Tratamento"
+              data-label="Fio selado e alinhado"
+              data-alt="Resultado de tratamento com fio selado e alinhado"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar: Fio selado e alinhado"
+            >
+              <picture>
+                <source srcset="assets/fotos/portfolio-06.webp" type="image/webp" />
+                <img src="assets/fotos/portfolio-06.jpg" alt="Resultado de tratamento com fio selado e alinhado" loading="lazy" decoding="async" width="900" height="1125" />
+              </picture>
+              <div class="media__empty"><span class="media__empty-mark">RL</span></div>
+              <figcaption class="tile__caption">
+                <span class="tile__tag">Tratamento</span>
+                <span class="tile__label">Fio selado e alinhado</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
-
-      <!-- ==================================================================
-           TRANSFORMAÇÕES / ANTES E DEPOIS — FASE 3/4
-           ================================================================== -->
-      <section class="section section--divided" id="transformacoes" aria-labelledby="transformacoes-title">
-        <div class="container">
-          <header class="section-head" data-reveal>
-            <span class="eyebrow">Transformações</span>
-            <h2 class="title-section" id="transformacoes-title">Antes e depois</h2>
-          </header>
-
-          <div class="phase-slot" data-phase="3" data-reveal>
-            <span class="phase-slot__tag">Fase 3/4</span>
-            <p class="phase-slot__note">
-              Comparador antes/depois com arraste, acessível por teclado.
-              Estrutura preparada.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <!-- ==================================================================
            PROVA SOCIAL — FASE 4/4
            ================================================================== -->
@@ -646,6 +1242,55 @@
         </div>
       </div>
     </footer>
+
+    <!-- ====================================================================
+         LIGHTBOX — FASE 3/4
+         ==================================================================== -->
+    <div
+      class="lightbox"
+      data-lightbox-root
+      role="dialog"
+      aria-modal="true"
+      aria-label="Visualização ampliada"
+      aria-hidden="true"
+    >
+      <div class="lightbox__backdrop" data-lightbox-backdrop></div>
+
+      <div class="lightbox__bar">
+        <span class="lightbox__count">
+          <b data-lightbox-current>01</b> / <span data-lightbox-total>01</span>
+        </span>
+        <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fechar">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="lightbox__stage">
+        <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Anterior">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <figure class="lightbox__figure">
+          <div data-lightbox-figure></div>
+          <figcaption class="lightbox__caption">
+            <span class="lightbox__tag" data-lightbox-tag></span>
+            <span class="lightbox__label" data-lightbox-label></span>
+          </figcaption>
+        </figure>
+
+        <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Próxima">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <p class="lightbox__foot">Use as setas do teclado para navegar · ESC para fechar</p>
+    </div>
 
     <!-- CTA flutuante mobile — ativado na FASE 4/4 -->
     <a class="btn btn--primary floating-cta" data-whatsapp data-floating-cta href="#contato">

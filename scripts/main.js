@@ -6,6 +6,9 @@
 import { initHeader, initScrollSpy } from './header.js';
 import { initReveal, initProgressBar } from './reveal.js';
 import { initHero } from './hero.js';
+import { initShowcase, initLazyVideos } from './showcase.js';
+import { initLightbox } from './lightbox.js';
+import { initCompare } from './compare.js';
 import { whatsappUrl } from './site.config.js';
 
 /** Aplica a URL do WhatsApp a todos os CTAs de agendamento. */
@@ -38,11 +41,23 @@ function initBrandFallback() {
  */
 function initMediaStates() {
   document.querySelectorAll('[data-media]').forEach((media) => {
-    const img = media.querySelector('img');
-    if (!img) return;
+    const el = media.querySelector('img, video');
+    if (!el) return;
+
     const fail = () => media.classList.add('is-empty');
-    if (img.complete && img.naturalWidth === 0) fail();
-    img.addEventListener('error', fail, { once: true });
+
+    if (el.tagName === 'VIDEO') {
+      // O vídeo só falha depois que initLazyVideos atribui o src — por isso
+      // o listener fica registrado desde já, e o <source> interno também.
+      el.addEventListener('error', fail, { once: true });
+      el.querySelectorAll('source').forEach((s) =>
+        s.addEventListener('error', fail, { once: true })
+      );
+      return;
+    }
+
+    if (el.complete && el.naturalWidth === 0) fail();
+    el.addEventListener('error', fail, { once: true });
   });
 }
 
@@ -54,9 +69,17 @@ function initYear() {
 }
 
 function boot() {
-  initMediaStates();
   initBrandFallback();
   initHero();
+  // initShowcase vem primeiro porque duplica os cards da trilha. Os clones
+  // precisam entrar no DOM antes de initMediaStates, senão ficam sem o
+  // tratamento de imagem ausente; e antes do lightbox, que os identifica
+  // como decorativos para não contá-los duas vezes.
+  initShowcase();
+  initMediaStates();
+  initLightbox();
+  initLazyVideos();
+  initCompare();
   initHeader();
   initScrollSpy();
   initReveal();

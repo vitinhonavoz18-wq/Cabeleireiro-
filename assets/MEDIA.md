@@ -36,13 +36,64 @@ pastas com os nomes abaixo.
 Cada arquivo aceita também a versão `.webp` de mesmo nome — o site já usa
 `<picture>` e serve o WebP automaticamente quando existir.
 
-### Arquivos das fases 3 e 4
+### Arquivos da Fase 3 — parede diagonal e portfólio
+
+A parede tem 15 cards (13 fotos + 2 vídeos) e o portfólio tem 6. Cada slot já
+está nomeado no `index.html`; basta subir o arquivo com o nome correspondente.
+
+**Fileira 1 da parede**
+
+| Arquivo | Formato | Legenda |
+| --- | --- | --- |
+| `loiro-01.jpg` | vertical 4:5 | Loiro iluminado com raiz esfumada |
+| `corte-01.jpg` | vertical 3:4 | Corte repicado com movimento |
+| `procedimento-01.mp4` + `procedimento-01-poster.jpg` | vertical 9:16 | Mechas em construção |
+| `loiro-02.jpg` | vertical 3:4 | Loiro acinzentado |
+| `tratamento-01.jpg` | horizontal 3:2 | Brilho e reconstrução do fio |
+| `morena-01.jpg` | vertical 3:4 | Morena iluminada com ondas |
+| `loiro-03.jpg` | vertical 4:5 | Loiro mel com franja |
+| `finalizacao-01.jpg` | quadrado 1:1 | Ondas amplas e definidas |
+
+**Fileira 2 da parede**
+
+| Arquivo | Formato | Legenda |
+| --- | --- | --- |
+| `resultado-01.mp4` + `resultado-01-poster.jpg` | vertical 9:16 | Movimento do loiro |
+| `corte-02.jpg` | vertical 3:4 | Corte médio com franja cortina |
+| `loiro-04.jpg` | vertical 4:5 | Loiro frio de raiz esfumada |
+| `coloracao-01.jpg` | horizontal 3:2 | Ruivo acobreado |
+| `loiro-05.jpg` | vertical 3:4 | Mechas douradas |
+| `detalhe-01.jpg` | quadrado 1:1 | Transição de raiz |
+| `transformacao-01.jpg` | vertical 3:4 | Do escuro ao loiro em etapas |
+
+**Portfólio:** `portfolio-01.jpg` … `portfolio-06.jpg` (verticais 4:5).
+
+> A proporção de loiros (6 de 15 na parede, 3 de 6 no portfólio) foi calibrada
+> de propósito: presença forte o bastante para virar assinatura, variedade
+> suficiente para não parecer que ele só faz loiro. Se trocar os arquivos,
+> mantenha esse equilíbrio.
+
+### Antes e depois — regra de honestidade
 
 ```
-portfolio-01.jpg … portfolio-08.jpg   → Portfólio e carrossel
-antes-01.jpg / depois-01.jpg          → Comparador (mesmo enquadramento!)
-processo-01.jpg                       → Bastidores
+antes-01.jpg   +   depois-01.jpg
 ```
+
+O bloco de comparação **só entra no ar quando as duas imagens existirem**
+(verificado em `scripts/compare.js`). Se faltar uma, a seção inteira é
+ocultada — nenhum par é montado artificialmente.
+
+Requisitos do par: mesmo enquadramento, mesma distância, mesma iluminação e
+**a mesma cliente no mesmo atendimento**. Fotos de procedimentos diferentes
+não servem.
+
+### Vídeos
+
+- H.264/MP4, **sem áudio**, até 1080p e idealmente abaixo de 6 MB.
+- O `-poster.jpg` é obrigatório: é ele que aparece antes do vídeo carregar e
+  o que evita um retângulo preto no lugar do card.
+- Nenhum vídeo é baixado até o card se aproximar da tela, e o site nem tenta
+  baixá-los em conexões 2G ou com economia de dados ligada.
 
 ### Curadoria já definida a partir das 4 fotos enviadas
 

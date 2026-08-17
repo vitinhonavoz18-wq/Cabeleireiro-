@@ -9,7 +9,7 @@ neste mesmo repositório: nenhum arquivo do app foi alterado.
 | --- | --- | --- |
 | **1/4** | Fundação, tokens, arquitetura, header, estrutura de seções | ✅ concluída |
 | **2/4** | Hero, competências, Sobre Robson, assinatura em loiros | ✅ concluída |
-| 3/4 | Carrossel de fotos e vídeos, portfólio, antes e depois | ⏳ aguardando |
+| **3/4** | Parede diagonal, portfólio, lightbox, antes e depois | ✅ concluída |
 | 4/4 | Conversão, serviços, responsividade final, SEO, performance | ⏳ aguardando |
 
 ## Stack
@@ -56,12 +56,18 @@ robson-lopes/
 │   ├── header.css        # header premium + menu mobile
 │   ├── hero.css          # hero dividido + faixa de competências
 │   ├── about.css         # Sobre Robson + assinatura em loiros
+│   ├── showcase.css      # parede diagonal + grade do portfólio
+│   ├── lightbox.css      # visualização ampliada
+│   ├── compare.css       # comparador antes/depois
 │   └── sections.css      # footer e blocos gerais
 ├── scripts/
 │   ├── main.js           # bootstrap
 │   ├── site.config.js    # ← dados de marca e contato (fonte única)
 │   ├── header.js         # scroll, menu, scrollspy
 │   ├── hero.js           # entrada orquestrada + parallax
+│   ├── showcase.js       # motor da parede diagonal + vídeos sob demanda
+│   ├── lightbox.js       # visualização ampliada, teclado e swipe
+│   ├── compare.js        # comparador antes/depois
 │   └── reveal.js         # reveal + barra de progresso
 └── assets/
     ├── MEDIA.md          # ← como enviar logo, fotos e vídeos
@@ -104,6 +110,31 @@ A headline do hero usa a sugestão original — "Beleza, técnica e transformaç
 em cada detalhe." — com "transformação" em dourado metálico. Alternativa
 pronta para troca de uma linha em `index.html`, caso se prefira algo mais
 conceitual: *"Cada transformação começa por um olhar."*
+
+## Parede diagonal (Fase 3)
+
+Motor de trilha próprio, sem Swiper nem qualquer biblioteca de carrossel:
+
+- duas trilhas contínuas em direções opostas, inclinadas em conjunto;
+- **um único `requestAnimationFrame`** conduz todas as trilhas, escrevendo
+  `translate3d` — o trabalho fica no compositor, sem layout por frame;
+- o laço é infinito por duplicação do grupo de cards, e a posição é sempre
+  normalizada dentro de um ciclo, então não acumula erro em sessões longas;
+- **hover desacelera** para 18% em vez de travar de uma vez; foco por teclado
+  para totalmente;
+- **arraste** com Pointer Events no mobile e no desktop, com limiar que
+  impede o swipe de abrir o lightbox por engano;
+- o `rAF` é **desligado** quando a seção sai da tela ou a aba perde o foco.
+
+Vídeos usam `preload="none"` e só recebem `src` quando o card se aproxima da
+tela; pausam ao sair; e nem chegam a ser baixados em conexões 2G ou com
+economia de dados ativa.
+
+Em `prefers-reduced-motion` a parede vira uma faixa estática que o próprio
+usuário rola — sem inclinação, sem movimento e sem perder nenhum card.
+
+**Carga inicial medida: 31 requisições, 240 KB** (majoritariamente as fontes),
+com zero vídeo baixado.
 
 ## Pendências de conteúdo
 

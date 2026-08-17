@@ -1,0 +1,367 @@
+/* ==========================================================================
+   PAREDE DIAGONAL DE TRABALHOS — FASE 3/4
+   Duas trilhas contínuas em direções opostas, inclinadas em conjunto.
+   O movimento é escrito em translate3d por rAF: só compositing, sem layout.
+   ========================================================================== */
+
+.showcase {
+  position: relative;
+  /* A rotação joga as pontas das trilhas para fora da tela — este overflow
+     é o que impede a página inteira de rolar na horizontal. */
+  overflow: hidden;
+  padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+  background: var(--ink-900);
+}
+
+/* Véu lateral: as trilhas entram e saem por dentro do preto, sem borda dura */
+.showcase::before,
+.showcase::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: clamp(3rem, 2rem + 8vw, 14rem);
+  z-index: var(--z-raised);
+  pointer-events: none;
+}
+
+.showcase::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ink-900) 12%, transparent);
+}
+
+.showcase::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ink-900) 12%, transparent);
+}
+
+/* ---------- Conjunto inclinado ---------- */
+
+.wall {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  /* A escala compensa os cantos que a rotação descobriria */
+  transform: rotate(-4.5deg) scale(1.14);
+  transform-origin: center;
+}
+
+@media (min-width: 1024px) {
+  .wall {
+    transform: rotate(-3.5deg) scale(1.1);
+  }
+}
+
+/* ---------- Trilha ---------- */
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  will-change: transform;
+  /* pan-y: o arraste horizontal é nosso, a rolagem vertical continua do
+     navegador. Sem isso o swipe briga com o scroll da página no mobile. */
+  touch-action: pan-y;
+}
+
+/* Deslocamento da segunda fileira: as emendas das duas trilhas nunca
+   coincidem na vertical, o que quebra a leitura de "grade". */
+.track--offset {
+  margin-left: clamp(-6rem, -4vw, -2rem);
+}
+
+.track__group {
+  display: flex;
+  gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   CARD DE MÍDIA
+   ========================================================================== */
+
+.tile {
+  --tile-h: clamp(11rem, 8rem + 16vw, 21rem);
+  position: relative;
+  flex-shrink: 0;
+  margin: 0;
+  height: var(--tile-h);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--ink-800);
+  cursor: pointer;
+  transition: transform var(--dur-slow) var(--ease-lux),
+    box-shadow var(--dur-slow) var(--ease-lux);
+}
+
+/* Formatos deliberadamente desiguais — nada de cards quadrados iguais */
+.tile[data-ratio="portrait"] { width: calc(var(--tile-h) * 0.75); }
+.tile[data-ratio="tall"]     { width: calc(var(--tile-h) * 0.8); }
+.tile[data-ratio="square"]   { width: var(--tile-h); }
+.tile[data-ratio="landscape"]{ width: calc(var(--tile-h) * 1.5); }
+.tile[data-ratio="story"]    { width: calc(var(--tile-h) * 0.5625); }
+
+.tile__media {
+  width: 100%;
+  height: 100%;
+}
+
+.tile__media img,
+.tile__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-lux),
+    filter var(--dur-slow) var(--ease-out);
+}
+
+/* Véu permanente de leitura: mantém o conjunto coeso e o dourado legível */
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.1) 0%,
+    rgba(5, 5, 5, 0) 45%,
+    rgba(5, 5, 5, 0.72) 100%
+  );
+  opacity: 0.85;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+/* ---------- Legenda ---------- */
+
+.tile__caption {
+  position: absolute;
+  inset-inline: clamp(0.7rem, 0.5rem + 0.6vw, 1.1rem);
+  bottom: clamp(0.7rem, 0.5rem + 0.6vw, 1.1rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-slow) var(--ease-lux);
+}
+
+.tile__tag {
+  font-size: 0.56rem;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.tile__label {
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+  color: var(--bone-50);
+}
+
+/* ---------- Realce no hover (desktop, ponteiro fino) ---------- */
+
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover,
+  .tile:focus-visible {
+    transform: scale(1.04);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 1),
+      0 0 0 1px var(--hairline-strong);
+  }
+
+  .tile:hover .tile__media img,
+  .tile:hover .tile__media video {
+    transform: scale(1.06);
+  }
+
+  .tile:hover::after {
+    opacity: 1;
+  }
+
+  .tile:hover .tile__caption,
+  .tile:focus-visible .tile__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sem hover (toque): a legenda dos cards marcados fica sempre visível */
+@media (hover: none) {
+  .tile--labelled .tile__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Selo de vídeo ---------- */
+
+.tile__play {
+  position: absolute;
+  top: clamp(0.7rem, 0.5rem + 0.6vw, 1.1rem);
+  left: clamp(0.7rem, 0.5rem + 0.6vw, 1.1rem);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: rgba(5, 5, 5, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 0.52rem;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-200);
+}
+
+.tile__play svg {
+  width: 8px;
+  height: 8px;
+  fill: currentColor;
+}
+
+/* ---------- Marca de assinatura nos trabalhos em loiro ---------- */
+
+.tile--signature {
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.tile--signature .tile__tag {
+  color: var(--gold-200);
+}
+
+/* ==========================================================================
+   RODAPÉ DA SEÇÃO
+   ========================================================================== */
+
+.showcase__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: clamp(2.5rem, 1.8rem + 3vw, 4rem);
+}
+
+.showcase__hint {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ==========================================================================
+   MOVIMENTO REDUZIDO
+   Sem animação: a parede vira uma faixa que o próprio usuário arrasta.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .wall {
+    transform: none;
+  }
+
+  /* width:auto é obrigatório aqui: com max-content a trilha simplesmente
+     transborda o pai e o overflow-x nunca chega a rolar — os cards seguintes
+     ficariam inalcançáveis para quem usa movimento reduzido. */
+  .track {
+    width: auto;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    padding-inline: var(--gutter);
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-700) transparent;
+  }
+
+  /* A cópia decorativa duplicaria a lista numa faixa que se rola à mão */
+  .track > [aria-hidden="true"] {
+    display: none;
+  }
+
+  .track--offset {
+    margin-left: 0;
+  }
+
+  .tile {
+    scroll-snap-align: start;
+  }
+}
+
+/* ==========================================================================
+   GRADE EDITORIAL DO PORTFÓLIO
+   ========================================================================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.6rem, 0.4rem + 0.8vw, 1.25rem);
+}
+
+@media (min-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  }
+
+  /* Ritmo editorial: peças de tamanhos diferentes, nunca uma grade regular */
+  .gallery__item:nth-child(1) { grid-column: span 5; }
+  .gallery__item:nth-child(2) { grid-column: span 4; }
+  .gallery__item:nth-child(3) { grid-column: span 3; }
+  .gallery__item:nth-child(4) { grid-column: span 4; }
+  .gallery__item:nth-child(5) { grid-column: span 5; }
+  .gallery__item:nth-child(6) { grid-column: span 3; }
+}
+
+.gallery__item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--ink-800);
+  cursor: pointer;
+}
+
+.gallery__item img {
+  transition: transform 900ms var(--ease-lux), filter var(--dur-slow) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery__item:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.gallery__item .tile__caption {
+  inset-inline: clamp(0.8rem, 0.6rem + 0.8vw, 1.4rem);
+  bottom: clamp(0.8rem, 0.6rem + 0.8vw, 1.4rem);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery__item:hover .tile__caption,
+  .gallery__item:focus-visible .tile__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (hover: none) {
+  .gallery__item .tile__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gallery__item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0) 45%,
+    rgba(5, 5, 5, 0.75) 100%
+  );
+}
