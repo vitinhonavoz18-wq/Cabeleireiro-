@@ -44,13 +44,17 @@ formatos, dos quais cada navegador baixa só um. Os pôsteres são escolhidos
 automaticamente entre cinco instantes do vídeo, ficando com o quadro de maior
 detalhe: isso descarta flashes brancos e cortes escuros.
 
-**Marca d'água do CapCut** removida de três vídeos por corte de 5% no topo,
-com reenquadramento em 9:16 — o zoom resultante é imperceptível.
+**Marcas removidas por corte, mantendo 9:16 exatos:**
 
-> ⚠️ **`loiro-platinado-processo` traz o crédito `@brito.lilianee` no rodapé.**
-> Deixei intacto de propósito: remover o crédito de alguém não é uma decisão
-> técnica. Se for uma marca que pode sair, o mesmo corte usado no topo
-> resolve; se for uma parceria, o crédito deve ficar.
+| Vídeo | Corte | O que saiu |
+| --- | --- | --- |
+| `transformacao-loiro-iluminado` | topo 68px | marca do CapCut |
+| `antes-depois-loiro` | topo 68px | marca do CapCut |
+| `loiro-platinado-processo` | topo 68px e base 90px | CapCut e crédito sobreposto |
+
+O corte duplo do terceiro dá um zoom de ~14%; nos outros, ~5%. Ambos ficam
+imperceptíveis no tamanho em que os cards são exibidos. Os originais intactos
+não estão no repositório — se precisar reverter, é preciso reenviá-los.
 
 ## O que ainda falta
 
