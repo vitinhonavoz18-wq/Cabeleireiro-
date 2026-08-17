@@ -23,23 +23,42 @@ Os seis arquivos enviados no chat já estão no repositório, processados:
 | `fotos/ruivo-acobreado-01.webp` | Parede · portfólio |
 | `fotos/morena-iluminada-01.webp` | Parede · portfólio |
 
-São **oito fotografias de trabalho distintas**, uma por card da parede — sem
-repetição. Seis são loiro, uma é ruivo e uma é morena iluminada.
+São **oito fotografias** e **cinco vídeos**, um por card da parede — sem
+repetição. Entre as fotos: seis loiros, um ruivo e uma morena iluminada.
 
-**Processamento aplicado:** a logo veio sobre fundo preto texturizado — o fundo
-foi removido por chave de luminância e a arte recortada em três peças. As fotos
-de trabalho foram redimensionadas para 1400px no lado maior e reencodadas em
-WebP (de ~1,6 MB somados para ~845 KB). O retrato já era um recorte com canal
-alfa e foi apenas reencodado.
+### Vídeos — `assets/videos/`
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| `transformacao-escuro-marrom` | Do escuro ao marrom iluminado, com Robson conduzindo |
+| `transformacao-loiro-iluminado` | Do escuro ao loiro |
+| `loiro-platinado-processo` | Construção de um loiro claro |
+| `antes-depois-loiro` | Antes e depois de um loiro personalizado |
+| `bastidores-salao` | Finalização no salão |
+
+Cada vídeo tem três arquivos: `.webm` (VP9), `.mp4` (H.264) e `-poster.jpg`.
+
+**Processamento:** áudio removido (exigência do autoplay silencioso),
+reduzidos a 540×960 e recomprimidos — de 24 MB somados para 11 MB nos dois
+formatos, dos quais cada navegador baixa só um. Os pôsteres são escolhidos
+automaticamente entre cinco instantes do vídeo, ficando com o quadro de maior
+detalhe: isso descarta flashes brancos e cortes escuros.
+
+**Marca d'água do CapCut** removida de três vídeos por corte de 5% no topo,
+com reenquadramento em 9:16 — o zoom resultante é imperceptível.
+
+> ⚠️ **`loiro-platinado-processo` traz o crédito `@brito.lilianee` no rodapé.**
+> Deixei intacto de propósito: remover o crédito de alguém não é uma decisão
+> técnica. Se for uma marca que pode sair, o mesmo corte usado no topo
+> resolve; se for uma parceria, o crédito deve ficar.
 
 ## O que ainda falta
 
 | Slot | Por que importa |
 | --- | --- |
-| `fotos/robson-atendimento.jpg` | Única mídia ausente que deixa um espaço vazio visível, na seção **Sobre Robson**. Robson trabalhando, vertical 4:5. |
+| Foto real do Robson trabalhando | A imagem da seção **Sobre Robson** hoje é um quadro extraído do vídeo de bastidores: resolve o vazio, mas tem nitidez de vídeo. Uma fotografia própria renderia melhor. |
 | Fotos de **corte** e de **tratamento** | As oito atuais são todas de coloração. O ruivo e a morena iluminada já quebram a leitura de "só faz loiro", mas corte e tratamento aparecem no texto sem prova visual. |
-| **Vídeos** | Os cards de vídeo foram retirados da parede até existirem arquivos. Ver seção de vídeos abaixo. |
-| **Antes e depois** | O bloco continua oculto: exige um par do mesmo atendimento. |
+| **Antes e depois** (par de fotos) | O bloco segue oculto. Existe material da mesma sessão dentro dos vídeos, mas o "depois" está espelhado e com enquadramento diferente — num slider isso vira um salto. Precisa de duas fotos com o mesmo enquadramento. |
 
 > **Antes de enviar material novo:** duas das imagens recebidas eram a mesma
 > fotografia em recortes diferentes. A verificação foi feita por assinatura

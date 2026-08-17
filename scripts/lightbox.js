@@ -58,7 +58,15 @@ export function initLightbox() {
 
     if (type === 'video') {
       const video = document.createElement('video');
-      video.src = src;
+      // Duas fontes pela mesma razão da parede: <video> tenta a seguinte
+      // quando a anterior não é suportada.
+      [[el.dataset.fullAlt, 'video/webm'], [src, 'video/mp4']].forEach(([u, t]) => {
+        if (!u) return;
+        const f = document.createElement('source');
+        f.src = u;
+        f.type = t;
+        video.appendChild(f);
+      });
       video.poster = el.dataset.poster || '';
       video.controls = true;
       video.playsInline = true;
@@ -67,7 +75,6 @@ export function initLightbox() {
       // Abre sem som: barulho inesperado é o oposto de premium.
       video.muted = true;
       video.setAttribute('aria-label', alt);
-      video.addEventListener('error', fallback, { once: true });
       stage.appendChild(video);
     } else {
       const img = document.createElement('img');
@@ -110,6 +117,7 @@ export function initLightbox() {
     // Libera o vídeo: sem isso ele continua tocando em segundo plano
     stage.querySelectorAll('video').forEach((v) => {
       v.pause();
+      v.querySelectorAll('source').forEach((f) => f.removeAttribute('src'));
       v.removeAttribute('src');
       v.load();
     });

@@ -40,18 +40,12 @@ function initMediaStates() {
     const el = media.querySelector('img, video');
     if (!el) return;
 
+    // Vídeo não entra no estado vazio: se o navegador não conseguir decodificar
+    // (Linux sem H.264, por exemplo), o pôster continua na tela — uma imagem
+    // real do conteúdo é melhor fallback que o painel "RL".
+    if (el.tagName === 'VIDEO') return;
+
     const fail = () => media.classList.add('is-empty');
-
-    if (el.tagName === 'VIDEO') {
-      // O vídeo só falha depois que initLazyVideos atribui o src — por isso
-      // o listener fica registrado desde já, e o <source> interno também.
-      el.addEventListener('error', fail, { once: true });
-      el.querySelectorAll('source').forEach((s) =>
-        s.addEventListener('error', fail, { once: true })
-      );
-      return;
-    }
-
     if (el.complete && el.naturalWidth === 0) fail();
     el.addEventListener('error', fail, { once: true });
   });

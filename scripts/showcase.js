@@ -41,6 +41,10 @@ export function initShowcase() {
       // Sem alt na cópia: evita leitura duplicada e, se o arquivo faltar, o
       // navegador não desenha o texto alternativo por cima do card.
       clone.querySelectorAll('img').forEach((img) => img.setAttribute('alt', ''));
+      // As cópias ficam no pôster: sem data-src elas nunca baixam nem
+      // decodificam vídeo. Com cinco vídeos e três cópias por trilha, o
+      // navegador estaria decodificando quinze streams ao mesmo tempo.
+      clone.querySelectorAll('source[data-src]').forEach((el) => el.removeAttribute('data-src'));
       track.appendChild(clone);
     }
     track._group = group;
@@ -185,8 +189,10 @@ export function initShowcase() {
  * O arquivo só é atribuído (e só começa a baixar) quando o card se aproxima
  * da viewport; sai da viewport, pausa. Nada de baixar todos de uma vez.
  */
+const MAX_TOCANDO = 3;
+
 export function initLazyVideos() {
-  const videos = Array.from(document.querySelectorAll('video[data-src]'));
+  const videos = Array.from(document.querySelectorAll('video[data-lazy-video]'));
   if (!videos.length) return;
 
   // Conexão limitada ou economia de dados: fica no poster, não baixa vídeo
@@ -198,27 +204,71 @@ export function initLazyVideos() {
 
   const load = (video) => {
     if (video.dataset.loaded) return;
-    video.src = video.dataset.src;
+    const fontes = video.querySelectorAll('source[data-src]');
+    // Nenhuma fonte: é uma cópia decorativa da trilha, fica só no pôster.
+    if (!fontes.length) return;
+    fontes.forEach((f) => f.setAttribute('src', f.dataset.src));
     video.dataset.loaded = 'true';
+    video.load();
+  };
+
+  const naTela = new Set();
+
+  /**
+   * Toca no máximo MAX_TOCANDO vídeos, escolhendo os mais próximos do centro
+   * da tela. Sem esse teto, uma parede com vários vídeos visíveis derruba a
+   * taxa de quadros em aparelho modesto.
+   */
+  const reavaliar = () => {
+    const meio = window.innerHeight / 2;
+    const ordenados = Array.from(naTela).sort((a, b) => {
+      const ca = a.getBoundingClientRect();
+      const cb = b.getBoundingClientRect();
+      return (
+        Math.abs(ca.top + ca.height / 2 - meio) -
+        Math.abs(cb.top + cb.height / 2 - meio)
+      );
+    });
+
+    ordenados.forEach((video, i) => {
+      if (i < MAX_TOCANDO) {
+        load(video);
+        // play() rejeita em algumas políticas de autoplay — silenciar é o
+        // comportamento correto: o pôster continua no lugar.
+        if (!reduced && video.paused) video.play().catch(() => {});
+      } else if (!video.paused) {
+        video.pause();
+      }
+    });
+
+    videos.forEach((video) => {
+      if (!naTela.has(video) && !video.paused) video.pause();
+    });
   };
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        const video = entry.target;
-        if (entry.isIntersecting) {
-          load(video);
-          if (!reduced) {
-            // play() rejeita em algumas políticas de autoplay — silenciar é
-            // o comportamento correto: o poster continua no lugar.
-            video.play().catch(() => {});
-          }
-        } else if (!video.paused) {
-          video.pause();
-        }
+        if (entry.isIntersecting) naTela.add(entry.target);
+        else naTela.delete(entry.target);
       });
+      reavaliar();
     },
     { rootMargin: '150px 0px', threshold: 0.1 }
+  );
+
+  let agendado = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (agendado || !naTela.size) return;
+      agendado = true;
+      requestAnimationFrame(() => {
+        agendado = false;
+        reavaliar();
+      });
+    },
+    { passive: true }
   );
 
   videos.forEach((video) => {
