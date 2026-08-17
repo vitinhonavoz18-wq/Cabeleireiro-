@@ -10,7 +10,7 @@ neste mesmo repositório: nenhum arquivo do app foi alterado.
 | **1/4** | Fundação, tokens, arquitetura, header, estrutura de seções | ✅ concluída |
 | **2/4** | Hero, competências, Sobre Robson, assinatura em loiros | ✅ concluída |
 | **3/4** | Parede diagonal, portfólio, lightbox, antes e depois | ✅ concluída |
-| 4/4 | Conversão, serviços, responsividade final, SEO, performance | ⏳ aguardando |
+| **4/4** | Especialidades, arte do loiro, conversão, SEO, auditoria | ✅ concluída |
 
 ## Stack
 
@@ -59,7 +59,8 @@ robson-lopes/
 │   ├── showcase.css      # parede diagonal + grade do portfólio
 │   ├── lightbox.css      # visualização ampliada
 │   ├── compare.css       # comparador antes/depois
-│   └── sections.css      # footer e blocos gerais
+│   ├── services.css      # especialidades, arte do loiro, prova social, CTA
+│   └── sections.css      # footer, botão flutuante e blocos gerais
 ├── scripts/
 │   ├── main.js           # bootstrap
 │   ├── site.config.js    # ← dados de marca e contato (fonte única)
@@ -68,10 +69,12 @@ robson-lopes/
 │   ├── showcase.js       # motor da parede diagonal + vídeos sob demanda
 │   ├── lightbox.js       # visualização ampliada, teclado e swipe
 │   ├── compare.js        # comparador antes/depois
+│   ├── contact.js        # WhatsApp, Instagram, endereço e botão flutuante
 │   └── reveal.js         # reveal + barra de progresso
+├── robots.txt · sitemap.xml · site.webmanifest
 └── assets/
     ├── MEDIA.md          # ← como enviar logo, fotos e vídeos
-    ├── brand/  fotos/  videos/
+    ├── brand/  fonts/  fotos/  videos/
 ```
 
 ## Identidade visual
@@ -136,8 +139,50 @@ usuário rola — sem inclinação, sem movimento e sem perder nenhum card.
 **Carga inicial medida: 31 requisições, 240 KB** (majoritariamente as fontes),
 com zero vídeo baixado.
 
-## Pendências de conteúdo
+## Auditoria final (Fase 4)
 
-Marcadas como `PENDENTE` em `scripts/site.config.js`: número de WhatsApp,
-Instagram, endereço, cidade e e-mail. As perguntas objetivas virão ao final da
-Fase 4, conforme combinado.
+Tudo medido em Chromium real, não estimado.
+
+| Item | Resultado |
+| --- | --- |
+| Overflow horizontal | nenhum em 320, 360, 375, 390, 412, 430, 768, 834, 1024, 1366, 1440, 1920 e 2560 px |
+| Console | sem erros; os 404 restantes são as mídias ainda não enviadas |
+| Contraste | todo texto ≥ 4,95:1 (AA exige 4,5:1) |
+| Headings | um único `h1`, sem saltos de nível |
+| Teclado | skip link no primeiro Tab, foco sempre visível, lightbox por Enter/setas/ESC, foco devolvido ao card |
+| Links | nenhuma âncora quebrada, nenhum `target="_blank"` sem `noopener` |
+| Carga inicial | 33 requisições, 265 KB, zero vídeo baixado |
+| Movimento reduzido | animações desligadas e nenhum conteúdo inacessível |
+
+### Correções aplicadas nesta fase
+
+- `--text-faint` estava em **2,66:1** — reprovado no AA. Ajustado para ~5,2:1.
+- Numerais em `--gold-700` davam 3,41:1; passaram para `--gold-500` (6,85:1).
+- A barra do header transbordava entre 1024 e 1179 px: o menu desktop agora
+  começa em 1180 px.
+- Botões estouravam o contêiner em 320 px por causa do tracking largo.
+- A logo do rodapé exibia o texto alternativo quebrado — a regra de fallback
+  só cobria a classe do header.
+- `<address>` herdava o itálico padrão do navegador.
+- O botão flutuante cobria os ícones sociais do rodapé.
+- Sete conceitos numa grade de duas colunas deixavam uma célula vazia com
+  aparência de card quebrado.
+
+## Personalização
+
+**Tudo o que falta de dado real está em `scripts/site.config.js`**, marcado
+como `PENDENTE`: WhatsApp, Instagram, endereço, cidade, horários e e-mail.
+Preencher esse arquivo atualiza header, hero, CTA, rodapé, botão flutuante e
+todos os links de uma só vez — não é preciso editar HTML.
+
+Enquanto um campo estiver vazio, a tela mostra "a confirmar" e os botões de
+WhatsApp apontam para a seção de contato. Nada é inventado.
+
+Outros pontos que aguardam material real:
+
+- **Fotos e vídeos** — inventário completo em `assets/MEDIA.md`.
+- **Depoimentos** — a seção tem um modelo comentado no HTML; nenhum
+  depoimento, nome ou nota foi criado.
+- **Antes e depois** — o bloco só aparece com as duas imagens do par.
+- **Domínio** — marcado como `TODO personalização` no `index.html`,
+  `sitemap.xml` e `robots.txt`.

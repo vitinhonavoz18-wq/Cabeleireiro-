@@ -100,7 +100,7 @@ export function initHeader() {
   });
 
   // Fecha o menu ao passar para o breakpoint desktop
-  const desktop = window.matchMedia('(min-width: 1024px)');
+  const desktop = window.matchMedia('(min-width: 1180px)');
   desktop.addEventListener('change', (event) => {
     if (event.matches && isOpen()) setMenu(false);
   });

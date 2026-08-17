@@ -1,0 +1,389 @@
+/* ==========================================================================
+   ESPECIALIDADES · ARTE DO LOIRO · PROVA SOCIAL · CONVERSÃO — FASE 4/4
+   ========================================================================== */
+
+/* ==========================================================================
+   ESPECIALIDADES
+   Lista editorial numerada, não cards frios. Cada linha abre no hover.
+   ========================================================================== */
+
+.services {
+  border-top: 1px solid var(--hairline-neutral);
+}
+
+.service {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem clamp(1rem, 0.6rem + 2vw, 3rem);
+  padding-block: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+  border-bottom: 1px solid var(--hairline-neutral);
+  transition: background-color var(--dur-slow) var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .service {
+    grid-template-columns: auto minmax(0, 4fr) minmax(0, 6fr);
+    align-items: baseline;
+  }
+}
+
+/* Realce percorrendo a linha inteira — sem card, sem borda pesada */
+.service::before {
+  content: "";
+  position: absolute;
+  inset-inline: calc(var(--gutter) * -0.5);
+  inset-block: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(207, 167, 79, 0.07),
+    rgba(207, 167, 79, 0)
+  );
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service:hover::before {
+    opacity: 1;
+  }
+
+  .service:hover .service__name {
+    color: var(--gold-200);
+  }
+}
+
+.service__num {
+  font-size: 0.62rem;
+  letter-spacing: var(--ls-label);
+  color: var(--gold-500);
+  padding-top: 0.5rem;
+}
+
+.service__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.15rem + 1.6vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--bone-50);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.service__desc {
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  max-width: 54ch;
+}
+
+@media (max-width: 899px) {
+  .service__desc {
+    grid-column: 2;
+    margin-top: 0.5rem;
+  }
+}
+
+/* A especialidade-assinatura ganha a marca dourada */
+.service--signature .service__name {
+  color: var(--gold-200);
+}
+
+.service--signature .service__num {
+  color: var(--gold-400);
+}
+
+.service__mark {
+  display: inline-block;
+  margin-left: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.54rem;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-500);
+  vertical-align: middle;
+}
+
+.services__note {
+  margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  max-width: 58ch;
+}
+
+/* ==========================================================================
+   A ARTE POR TRÁS DE UM LOIRO PERFEITO
+   ========================================================================== */
+
+.craft {
+  position: relative;
+  overflow: hidden;
+}
+
+.craft::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    80% 55% at 18% 0%,
+    rgba(207, 167, 79, 0.1),
+    transparent 60%
+  );
+}
+
+.craft__grid {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+}
+
+@media (min-width: 1024px) {
+  .craft__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.craft__title {
+  font-size: var(--fs-h2);
+  max-width: 14ch;
+}
+
+/* O <em> aqui é ênfase semântica, não mudança de estilo: o destaque já vem
+   do dourado metálico, igual ao hero e à seção de assinatura. */
+.craft__title em,
+.signature__quote em {
+  font-style: normal;
+}
+
+.craft__intro {
+  margin-top: clamp(1.1rem, 0.8rem + 1.2vw, 1.6rem);
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+/* Conceitos: grade de pares rótulo + explicação curta */
+.craft__list {
+  display: grid;
+  gap: 1px;
+  background: var(--hairline-neutral);
+  border-block: 1px solid var(--hairline-neutral);
+}
+
+@media (min-width: 640px) {
+  .craft__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* São sete conceitos: sem isto o último deixa uma célula vazia que o
+     gap desenha como se fosse um oitavo card quebrado. */
+  .craft__item:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.craft__item {
+  padding: clamp(1.1rem, 0.9rem + 1vw, 1.6rem) clamp(0.9rem, 0.7rem + 1vw, 1.5rem);
+  background: var(--bg);
+  transition: background-color var(--dur-slow) var(--ease-out);
+}
+
+.craft__item:hover {
+  background: var(--ink-800);
+}
+
+.craft__term {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--bone-50);
+}
+
+.craft__term span {
+  font-size: 0.56rem;
+  letter-spacing: var(--ls-label);
+  color: var(--gold-500);
+}
+
+.craft__def {
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  max-width: 40ch;
+}
+
+.craft__foot {
+  margin-top: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  padding-left: var(--space-lg);
+  border-left: 1px solid var(--hairline);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+/* ==========================================================================
+   PROVA SOCIAL
+   Estrutura pronta e vazia. Nenhum depoimento, nota ou nome foi inventado.
+   ========================================================================== */
+
+.reviews__grid {
+  display: grid;
+  gap: clamp(1rem, 0.7rem + 1.2vw, 1.75rem);
+}
+
+@media (min-width: 900px) {
+  .reviews__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: clamp(1.4rem, 1.1rem + 1.4vw, 2.25rem);
+  border: 1px solid var(--hairline-neutral);
+  border-radius: var(--radius-sm);
+  background: var(--ink-850);
+}
+
+.review__quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.3;
+  color: var(--bone-50);
+}
+
+.review__author {
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--hairline-neutral);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Estado de espera — some quando os depoimentos reais forem inseridos */
+.reviews__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: clamp(1.75rem, 1.2rem + 2.5vw, 3rem);
+  border: 1px dashed var(--hairline);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    180deg,
+    rgba(207, 167, 79, 0.03),
+    rgba(207, 167, 79, 0)
+  );
+}
+
+.reviews__empty p {
+  color: var(--text-faint);
+  font-size: var(--fs-small);
+  max-width: 58ch;
+}
+
+/* ==========================================================================
+   CONVERSÃO
+   ========================================================================== */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-1000);
+  border-top: 1px solid var(--hairline);
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    70% 100% at 50% 100%,
+    rgba(207, 167, 79, 0.13),
+    transparent 62%
+  );
+}
+
+.cta__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1rem, 0.8rem + 1vw, 1.6rem);
+}
+
+.cta__title {
+  font-size: var(--fs-h1);
+  max-width: 16ch;
+  line-height: 1.08;
+}
+
+.cta__text {
+  max-width: 46ch;
+}
+
+.cta__actions {
+  justify-content: center;
+  margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+}
+
+@media (max-width: 479px) {
+  .cta__actions .btn {
+    width: 100%;
+  }
+}
+
+.cta__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: var(--space-md);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ==========================================================================
+   INSTAGRAM
+   ========================================================================== */
+
+.social-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .social-invite {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.social-invite__title {
+  font-size: var(--fs-h3);
+  color: var(--bone-50);
+}
+
+.social-invite__handle {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}

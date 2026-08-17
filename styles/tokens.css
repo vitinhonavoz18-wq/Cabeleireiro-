@@ -34,9 +34,12 @@
   /* ---------- Cor: off-white e neutros sofisticados ---------- */
   --bone-50: #f6f3ee; /* off-white principal */
   --bone-100: #e9e5dd;
-  --neutral-400: #a5a19a; /* texto secundário */
+  --neutral-400: #a5a19a; /* texto secundário — 10,4:1 sobre o preto */
   --neutral-500: #7e7a74;
-  --neutral-600: #56534e; /* legendas discretas */
+  /* Legendas discretas. Era #56534e, que dava apenas 2,66:1 sobre o preto —
+     reprovado no AA da WCAG. Este valor entrega ~5,2:1 mantendo o tom
+     neutro-quente da paleta. */
+  --neutral-600: #85817a;
 
   /* ---------- Papéis semânticos ---------- */
   --bg: var(--ink-900);

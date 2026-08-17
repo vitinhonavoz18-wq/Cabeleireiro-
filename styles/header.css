@@ -123,7 +123,9 @@
   color: var(--text-faint);
 }
 
-.brand.is-fallback .brand__logo {
+/* Qualquer img dentro de .brand, não só a do header: o rodapé usa
+   .footer__brand-logo e ficava exibindo o texto alternativo quebrado. */
+.brand.is-fallback img {
   display: none;
 }
 
@@ -136,11 +138,13 @@
   display: none;
 }
 
-@media (min-width: 1024px) {
+/* 1180px, e não 1024: com seis itens de menu em caixa alta e tracking
+   largo, a barra do header transbordava entre 1024 e 1179. */
+@media (min-width: 1180px) {
   .nav {
     display: flex;
     align-items: center;
-    gap: clamp(1.5rem, 0.5rem + 1.8vw, 2.75rem);
+    gap: clamp(1.1rem, 0.2rem + 1.6vw, 2.5rem);
     margin-inline: auto;
   }
 }
@@ -218,7 +222,7 @@
   align-items: flex-end;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .menu-toggle {
     display: none;
   }
@@ -291,7 +295,7 @@
   transition-delay: 0s;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .mobile-menu {
     display: none;
   }

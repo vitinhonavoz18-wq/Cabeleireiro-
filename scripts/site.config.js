@@ -1,30 +1,54 @@
 /**
  * Fonte única de verdade do site — Robson Lopes
- * Centraliza dados de marca, contato e navegação.
- * Os valores marcados com PENDENTE serão confirmados após a Fase 4.
+ *
+ * ► É AQUI QUE SE PERSONALIZA O SITE. Trocar os valores marcados como
+ *   PENDENTE atualiza header, hero, CTA, rodapé, botão flutuante, dados
+ *   estruturados e todos os links de WhatsApp de uma só vez.
  */
 
 export const brand = {
   name: 'Robson Lopes',
   role: 'Cabeleireiro',
-  tagline: 'Coloração, loiros e transformações de alto padrão.',
-  city: 'PENDENTE — cidade/UF',
-  address: 'PENDENTE — endereço do estúdio',
+  tagline: 'Cortes, tratamentos e transformações — com um olhar especial para os loiros.',
 };
 
 export const contact = {
-  // PENDENTE — número real (formato internacional, apenas dígitos)
-  whatsapp: '5500000000000',
+  /** PENDENTE — número real, formato internacional, só dígitos.
+   *  Ex.: 5511987654321 (55 + DDD + número). */
+  whatsapp: '',
+
   whatsappMessage:
     'Olá, Robson! Vim pelo site e gostaria de agendar um horário.',
-  instagram: 'https://instagram.com/', // PENDENTE — @usuario
-  email: '', // PENDENTE
+
+  /** PENDENTE — apenas o usuário, sem @. Ex.: 'robsonlopes.hair' */
+  instagram: '',
+
+  /** PENDENTE */
+  email: '',
+
+  /** PENDENTE — endereço completo do local de atendimento */
+  address: '',
+
+  /** PENDENTE — ex.: 'São Paulo, SP' */
+  city: '',
+
+  /** PENDENTE — ex.: 'Terça a sábado · 9h às 19h' */
+  hours: '',
+
+  /** PENDENTE — link do Google Maps, se houver */
+  maps: '',
 };
 
-export const whatsappUrl = () =>
-  `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
+/** Link de agendamento. Sem número cadastrado, cai na seção de contato. */
+export const whatsappUrl = () => {
+  if (!contact.whatsapp) return '#contato';
+  return `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
     contact.whatsappMessage
   )}`;
+};
+
+export const instagramUrl = () =>
+  contact.instagram ? `https://instagram.com/${contact.instagram}` : '';
 
 export const navItems = [
   { label: 'Início', href: '#inicio' },

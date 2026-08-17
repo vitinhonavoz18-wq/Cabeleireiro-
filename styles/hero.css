@@ -318,7 +318,7 @@
   opacity: 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .scroll-hint {
     display: flex;
   }
@@ -372,7 +372,7 @@
 .skills__index {
   font-size: 0.62rem;
   letter-spacing: var(--ls-label);
-  color: var(--gold-700);
+  color: var(--gold-500);
 }
 
 .skills__name {

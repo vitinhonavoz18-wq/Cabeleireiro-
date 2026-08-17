@@ -1,6 +1,6 @@
 /**
  * Bootstrap — Robson Lopes
- * Fase 2/4: hero animado, estados de mídia, header, revelações e CTAs.
+ * Fase 4/4: hero, parede diagonal, lightbox, comparador, contato e CTAs.
  */
 
 import { initHeader, initScrollSpy } from './header.js';
@@ -9,17 +9,13 @@ import { initHero } from './hero.js';
 import { initShowcase, initLazyVideos } from './showcase.js';
 import { initLightbox } from './lightbox.js';
 import { initCompare } from './compare.js';
-import { whatsappUrl } from './site.config.js';
-
-/** Aplica a URL do WhatsApp a todos os CTAs de agendamento. */
-function initBookingLinks() {
-  const url = whatsappUrl();
-  document.querySelectorAll('[data-whatsapp]').forEach((el) => {
-    el.setAttribute('href', url);
-    el.setAttribute('target', '_blank');
-    el.setAttribute('rel', 'noopener noreferrer');
-  });
-}
+import {
+  initBookingLinks,
+  initInstagramLinks,
+  initContactDetails,
+  initFloatingCta,
+  initYear,
+} from './contact.js';
 
 /**
  * Enquanto o PNG oficial da logo não estiver no repositório, exibe o nome
@@ -36,8 +32,8 @@ function initBrandFallback() {
 }
 
 /**
- * Estado vazio elegante para fotografias ainda não enviadas.
- * Assim que o arquivo existir em assets/fotos/, o estado some sozinho.
+ * Estado vazio elegante para mídias ainda não enviadas.
+ * Assim que o arquivo existir em assets/, o estado some sozinho.
  */
 function initMediaStates() {
   document.querySelectorAll('[data-media]').forEach((media) => {
@@ -61,16 +57,10 @@ function initMediaStates() {
   });
 }
 
-function initYear() {
-  const year = String(new Date().getFullYear());
-  document.querySelectorAll('[data-year]').forEach((el) => {
-    el.textContent = year;
-  });
-}
-
 function boot() {
   initBrandFallback();
   initHero();
+
   // initShowcase vem primeiro porque duplica os cards da trilha. Os clones
   // precisam entrar no DOM antes de initMediaStates, senão ficam sem o
   // tratamento de imagem ausente; e antes do lightbox, que os identifica
@@ -80,11 +70,16 @@ function boot() {
   initLightbox();
   initLazyVideos();
   initCompare();
+
   initHeader();
   initScrollSpy();
   initReveal();
   initProgressBar();
+
   initBookingLinks();
+  initInstagramLinks();
+  initContactDetails();
+  initFloatingCta();
   initYear();
 }
 

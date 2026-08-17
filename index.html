@@ -6,25 +6,48 @@
     <meta name="theme-color" content="#050505" />
     <meta name="color-scheme" content="dark" />
 
-    <title>Robson Lopes — Cabeleireiro</title>
+    <title>Robson Lopes | Cabeleireiro Especialista em Loiros e Transformações</title>
     <meta
       name="description"
-      content="Robson Lopes — cabeleireiro especialista em coloração, loiros e transformações de alto padrão. Técnica, cuidado e resultado autoral."
+      content="Conheça o trabalho de Robson Lopes, cabeleireiro especializado em cortes, transformações e cabelos loiros. Veja resultados e agende seu horário."
     />
+    <meta name="author" content="Robson Lopes" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- TODO personalização: trocar pelo domínio real quando existir.
+         O mesmo valor precisa ser refletido em sitemap.xml e robots.txt. -->
     <link rel="canonical" href="https://robsonlopes.com.br/" />
 
-    <!-- Open Graph / social (finalização na Fase 4) -->
+    <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Robson Lopes" />
-    <meta property="og:title" content="Robson Lopes — Cabeleireiro" />
+    <meta
+      property="og:title"
+      content="Robson Lopes | Cabeleireiro Especialista em Loiros e Transformações"
+    />
     <meta
       property="og:description"
-      content="Coloração, loiros e transformações de alto padrão."
+      content="Cortes, tratamentos e transformações — com um olhar especial para a arte dos cabelos loiros. Veja resultados e agende seu horário."
     />
+    <meta property="og:url" content="https://robsonlopes.com.br/" />
+    <meta property="og:image" content="https://robsonlopes.com.br/assets/brand/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Robson Lopes — Cabeleireiro" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Robson Lopes | Cabeleireiro Especialista em Loiros e Transformações"
+    />
+    <meta
+      name="twitter:description"
+      content="Cortes, tratamentos e transformações — com um olhar especial para a arte dos cabelos loiros."
+    />
+    <meta name="twitter:image" content="https://robsonlopes.com.br/assets/brand/og-image.jpg" />
 
     <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="site.webmanifest" />
 
     <!-- Tipografia auto-hospedada: serif editorial + sans-serif de interface.
          Preload apenas dos subsets latinos usados acima da dobra. -->
@@ -54,6 +77,7 @@
     <link rel="stylesheet" href="styles/showcase.css" />
     <link rel="stylesheet" href="styles/compare.css" />
     <link rel="stylesheet" href="styles/lightbox.css" />
+    <link rel="stylesheet" href="styles/services.css" />
     <link rel="stylesheet" href="styles/sections.css" />
 
     <!-- Marca "com JavaScript" antes da primeira pintura: os estados iniciais
@@ -63,14 +87,38 @@
     </script>
     <script type="module" src="scripts/main.js"></script>
 
+    <!-- Dados estruturados. Os campos marcados como TODO só devem ser
+         preenchidos com informação real — dado inventado aqui vira
+         penalização de SEO local, não vantagem. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "HairSalon",
         "name": "Robson Lopes",
-        "description": "Cabeleireiro especialista em coloração, loiros e transformações de alto padrão.",
-        "image": "assets/brand/robson-lopes-logo.png",
-        "priceRange": "$$$"
+        "alternateName": "Robson Lopes Cabeleireiro",
+        "description": "Cabeleireiro especializado em cortes, tratamentos, transformações e cabelos loiros.",
+        "url": "https://robsonlopes.com.br/",
+        "image": "https://robsonlopes.com.br/assets/brand/og-image.jpg",
+        "logo": "https://robsonlopes.com.br/assets/brand/robson-lopes-logo.png",
+        "knowsAbout": [
+          "Corte de cabelo",
+          "Coloração capilar",
+          "Mechas e iluminação",
+          "Loiros personalizados",
+          "Tratamentos capilares",
+          "Finalização"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Especialidades",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cortes" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Loiros e Mechas" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transformações" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tratamentos" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Finalização" } }
+          ]
+        }
       }
     </script>
   </head>
@@ -923,19 +971,107 @@
       <!-- ==================================================================
            ESPECIALIDADES — FASE 4/4
            ================================================================== -->
-      <section class="section section--divided" id="especialidades" aria-labelledby="especialidades-title">
+      <section class="section" id="especialidades" aria-labelledby="especialidades-title">
         <div class="container">
           <header class="section-head" data-reveal>
             <span class="eyebrow">Especialidades</span>
-            <h2 class="title-section" id="especialidades-title">O que o Robson faz melhor</h2>
+            <h2 class="title-section" id="especialidades-title">
+              O que acontece na cadeira do Robson.
+            </h2>
+            <p class="lead">
+              Cinco frentes de trabalho que se combinam de acordo com o que
+              cada cabelo pede — e com o que cada cliente quer ver no espelho.
+            </p>
           </header>
 
-          <div class="phase-slot" data-phase="4" data-reveal>
-            <span class="phase-slot__tag">Fase 4/4</span>
-            <p class="phase-slot__note">
-              Grid de especialidades técnicas com descrição orientada a resultado.
-              Estrutura preparada.
-            </p>
+          <ul class="services">
+            <li class="service" data-reveal data-reveal-delay="1">
+              <span class="service__num" aria-hidden="true">01</span>
+              <h3 class="service__name">Cortes</h3>
+              <p class="service__desc">Cortes personalizados de acordo com o estilo, o formato do rosto e as características do cabelo.</p>
+            </li>
+            <li class="service service--signature" data-reveal data-reveal-delay="2">
+              <span class="service__num" aria-hidden="true">02</span>
+              <h3 class="service__name">Loiros &amp; Mechas
+              <span class="service__mark">Assinatura</span></h3>
+              <p class="service__desc">Transformações de tonalidade, iluminação, mechas e construção de loiros personalizados.</p>
+            </li>
+            <li class="service" data-reveal data-reveal-delay="3">
+              <span class="service__num" aria-hidden="true">03</span>
+              <h3 class="service__name">Transformações</h3>
+              <p class="service__desc">Mudanças pensadas para criar uma nova identidade visual respeitando a saúde dos fios.</p>
+            </li>
+            <li class="service" data-reveal data-reveal-delay="4">
+              <span class="service__num" aria-hidden="true">04</span>
+              <h3 class="service__name">Tratamentos</h3>
+              <p class="service__desc">Cuidados voltados à recuperação, à manutenção, ao brilho e à vitalidade do cabelo.</p>
+            </li>
+            <li class="service" data-reveal data-reveal-delay="5">
+              <span class="service__num" aria-hidden="true">05</span>
+              <h3 class="service__name">Finalização</h3>
+              <p class="service__desc">Acabamento profissional que valoriza textura, movimento e o resultado final.</p>
+            </li>
+          </ul>
+
+          <p class="services__note" data-reveal>
+            A lista de procedimentos, valores e tempos de atendimento é
+            definida na avaliação presencial, caso a caso.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           A ARTE POR TRÁS DE UM LOIRO PERFEITO — FASE 4/4
+           ================================================================== -->
+      <section class="section craft" id="arte-do-loiro" aria-labelledby="craft-title">
+        <div class="container">
+          <div class="craft__grid">
+            <div>
+              <span class="eyebrow" data-reveal>O diferencial</span>
+              <h2 class="craft__title" id="craft-title" data-reveal data-reveal-delay="1">
+                A arte por trás de um <em class="text-metal">loiro</em> perfeito.
+              </h2>
+              <p class="craft__intro" data-reveal data-reveal-delay="2">
+                Loiro bonito não é um produto — é uma sequência de decisões.
+                Estas são as que orientam cada atendimento.
+              </p>
+              <p class="craft__foot" data-reveal data-reveal-delay="3">
+                Nenhum resultado é prometido antes da avaliação: o ponto de
+                partida de cada cabelo define o que é possível, em quanto tempo
+                e em quantas etapas.
+              </p>
+            </div>
+
+            <div class="craft__list">
+              <div class="craft__item" data-reveal data-reveal-delay="1">
+                <h3 class="craft__term">Tonalidade <span aria-hidden="true">01</span></h3>
+                <p class="craft__def">O tom certo nasce do encontro entre a pele, os olhos e o cabelo — não de uma referência copiada.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="2">
+                <h3 class="craft__term">Profundidade <span aria-hidden="true">02</span></h3>
+                <p class="craft__def">Manter partes mais fechadas é o que impede o loiro de ficar chapado e sem dimensão.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="3">
+                <h3 class="craft__term">Contraste <span aria-hidden="true">03</span></h3>
+                <p class="craft__def">A diferença calculada entre luz e base é o que dá relevo ao movimento do cabelo.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="4">
+                <h3 class="craft__term">Iluminação <span aria-hidden="true">04</span></h3>
+                <p class="craft__def">Onde a luz é colocada muda a leitura do rosto inteiro, não só a cor do fio.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="5">
+                <h3 class="craft__term">Harmonia <span aria-hidden="true">05</span></h3>
+                <p class="craft__def">O loiro precisa conversar com o corte, com a textura e com o dia a dia de quem usa.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="6">
+                <h3 class="craft__term">Saúde dos fios <span aria-hidden="true">06</span></h3>
+                <p class="craft__def">Clarear é um processo. Respeitar o limite do cabelo em cada etapa é parte da técnica.</p>
+              </div>
+              <div class="craft__item" data-reveal data-reveal-delay="6">
+                <h3 class="craft__term">Personalização <span aria-hidden="true">07</span></h3>
+                <p class="craft__def">Duas clientes com o mesmo tom de referência raramente recebem a mesma construção.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1099,6 +1235,9 @@
       </section>
       <!-- ==================================================================
            PROVA SOCIAL — FASE 4/4
+           Estrutura pronta e deliberadamente vazia. Nenhum depoimento, nome
+           ou nota foi inventado. Para publicar: descomentar o .reviews__grid,
+           preencher com avaliações reais e remover o .reviews__empty.
            ================================================================== -->
       <section class="section section--elevated" id="depoimentos" aria-labelledby="depoimentos-title">
         <div class="container">
@@ -1107,51 +1246,87 @@
             <h2 class="title-section" id="depoimentos-title">O que dizem as clientes</h2>
           </header>
 
-          <div class="phase-slot" data-phase="4" data-reveal>
-            <span class="phase-slot__tag">Fase 4/4</span>
-            <p class="phase-slot__note">
-              Depoimentos em formato editorial. Estrutura preparada.
+          <div class="reviews__empty" data-reveal>
+            <span class="eyebrow eyebrow--muted">Aguardando material</span>
+            <p>
+              Esta área está pronta para receber avaliações reais — texto,
+              primeiro nome da cliente e, se houver, a nota do Google.
+              Nenhum depoimento foi criado artificialmente.
+            </p>
+            <a class="btn btn--outline" data-whatsapp href="#contato">
+              Falar com o Robson
+            </a>
+          </div>
+
+          <!-- MODELO DE DEPOIMENTO — replicar por avaliação real:
+          <div class="reviews__grid">
+            <blockquote class="review">
+              <p class="review__quote">Texto real da avaliação.</p>
+              <footer class="review__author">Nome da cliente · Mês/Ano</footer>
+            </blockquote>
+          </div>
+          -->
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           CONVERSÃO — FASE 4/4
+           ================================================================== -->
+      <section class="section cta" id="contato" aria-labelledby="contato-title">
+        <div class="container container--narrow">
+          <div class="cta__inner">
+            <span class="eyebrow" data-reveal>Agendamento</span>
+
+            <h2 class="cta__title" id="contato-title" data-reveal data-reveal-delay="1">
+              Seu próximo visual começa aqui.
+            </h2>
+
+            <p class="lead cta__text" data-reveal data-reveal-delay="2">
+              Converse diretamente com Robson e encontre o melhor caminho para
+              o resultado que você deseja.
+            </p>
+
+            <div class="cluster cta__actions" data-reveal data-reveal-delay="3">
+              <a class="btn btn--primary" data-whatsapp href="#contato">
+                Agendar pelo WhatsApp
+              </a>
+              <a class="btn btn--outline" href="#portfolio">Ver o portfólio</a>
+            </div>
+
+            <p class="cta__meta" data-reveal data-reveal-delay="4">
+              <span data-contact-city>Local a confirmar</span>
+              <span aria-hidden="true">·</span>
+              <span data-contact-hours>Horários a confirmar</span>
+              <span aria-hidden="true">·</span>
+              <span>Atendimento com hora marcada</span>
             </p>
           </div>
         </div>
       </section>
 
       <!-- ==================================================================
-           CHAMADA PARA AGENDAMENTO — FASE 4/4
+           INSTAGRAM — FASE 4/4
            ================================================================== -->
-      <section class="section section--divided" id="contato" aria-labelledby="contato-title">
+      <section class="section section--tight section--divided" id="instagram" aria-labelledby="instagram-title">
         <div class="container">
-          <header class="section-head section-head--center" data-reveal>
-            <span class="eyebrow">Agendamento</span>
-            <h2 class="title-section" id="contato-title">Reserve o seu horário</h2>
-          </header>
+          <div class="social-invite" data-reveal>
+            <div>
+              <span class="eyebrow">Redes sociais</span>
+              <h2 class="social-invite__title" id="instagram-title">
+                Mais transformações no Instagram.
+              </h2>
+              <span class="social-invite__handle" data-instagram-handle>@perfil a confirmar</span>
+            </div>
 
-          <div class="phase-slot" data-phase="4" data-reveal>
-            <span class="phase-slot__tag">Fase 4/4</span>
-            <p class="phase-slot__note">
-              Bloco de conversão com CTA de WhatsApp, endereço, horários e mapa.
-              Estrutura preparada.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==================================================================
-           INSTAGRAM / REDES — FASE 4/4
-           ================================================================== -->
-      <section class="section section--elevated section--tight" id="instagram" aria-labelledby="instagram-title">
-        <div class="container">
-          <header class="section-head" data-reveal>
-            <span class="eyebrow">Redes sociais</span>
-            <h2 class="title-section" id="instagram-title">Acompanhe o trabalho</h2>
-          </header>
-
-          <div class="phase-slot" data-phase="4" data-reveal>
-            <span class="phase-slot__tag">Fase 4/4</span>
-            <p class="phase-slot__note">
-              Faixa de publicações do Instagram e convite para seguir.
-              Estrutura preparada.
-            </p>
+            <a
+              class="btn btn--outline"
+              data-instagram
+              href="https://instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Acompanhar no Instagram
+            </a>
           </div>
         </div>
       </section>
@@ -1180,13 +1355,13 @@
               </span>
             </a>
             <p class="footer__tagline">
-              Coloração, loiros e transformações de alto padrão. Atendimento com
-              hora marcada.
+              Cortes, tratamentos e transformações — com um olhar especial para
+              a arte dos cabelos loiros. Atendimento com hora marcada.
             </p>
           </div>
 
           <nav data-reveal data-reveal-delay="1" aria-label="Navegação do rodapé">
-            <h3 class="footer__title">Navegação</h3>
+            <h2 class="footer__title">Navegação</h2>
             <ul class="footer__list">
               <li><a href="#inicio">Início</a></li>
               <li><a href="#sobre">Sobre</a></li>
@@ -1198,11 +1373,20 @@
           </nav>
 
           <div data-reveal data-reveal-delay="2">
-            <h3 class="footer__title">Atendimento</h3>
+            <h2 class="footer__title">Contato</h2>
             <ul class="footer__list">
-              <li><a data-whatsapp href="#contato">Agendar pelo WhatsApp</a></li>
-              <li><span>Endereço em definição</span></li>
-              <li><span>Horários em definição</span></li>
+              <li>
+                <a class="link-underline" data-whatsapp href="#contato">Agendar pelo WhatsApp</a>
+              </li>
+              <li>
+                <a class="link-underline" data-instagram href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <address data-contact-address>Endereço a confirmar</address>
+              </li>
+              <li><span data-contact-hours>Horários a confirmar</span></li>
             </ul>
           </div>
         </div>
@@ -1216,6 +1400,7 @@
           <div class="social">
             <a
               class="social__link"
+              data-instagram
               href="https://instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -1292,9 +1477,26 @@
       <p class="lightbox__foot">Use as setas do teclado para navegar · ESC para fechar</p>
     </div>
 
-    <!-- CTA flutuante mobile — ativado na FASE 4/4 -->
-    <a class="btn btn--primary floating-cta" data-whatsapp data-floating-cta href="#contato">
-      Agendar horário
+    <!-- ====================================================================
+         BOTÃO FLUTUANTE DE WHATSAPP — FASE 4/4
+         Discreto por definição: aparece só depois do hero, some quando a
+         seção de agendamento já está na tela e recolhe o rótulo no desktop.
+         ==================================================================== -->
+    <a
+      class="wa-float"
+      data-whatsapp
+      data-wa-float
+      href="#contato"
+      aria-label="Falar no WhatsApp com Robson Lopes"
+    >
+      <span class="wa-float__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3.5 20.5 4.8 16a8 8 0 1 1 3.2 3.2l-4.5 1.3Z" stroke-linejoin="round" />
+          <path d="M9 9.2c.3 2 1.8 3.5 3.8 3.8.5.1.9-.3 1-.7l.1-.6 1.9.9-.2.8c-.2.7-.9 1.1-1.6 1-3.2-.4-5.6-2.8-6-6-.1-.7.3-1.4 1-1.6l.8-.2.9 1.9-.6.1c-.4.1-.8.5-.7 1Z" fill="currentColor" stroke="none" />
+        </svg>
+      </span>
+      <span class="wa-float__label">Agendar</span>
     </a>
+
   </body>
 </html>

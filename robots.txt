@@ -1,0 +1,7 @@
+# Robson Lopes — Cabeleireiro
+# TODO personalização: trocar o domínio quando o definitivo for contratado.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://robsonlopes.com.br/sitemap.xml

@@ -56,6 +56,11 @@ p {
   margin: 0;
 }
 
+/* O navegador aplica itálico em <address> por padrão — fora da identidade */
+address {
+  font-style: normal;
+}
+
 ul,
 ol {
   margin: 0;
@@ -224,6 +229,7 @@ button {
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   white-space: nowrap;
+  max-width: 100%;
   border-radius: var(--radius-sm);
   transition: color var(--dur-base) var(--ease-out),
     background-color var(--dur-base) var(--ease-out),
@@ -236,6 +242,15 @@ button {
 
 .btn:active {
   transform: translateY(1px);
+}
+
+/* Telas muito estreitas (320px): o tracking largo dos rótulos fazia o botão
+   estourar o contêiner. Aperta o respiro sem perder a leitura. */
+@media (max-width: 359px) {
+  .btn {
+    --btn-px: 1rem;
+    letter-spacing: 0.18em;
+  }
 }
 
 /* Microinteração: brilho metálico que atravessa o botão no hover.
