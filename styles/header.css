@@ -89,14 +89,44 @@
   opacity: 0.82;
 }
 
+/* O lockup oficial é empilhado (proporção 1,12:1). Numa barra de 46px o
+   nome ficaria com 5px de altura. As duas peças oficiais entram lado a lado:
+   o monograma como símbolo e a assinatura tipográfica como nome. */
+.brand {
+  gap: clamp(0.6rem, 0.4rem + 0.6vw, 1rem);
+}
+
+.brand__mark {
+  height: clamp(2.3rem, 1.7rem + 1.9vw, 3.1rem);
+  width: auto;
+  flex-shrink: 0;
+  transition: height var(--dur-slow) var(--ease-lux);
+}
+
 .brand__logo {
-  height: clamp(2.1rem, 1.6rem + 1.6vw, 2.9rem);
+  height: clamp(1.35rem, 1rem + 1.1vw, 1.85rem);
   width: auto;
   transition: height var(--dur-slow) var(--ease-lux);
 }
 
+.site-header.is-scrolled .brand__mark {
+  height: clamp(1.95rem, 1.5rem + 1.4vw, 2.5rem);
+}
+
 .site-header.is-scrolled .brand__logo {
-  height: clamp(1.85rem, 1.45rem + 1.2vw, 2.35rem);
+  height: clamp(1.15rem, 0.9rem + 0.85vw, 1.5rem);
+}
+
+/* A assinatura cabe até em 320px ao lado do símbolo — verificado na
+   auditoria de largura. Só nas telas mais estreitas ela encolhe um pouco. */
+@media (max-width: 400px) {
+  .brand__logo {
+    height: 1.15rem;
+  }
+
+  .brand__mark {
+    height: 2.1rem;
+  }
 }
 
 /* Fallback tipográfico enquanto o PNG da logo não estiver no repositório.
@@ -127,6 +157,10 @@
    .footer__brand-logo e ficava exibindo o texto alternativo quebrado. */
 .brand.is-fallback img {
   display: none;
+}
+
+.brand.is-fallback {
+  gap: 0;
 }
 
 .brand.is-fallback .brand__fallback {

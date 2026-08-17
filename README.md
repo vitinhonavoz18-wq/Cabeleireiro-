@@ -89,6 +89,11 @@ Extraída da logo oficial:
 | Off-white | `--bone-50` | `#F6F3EE` |
 | Texto secundário | `--neutral-400` | `#A5A19A` |
 
+**A logo é usada em três peças**, todas recortadas do arquivo oficial: o
+símbolo (monograma) e a assinatura tipográfica lado a lado no header, e o
+lockup completo no rodapé. O lockup oficial é empilhado, com proporção 1,12:1
+— numa barra de 46px o nome sairia com 5px de altura, ilegível.
+
 **Regra do dourado:** destaque, nunca preenchimento. Por tela, no máximo um
 botão sólido dourado, um filete e uma ou duas palavras em `.text-metal`.
 

@@ -144,11 +144,19 @@
       <div class="header__inner">
         <a class="brand" href="#inicio" data-brand aria-label="Robson Lopes — Cabeleireiro, ir para o início">
           <img
+            class="brand__mark"
+            src="assets/brand/robson-lopes-mark.webp"
+            alt=""
+            width="283"
+            height="260"
+            decoding="async"
+          />
+          <img
             class="brand__logo"
             src="assets/brand/robson-lopes-wordmark.webp"
             alt="Robson Lopes"
-            width="1025"
-            height="242"
+            width="588"
+            height="150"
             decoding="async"
           />
           <span class="brand__fallback" aria-hidden="true">
@@ -338,20 +346,43 @@
             <!-- O reveal em máscara fica no .ratio, não no .about__portrait:
                  o clip-path do reveal recortaria a moldura dourada deslocada. -->
             <div class="about__portrait">
-              <div class="ratio ratio--tall media" data-media data-reveal="mask">
-                  <img
-                    src="assets/fotos/robson-atendimento.webp"
-                    alt="Robson Lopes finalizando o cabelo de uma cliente no salão"
-                    width="1120"
-                    height="1400"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                <div class="media__empty">
-                  <span class="media__empty-mark">RL</span>
-                  <span class="media__empty-label">Robson em atendimento</span>
-                </div>
-              </div>
+              <!-- Era um quadro congelado extraído deste mesmo vídeo, e por
+                   isso lia como um vídeo pausado. Agora é o vídeo de fato,
+                   com o mesmo carregamento sob demanda e o mesmo teto de
+                   reprodução simultânea usados na parede. -->
+              <figure
+                class="ratio ratio--tall media"
+                data-media
+                data-reveal="mask"
+                data-lightbox
+                data-type="video"
+                data-full="assets/videos/bastidores-salao.mp4"
+                data-full-alt="assets/videos/bastidores-salao.webm"
+                data-poster="assets/videos/bastidores-salao-poster.jpg"
+                data-tag="Bastidores"
+                data-label="Robson finalizando o cabelo de uma cliente"
+                data-alt="Robson Lopes finalizando o cabelo de uma cliente no salão"
+                role="button"
+                tabindex="0"
+                aria-label="Ampliar: Robson finalizando o cabelo de uma cliente"
+              >
+                <video
+                  poster="assets/videos/bastidores-salao-poster.jpg"
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  data-lazy-video
+                  aria-label="Robson Lopes finalizando o cabelo de uma cliente no salão"
+                >
+                  <source data-src="assets/videos/bastidores-salao.webm" type="video/webm" />
+                  <source data-src="assets/videos/bastidores-salao.mp4" type="video/mp4" />
+                </video>
+                <span class="tile__play">
+                  <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l6 4-6 4z" /></svg>
+                  Vídeo
+                </span>
+              </figure>
             </div>
 
             <div class="stack about__text">
@@ -1300,8 +1331,8 @@
                 class="footer__brand-logo"
                 src="assets/brand/robson-lopes-logo.webp"
                 alt="Robson Lopes"
-                width="1102"
-                height="820"
+                width="449"
+                height="400"
                 loading="lazy"
                 decoding="async"
               />

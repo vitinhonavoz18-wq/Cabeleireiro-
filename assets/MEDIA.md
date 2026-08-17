@@ -10,9 +10,9 @@ Os seis arquivos enviados no chat já estão no repositório, processados:
 
 | Arquivo | Onde aparece |
 | --- | --- |
-| `brand/robson-lopes-wordmark.webp` | Header |
-| `brand/robson-lopes-logo.webp` | Rodapé |
-| `brand/robson-lopes-mark.webp` | Reserva (selo, favicon) |
+| `brand/robson-lopes-mark.webp` | Header — símbolo |
+| `brand/robson-lopes-wordmark.webp` | Header — assinatura, ao lado do símbolo |
+| `brand/robson-lopes-logo.webp` | Rodapé — lockup completo |
 | `fotos/robson-retrato.webp` | **Hero** |
 | `fotos/loiro-dourado-01.webp` | Seção de loiros · parede · portfólio |
 | `fotos/loiro-acinzentado-01.webp` | Parede · portfólio |
@@ -60,7 +60,7 @@ não estão no repositório — se precisar reverter, é preciso reenviá-los.
 
 | Slot | Por que importa |
 | --- | --- |
-| Foto real do Robson trabalhando | A imagem da seção **Sobre Robson** hoje é um quadro extraído do vídeo de bastidores: resolve o vazio, mas tem nitidez de vídeo. Uma fotografia própria renderia melhor. |
+| Foto real do Robson trabalhando | A seção **Sobre Robson** hoje exibe o vídeo de bastidores. Funciona bem, mas uma fotografia própria daria mais nitidez e mais controle de enquadramento. |
 | Fotos de **corte** e de **tratamento** | As oito atuais são todas de coloração. O ruivo e a morena iluminada já quebram a leitura de "só faz loiro", mas corte e tratamento aparecem no texto sem prova visual. |
 | **Antes e depois** (par de fotos) | O bloco segue oculto. Existe material da mesma sessão dentro dos vídeos, mas o "depois" está espelhado e com enquadramento diferente — num slider isso vira um salto. Precisa de duas fotos com o mesmo enquadramento. |
 
