@@ -21,20 +21,34 @@ pastas com os nomes abaixo.
 
 ### Arquivos que a Fase 2 já referencia (obrigatórios)
 
-| Arquivo | Onde aparece | Enquadramento ideal |
+| Arquivo | Onde aparece | Requisito |
 | --- | --- | --- |
-| `robson-retrato.jpg` | **Hero** | Retrato vertical do Robson, 3:4 ou 4:5. No desktop ocupa a metade direita; no mobile, a tela inteira. Deixe espaço à esquerda do rosto — é onde entra o texto. |
+| **`robson-retrato.png`** | **Hero** | **PNG com fundo transparente**, corpo inteiro, vertical (2:3 funciona bem). É um recorte, não uma foto ambientada. |
 | `robson-atendimento.jpg` | Seção **Sobre Robson** | Robson trabalhando, vertical 4:5. |
 | `loiro-assinatura.jpg` | Seção **Um olhar especial para os loiros** | O melhor resultado em loiro, vertical 4:5. |
 
-> ⚠️ **Não há fotografia do Robson entre os arquivos enviados até agora** —
-> as quatro imagens recebidas são resultados em clientes. O hero e a seção
-> Sobre exibem um estado vazio elegante até que `robson-retrato.jpg` e
-> `robson-atendimento.jpg` sejam adicionados. É o material mais importante
-> que falta no projeto.
+### Por que o hero pede PNG, e não JPG
 
-Cada arquivo aceita também a versão `.webp` de mesmo nome — o site já usa
-`<picture>` e serve o WebP automaticamente quando existir.
+O hero foi construído em modo **recorte** (`.hero--cutout` em `styles/hero.css`):
+a figura é apoiada na base sobre um cenário feito em CSS — halo dourado atrás
+e sombra no chão. Isso só funciona com **fundo transparente**.
+
+Um JPG traz o fundo branco junto e desenharia um retângulo claro no meio do
+preto. Se o arquivo que você tem é JPG em fundo branco, remova o fundo antes
+de subir (qualquer ferramenta de recorte serve) e exporte como PNG.
+
+Se preferir usar uma foto **ambientada** (Robson no salão, com cenário real),
+é só remover a classe `hero--cutout` do `<section class="hero ...">` no
+`index.html` — o tratamento antigo, com véu escuro sobre a foto, continua
+pronto no CSS.
+
+### Formatos
+
+Use **um arquivo por slot**, com o nome exato da tabela. O site não usa mais
+`<picture>` com `<source>` WebP: quando o WebP escolhido não existe, o
+navegador **não volta** para o JPG — ele simplesmente não mostra nada. Para
+usar WebP, salve o arquivo já com a extensão `.webp` e ajuste o `src` no
+`index.html`.
 
 ### Arquivos da Fase 3 — parede diagonal e portfólio
 
@@ -107,17 +121,9 @@ não servem.
 Todas são verticais (3:4 / 4:5), o que combina com as proporções já definidas
 em `styles/layout.css` (`.ratio--portrait`, `.ratio--tall`).
 
-## 3. Vídeos — `assets/videos/`
+## 3. Recomendações técnicas
 
-```
-processo-01.mp4   (H.264, ≤ 1080p, sem áudio para autoplay silencioso)
-resultado-01.mp4
-poster-processo-01.jpg  (frame de capa — evita tela preta e melhora o LCP)
-```
-
-## 4. Recomendações técnicas
-
-- Exportar também em **WebP** (ou AVIF) além do JPG — o site usará `<picture>`.
 - Largura máxima útil: **1600px** para full-bleed, **1200px** para grid.
-- Manter os originais fora do repositório se ultrapassarem ~500 KB por arquivo.
+- Comprimir antes de subir; acima de ~500 KB por arquivo o ganho visual some
+  e o custo de carregamento não.
 - Fotos de clientes exigem autorização de uso de imagem.

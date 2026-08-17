@@ -214,14 +214,15 @@
            Desktop: composição dividida, fotografia à direita dissolvida no
            preto. Mobile: fotografia em tela cheia, conteúdo ancorado embaixo.
            ================================================================== -->
-      <section class="hero" id="inicio" data-hero aria-labelledby="hero-title">
+      <section class="hero hero--cutout" id="inicio" data-hero aria-labelledby="hero-title">
+        <!-- Fundo construído: com foto em recorte, o cenário é CSS, não imagem -->
+        <div class="hero__backdrop" aria-hidden="true"></div>
+
         <div class="hero__media" aria-hidden="true">
           <div class="hero__media-inner" data-parallax>
             <div class="hero__media-figure media" data-media>
-              <picture>
-                <source srcset="assets/fotos/robson-retrato.webp" type="image/webp" />
                 <img
-                  src="assets/fotos/robson-retrato.jpg"
+                  src="assets/fotos/robson-retrato.png"
                   alt=""
                   width="1200"
                   height="1600"
@@ -229,7 +230,6 @@
                   decoding="async"
                   data-hero-image
                 />
-              </picture>
               <!-- Estado vazio do hero: apenas textura, sem rótulo — o texto
                    da headline passa por cima desta área no mobile. -->
               <div class="media__empty"></div>
@@ -329,8 +329,6 @@
                  o clip-path do reveal recortaria a moldura dourada deslocada. -->
             <div class="about__portrait">
               <div class="ratio ratio--tall media" data-media data-reveal="mask">
-                <picture>
-                  <source srcset="assets/fotos/robson-atendimento.webp" type="image/webp" />
                   <img
                     src="assets/fotos/robson-atendimento.jpg"
                     alt="Robson Lopes durante um atendimento no salão"
@@ -339,7 +337,6 @@
                     loading="lazy"
                     decoding="async"
                   />
-                </picture>
                 <div class="media__empty">
                   <span class="media__empty-mark">RL</span>
                   <span class="media__empty-label">Robson em atendimento</span>
@@ -443,8 +440,6 @@
 
             <div class="signature__media">
               <div class="ratio ratio--tall media" data-media data-reveal="mask" data-reveal-delay="2">
-                <picture>
-                  <source srcset="assets/fotos/loiro-assinatura.webp" type="image/webp" />
                   <img
                     src="assets/fotos/loiro-assinatura.jpg"
                     alt="Resultado de loiro iluminado com mechas trabalhadas, feito por Robson Lopes"
@@ -453,7 +448,6 @@
                     loading="lazy"
                     decoding="async"
                   />
-                </picture>
                 <div class="media__empty">
                   <span class="media__empty-mark">RL</span>
                   <span class="media__empty-label">Resultado em loiro</span>
@@ -511,10 +505,7 @@
                   aria-label="Ampliar: Loiro iluminado com raiz esfumada"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/loiro-01.webp" type="image/webp" />
                       <img src="assets/fotos/loiro-01.jpg" alt="Cabelo loiro iluminado com raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -535,10 +526,7 @@
                   aria-label="Ampliar: Corte repicado com movimento"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/corte-01.webp" type="image/webp" />
                       <img src="assets/fotos/corte-01.jpg" alt="Corte repicado com camadas e movimento" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -592,10 +580,7 @@
                   aria-label="Ampliar: Loiro acinzentado"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/loiro-02.webp" type="image/webp" />
                       <img src="assets/fotos/loiro-02.jpg" alt="Cabelo loiro acinzentado em close frontal" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -616,10 +601,7 @@
                   aria-label="Ampliar: Brilho e reconstrução do fio"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/tratamento-01.webp" type="image/webp" />
                       <img src="assets/fotos/tratamento-01.jpg" alt="Resultado de tratamento de reconstrução com brilho" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -640,10 +622,7 @@
                   aria-label="Ampliar: Morena iluminada com ondas"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/morena-01.webp" type="image/webp" />
                       <img src="assets/fotos/morena-01.jpg" alt="Cabelo castanho iluminado com ondas" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -664,10 +643,7 @@
                   aria-label="Ampliar: Loiro mel com franja"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/loiro-03.webp" type="image/webp" />
                       <img src="assets/fotos/loiro-03.jpg" alt="Cabelo loiro mel com franja" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -688,10 +664,7 @@
                   aria-label="Ampliar: Ondas amplas e definidas"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/finalizacao-01.webp" type="image/webp" />
                       <img src="assets/fotos/finalizacao-01.jpg" alt="Finalização em ondas amplas e definidas" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -757,10 +730,7 @@
                   aria-label="Ampliar: Corte médio com franja cortina"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/corte-02.webp" type="image/webp" />
                       <img src="assets/fotos/corte-02.jpg" alt="Corte médio com franja cortina" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -781,10 +751,7 @@
                   aria-label="Ampliar: Loiro frio de raiz esfumada"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/loiro-04.webp" type="image/webp" />
                       <img src="assets/fotos/loiro-04.jpg" alt="Cabelo loiro frio com raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -805,10 +772,7 @@
                   aria-label="Ampliar: Ruivo acobreado"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/coloracao-01.webp" type="image/webp" />
                       <img src="assets/fotos/coloracao-01.jpg" alt="Resultado de coloração em ruivo acobreado" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -829,10 +793,7 @@
                   aria-label="Ampliar: Mechas douradas"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/loiro-05.webp" type="image/webp" />
                       <img src="assets/fotos/loiro-05.jpg" alt="Cabelo com mechas douradas" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -853,10 +814,7 @@
                   aria-label="Ampliar: Transição de raiz"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/detalhe-01.webp" type="image/webp" />
                       <img src="assets/fotos/detalhe-01.jpg" alt="Detalhe da transição de raiz esfumada" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -877,10 +835,7 @@
                   aria-label="Ampliar: Do escuro ao loiro em etapas"
                 >
                   <div class="tile__media media" data-media>
-                    <picture>
-                      <source srcset="assets/fotos/transformacao-01.webp" type="image/webp" />
                       <img src="assets/fotos/transformacao-01.jpg" alt="Transformação completa do escuro ao loiro" loading="lazy" decoding="async" width="900" height="1200" />
-                    </picture>
                     <div class="media__empty"><span class="media__empty-mark">RL</span></div>
                   </div>
                   <figcaption class="tile__caption">
@@ -1105,10 +1060,7 @@
               tabindex="0"
               aria-label="Ampliar: Loiro platinado com brilho"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-01.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-01.jpg" alt="Resultado de loiro platinado com brilho" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Loiro</span>
@@ -1128,10 +1080,7 @@
               tabindex="0"
               aria-label="Ampliar: Corte longo em camadas"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-02.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-02.jpg" alt="Corte longo repicado em camadas" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Corte</span>
@@ -1151,10 +1100,7 @@
               tabindex="0"
               aria-label="Ampliar: Mechas iluminadas"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-03.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-03.jpg" alt="Mechas iluminadas em cabelo longo" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Loiro</span>
@@ -1174,10 +1120,7 @@
               tabindex="0"
               aria-label="Ampliar: Castanho iluminado"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-04.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-04.jpg" alt="Coloração em castanho iluminado" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Coloração</span>
@@ -1197,10 +1140,7 @@
               tabindex="0"
               aria-label="Ampliar: Loiro dourado"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-05.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-05.jpg" alt="Resultado de loiro dourado com ondas" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Loiro</span>
@@ -1220,10 +1160,7 @@
               tabindex="0"
               aria-label="Ampliar: Fio selado e alinhado"
             >
-              <picture>
-                <source srcset="assets/fotos/portfolio-06.webp" type="image/webp" />
                 <img src="assets/fotos/portfolio-06.jpg" alt="Resultado de tratamento com fio selado e alinhado" loading="lazy" decoding="async" width="900" height="1125" />
-              </picture>
               <div class="media__empty"><span class="media__empty-mark">RL</span></div>
               <figcaption class="tile__caption">
                 <span class="tile__tag">Tratamento</span>
