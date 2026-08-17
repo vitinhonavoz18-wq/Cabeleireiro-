@@ -19,20 +19,30 @@ export function initShowcase() {
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* Duplica o grupo para o laço não ter emenda visível. */
+  /* Duplica o grupo até a trilha ser larga o bastante para o laço não abrir
+     buraco. Com poucos cards, uma única cópia não cobre a tela: a posição
+     percorre um ciclo inteiro e sobra vazio na borda. O fator 1,5 cobre a
+     ampliação que a rotação da parede provoca. */
   tracks.forEach((track) => {
     const group = track.querySelector('[data-track-group]');
     if (!group) return;
-    const clone = group.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    // Cópia decorativa: não pode ser focável nem duplicar conteúdo para leitores
-    clone.querySelectorAll('[tabindex], button, a').forEach((el) => {
-      el.setAttribute('tabindex', '-1');
-    });
-    // Sem alt na cópia: evita leitura duplicada e, se o arquivo faltar, o
-    // navegador não desenha o texto alternativo por cima do card.
-    clone.querySelectorAll('img').forEach((img) => img.setAttribute('alt', ''));
-    track.appendChild(clone);
+
+    const largura = group.offsetWidth;
+    const necessario = window.innerWidth * 1.5;
+    const copias = largura > 0 ? Math.max(1, Math.ceil(necessario / largura)) : 1;
+
+    for (let i = 0; i < copias; i += 1) {
+      const clone = group.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      // Cópia decorativa: não pode ser focável nem duplicar conteúdo para leitores
+      clone.querySelectorAll('[tabindex], button, a').forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
+      // Sem alt na cópia: evita leitura duplicada e, se o arquivo faltar, o
+      // navegador não desenha o texto alternativo por cima do card.
+      clone.querySelectorAll('img').forEach((img) => img.setAttribute('alt', ''));
+      track.appendChild(clone);
+    }
     track._group = group;
   });
 

@@ -282,19 +282,9 @@
     linear-gradient(180deg, var(--ink-1000) 0%, var(--ink-900) 55%, var(--ink-1000) 100%);
 }
 
-/* Sombra elíptica sob os pés — sem ela a figura parece flutuar */
-.hero--cutout .hero__media::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -2%;
-  width: 62%;
-  height: 9%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.85), transparent);
-  pointer-events: none;
-}
+/* Sem sombra de chão: o recorte oficial termina na altura da coxa, então
+   a figura sangra pela borda inferior em vez de "pisar" em algum lugar.
+   Uma elipse ali entregaria pés que não existem na foto. */
 
 /* O recorte não pode encostar no topo nem sangrar: o parallax ganha folga
    só embaixo, e a entrada em zoom fica mais discreta. */
@@ -408,10 +398,6 @@
       linear-gradient(120deg, var(--ink-1000) 30%, var(--ink-900) 100%);
   }
 
-  .hero--cutout .hero__media::after {
-    width: 70%;
-    height: 7%;
-  }
 }
 
 @media (min-width: 1600px) {

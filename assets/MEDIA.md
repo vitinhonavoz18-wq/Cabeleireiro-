@@ -4,56 +4,46 @@ Os arquivos enviados no chat **não chegam ao repositório automaticamente**.
 Para que o site use as imagens oficiais, elas precisam ser commitadas nestas
 pastas com os nomes abaixo.
 
-## 1. Marca — `assets/brand/`
+## Situação atual
 
-| Arquivo | Uso | Observação |
+Os seis arquivos enviados no chat já estão no repositório, processados:
+
+| Arquivo | Origem | Onde aparece |
 | --- | --- | --- |
-| `robson-lopes-logo.png` | Header e rodapé | Logo oficial **com fundo transparente** (PNG). O arquivo enviado tem fundo preto sólido; recortar o fundo evita o "quadrado" sobre fotografias. |
-| `robson-lopes-logo-mark.png` | Monograma RL isolado | Para favicon, selo e usos pequenos. |
-| `apple-touch-icon.png` | iOS | 180×180. |
-| `favicon.svg` | Aba do navegador | **Provisório** — hoje é apenas "RL" na tipografia da marca. Substituir pelo recorte do monograma oficial. |
+| `brand/robson-lopes-wordmark.webp` | logo oficial, recorte da assinatura | Header |
+| `brand/robson-lopes-logo.webp` | logo oficial, lockup completo | Rodapé |
+| `brand/robson-lopes-mark.webp` | logo oficial, só o monograma | Reserva (selo, favicon) |
+| `fotos/robson-retrato.webp` | foto oficial em recorte | **Hero** |
+| `fotos/loiro-dourado-01.webp` | foto de trabalho | Seção de loiros, parede, portfólio |
+| `fotos/loiro-acinzentado-01.webp` | foto de trabalho | Parede, portfólio |
+| `fotos/loiro-mel-01.webp` | foto de trabalho | Parede, portfólio |
+| `fotos/morena-iluminada-01.webp` | foto de trabalho | Parede, portfólio |
 
-> Nenhuma logo nova foi criada. Enquanto o PNG oficial não estiver aqui, o site
-> exibe automaticamente o nome "Robson Lopes / Cabeleireiro" na tipografia da
-> marca (fallback declarado em `scripts/main.js`).
+**Processamento aplicado:** a logo veio sobre fundo preto texturizado — o fundo
+foi removido por chave de luminância e a arte recortada em três peças. As fotos
+de trabalho foram redimensionadas para 1400px no lado maior e reencodadas em
+WebP (de ~1,6 MB somados para ~845 KB). O retrato já era um recorte com canal
+alfa e foi apenas reencodado.
 
-## 2. Fotografias — `assets/fotos/`
+## O que ainda falta
 
-### Arquivos que a Fase 2 já referencia (obrigatórios)
+| Slot | Por que importa |
+| --- | --- |
+| `fotos/robson-atendimento.jpg` | Única mídia ausente que deixa um espaço vazio visível, na seção **Sobre Robson**. Robson trabalhando, vertical 4:5. |
+| Fotos de **corte, tratamento e coloração** | As quatro fotos atuais são todas de trabalho em loiro. A parede diagonal fica convincente, mas contradiz visualmente o posicionamento de "cabeleireiro completo". |
+| **Vídeos** | Os cards de vídeo foram retirados da parede até existirem arquivos. Ver seção de vídeos abaixo. |
+| **Antes e depois** | O bloco continua oculto: exige um par do mesmo atendimento. |
 
-| Arquivo | Onde aparece | Requisito |
-| --- | --- | --- |
-| **`robson-retrato.png`** | **Hero** | **PNG com fundo transparente**, corpo inteiro, vertical (2:3 funciona bem). É um recorte, não uma foto ambientada. |
-| `robson-atendimento.jpg` | Seção **Sobre Robson** | Robson trabalhando, vertical 4:5. |
-| `loiro-assinatura.jpg` | Seção **Um olhar especial para os loiros** | O melhor resultado em loiro, vertical 4:5. |
-
-### Por que o hero pede PNG, e não JPG
-
-O hero foi construído em modo **recorte** (`.hero--cutout` em `styles/hero.css`):
-a figura é apoiada na base sobre um cenário feito em CSS — halo dourado atrás
-e sombra no chão. Isso só funciona com **fundo transparente**.
-
-Um JPG traz o fundo branco junto e desenharia um retângulo claro no meio do
-preto. Se o arquivo que você tem é JPG em fundo branco, remova o fundo antes
-de subir (qualquer ferramenta de recorte serve) e exporte como PNG.
-
-Se preferir usar uma foto **ambientada** (Robson no salão, com cenário real),
-é só remover a classe `hero--cutout` do `<section class="hero ...">` no
-`index.html` — o tratamento antigo, com véu escuro sobre a foto, continua
-pronto no CSS.
-
-### Formatos
-
-Use **um arquivo por slot**, com o nome exato da tabela. O site não usa mais
-`<picture>` com `<source>` WebP: quando o WebP escolhido não existe, o
-navegador **não volta** para o JPG — ele simplesmente não mostra nada. Para
-usar WebP, salve o arquivo já com a extensão `.webp` e ajuste o `src` no
-`index.html`.
+> A parede diagonal repete as quatro fotos porque só há quatro. Cada foto
+> aparece em duas proporções diferentes para não ler como card duplicado, e o
+> laço clona o grupo conforme a largura da tela. Ao adicionar fotos novas,
+> acrescente cards em `index.html` e a repetição desaparece sozinha.
 
 ### Arquivos da Fase 3 — parede diagonal e portfólio
 
-A parede tem 15 cards (13 fotos + 2 vídeos) e o portfólio tem 6. Cada slot já
-está nomeado no `index.html`; basta subir o arquivo com o nome correspondente.
+A parede tem hoje **8 cards** (4 por fileira) e o portfólio **4**, todos já
+apontando para fotos reais. As tabelas abaixo listam os nomes sugeridos para o
+material adicional — cada arquivo novo vira um card a mais.
 
 **Fileira 1 da parede**
 
