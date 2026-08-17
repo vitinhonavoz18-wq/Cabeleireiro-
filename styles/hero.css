@@ -1,0 +1,424 @@
+/* ==========================================================================
+   HERO — FASE 2/4
+   Desktop: composição dividida. Fotografia ocupa ~52% à direita e se dissolve
+   no preto por gradiente — sem linha de corte dura.
+   Mobile: fotografia protagonista em tela cheia, conteúdo ancorado embaixo.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 2.5rem) clamp(2.5rem, 1.5rem + 5vw, 5rem);
+  overflow: hidden;
+  background-color: var(--ink-1000);
+  isolation: isolate;
+}
+
+/* ---------- Fotografia ---------- */
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+/* Duas camadas separadas de propósito: o parallax escreve transform inline em
+   .hero__media-inner, então a entrada em zoom-out precisa viver em outro
+   elemento — senão uma sobrescreve a outra. */
+.hero__media-inner {
+  position: absolute;
+  inset: -8% 0; /* folga vertical para o parallax não descobrir a borda */
+  will-change: transform;
+}
+
+.hero__media-figure {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Enquadramento no terço superior: preserva o rosto em telas baixas */
+  object-position: center 20%;
+}
+
+/* Véus de contraste — garantem legibilidade sobre qualquer fotografia */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Mobile: escurece topo e, sobretudo, a base onde vive o texto */
+  background: linear-gradient(
+      180deg,
+      rgba(5, 5, 5, 0.78) 0%,
+      rgba(5, 5, 5, 0.3) 28%,
+      rgba(5, 5, 5, 0.72) 62%,
+      rgba(5, 5, 5, 0.96) 86%,
+      var(--ink-900) 100%
+    ),
+    radial-gradient(
+      130% 70% at 50% 100%,
+      rgba(5, 5, 5, 0.55) 0%,
+      rgba(5, 5, 5, 0) 62%
+    );
+}
+
+/* ---------- Conteúdo ---------- */
+
+.hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.hero__content {
+  max-width: min(100%, 40rem);
+}
+
+/* Identidade: nome + função */
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 0.6rem + 1vw, 1.4rem);
+}
+
+.hero__name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  letter-spacing: var(--ls-label-wide);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+/* Escala própria (menor que --fs-display): a headline agora é uma frase de
+   três linhas, não uma palavra. Calibrada para "em cada detalhe." caber em
+   uma linha na coluna de texto, do mobile ao ultrawide. */
+.hero__statement {
+  display: block;
+  font-size: clamp(2.15rem, 1.35rem + 3.3vw, 4.4rem);
+  line-height: 1.06;
+  letter-spacing: var(--ls-display);
+}
+
+/* Máscara por linha: cada linha sobe de dentro do próprio recorte */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  /* Folga para os descendentes (ç, ã, g) não serem cortados pela máscara */
+  padding-bottom: 0.09em;
+  margin-bottom: -0.09em;
+}
+
+.js-ready .line-mask > span {
+  transform: translateY(105%);
+  transition: transform 1150ms var(--ease-lux);
+}
+
+.hero.is-ready .line-mask > span {
+  transform: translateY(0);
+}
+
+.hero.is-ready .line-mask:nth-of-type(1) > span { transition-delay: 120ms; }
+.hero.is-ready .line-mask:nth-of-type(2) > span { transition-delay: 220ms; }
+.hero.is-ready .line-mask:nth-of-type(3) > span { transition-delay: 320ms; }
+
+.hero__role {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-top: clamp(1.1rem, 0.8rem + 1.2vw, 1.75rem);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero__role-sep {
+  color: var(--gold-500);
+}
+
+/* No mobile a linha quebra em duas e o separador ficaria órfão no fim da
+   primeira linha — vira empilhamento limpo, sem bullet. */
+@media (max-width: 560px) {
+  .hero__role {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .hero__role-sep {
+    display: none;
+  }
+}
+
+.hero__lead {
+  margin-top: clamp(1.1rem, 0.8rem + 1.2vw, 1.6rem);
+  max-width: 44ch;
+}
+
+.hero__actions {
+  margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  gap: var(--space-md) var(--space-lg);
+}
+
+/* Filete dourado de assinatura acima da identidade */
+.hero__flag {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+}
+
+.hero__flag-line {
+  display: block;
+  width: clamp(2.25rem, 1rem + 4vw, 4.5rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-400), rgba(207, 167, 79, 0.15));
+  transform-origin: left;
+  transition: transform 1200ms var(--ease-lux) 80ms;
+}
+
+.hero.is-ready .hero__flag-line {
+  transform: scaleX(1);
+}
+
+/* Entradas escalonadas dos blocos de apoio.
+   Todo estado escondido é prefixado por .js-ready: sem JavaScript o hero
+   renderiza completo e legível, sem depender de nenhuma classe. */
+.js-ready .hero__flag-line {
+  transform: scaleX(0);
+}
+
+.js-ready .hero__flag,
+.js-ready .hero__role,
+.js-ready .hero__lead,
+.js-ready .hero__actions {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 900ms var(--ease-lux), transform 900ms var(--ease-lux);
+}
+
+.hero.is-ready .hero__flag { opacity: 1; transform: none; transition-delay: 60ms; }
+.hero.is-ready .hero__role { opacity: 1; transform: none; transition-delay: 460ms; }
+.hero.is-ready .hero__lead { opacity: 1; transform: none; transition-delay: 560ms; }
+.hero.is-ready .hero__actions { opacity: 1; transform: none; transition-delay: 660ms; }
+
+/* Entrada da fotografia: zoom-out lento e clareamento */
+.js-ready .hero__media-figure {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1500ms var(--ease-lux), transform 2000ms var(--ease-lux);
+}
+
+.hero.is-ready .hero__media-figure {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 479px) {
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP — composição dividida
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .hero {
+    align-items: center;
+    padding-block: calc(var(--header-h) + 4rem) 4rem;
+  }
+
+  /* A fotografia ocupa a metade direita e sangra até a borda */
+  .hero__media {
+    left: auto;
+    width: 54%;
+  }
+
+  .hero__media img {
+    object-position: center 18%;
+  }
+
+  /* Dissolve a borda esquerda da foto no preto: sem corte reto */
+  .hero__scrim {
+    background: linear-gradient(
+        90deg,
+        var(--ink-900) 30%,
+        rgba(5, 5, 5, 0.9) 42%,
+        rgba(5, 5, 5, 0.35) 56%,
+        rgba(5, 5, 5, 0.05) 72%,
+        rgba(5, 5, 5, 0.25) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 5, 0.55) 0%,
+        rgba(5, 5, 5, 0) 30%,
+        rgba(5, 5, 5, 0) 62%,
+        rgba(5, 5, 5, 0.7) 100%
+      );
+  }
+
+  .hero__content {
+    max-width: min(48%, 37rem);
+  }
+
+  /* Botões um pouco mais justos no desktop para os dois CTAs caberem
+     na mesma linha dentro da coluna de texto. */
+  .hero__actions .btn {
+    --btn-px: 1.35rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero__media {
+    width: 50%;
+  }
+
+  .hero__content {
+    max-width: 38rem;
+  }
+}
+
+/* ==========================================================================
+   INDICADOR DE ROLAGEM
+   ========================================================================== */
+
+.scroll-hint {
+  display: none;
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+  align-items: center;
+  gap: 0.9rem;
+  writing-mode: vertical-rl;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  transition: opacity 900ms var(--ease-lux) 1000ms;
+}
+
+.hero.is-ready .scroll-hint {
+  opacity: 1;
+}
+
+.js-ready .scroll-hint {
+  opacity: 0;
+}
+
+@media (min-width: 1024px) {
+  .scroll-hint {
+    display: flex;
+  }
+}
+
+.scroll-hint__line {
+  display: block;
+  width: 1px;
+  height: 3.5rem;
+  background: linear-gradient(180deg, var(--gold-400), transparent);
+}
+
+/* ==========================================================================
+   FAIXA DE COMPETÊNCIAS — posicionamento completo, com o loiro como assinatura
+   ========================================================================== */
+
+.skills {
+  position: relative;
+  border-bottom: 1px solid var(--hairline-neutral);
+  background: var(--ink-850);
+}
+
+.skills__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--hairline-neutral);
+  border-inline: 1px solid var(--hairline-neutral);
+}
+
+@media (min-width: 900px) {
+  .skills__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.skills__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem) clamp(1.1rem, 0.8rem + 1.4vw, 2rem);
+  background: var(--ink-850);
+  transition: background-color var(--dur-slow) var(--ease-out);
+}
+
+.skills__item:hover {
+  background: var(--ink-800);
+}
+
+.skills__index {
+  font-size: 0.62rem;
+  letter-spacing: var(--ls-label);
+  color: var(--gold-700);
+}
+
+.skills__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.1;
+  color: var(--bone-50);
+}
+
+.skills__desc {
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  max-width: 30ch;
+}
+
+/* O quarto item — loiros — é a assinatura: recebe o único realce dourado */
+.skills__item--signature {
+  background: linear-gradient(
+    180deg,
+    rgba(207, 167, 79, 0.09),
+    rgba(207, 167, 79, 0.015)
+  );
+}
+
+.skills__item--signature:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(207, 167, 79, 0.14),
+    rgba(207, 167, 79, 0.03)
+  );
+}
+
+.skills__item--signature .skills__name {
+  color: var(--gold-200);
+}
+
+.skills__item--signature .skills__index {
+  color: var(--gold-400);
+}
+
+.skills__badge {
+  position: absolute;
+  top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  right: clamp(1.1rem, 0.8rem + 1.4vw, 2rem);
+  font-size: 0.58rem;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-500);
+}

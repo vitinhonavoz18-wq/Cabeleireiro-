@@ -49,8 +49,15 @@
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/motion.css" />
     <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/hero.css" />
+    <link rel="stylesheet" href="styles/about.css" />
     <link rel="stylesheet" href="styles/sections.css" />
 
+    <!-- Marca "com JavaScript" antes da primeira pintura: os estados iniciais
+         das animações só existem sob .js-ready, então sem JS nada some. -->
+    <script>
+      document.documentElement.classList.add("js-ready");
+    </script>
     <script type="module" src="scripts/main.js"></script>
 
     <script type="application/ld+json">
@@ -152,34 +159,66 @@
 
     <main id="conteudo">
       <!-- ==================================================================
-           HERO — estrutura base (desenvolvimento completo na FASE 2/4)
+           HERO — FASE 2/4
+           Desktop: composição dividida, fotografia à direita dissolvida no
+           preto. Mobile: fotografia em tela cheia, conteúdo ancorado embaixo.
            ================================================================== -->
-      <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero__media" data-hero-media aria-hidden="true">
-          <!-- FASE 2: retrato profissional / vídeo de abertura entram aqui -->
+      <section class="hero" id="inicio" data-hero aria-labelledby="hero-title">
+        <div class="hero__media" aria-hidden="true">
+          <div class="hero__media-inner" data-parallax>
+            <div class="hero__media-figure media" data-media>
+              <picture>
+                <source srcset="assets/fotos/robson-retrato.webp" type="image/webp" />
+                <img
+                  src="assets/fotos/robson-retrato.jpg"
+                  alt=""
+                  width="1200"
+                  height="1600"
+                  fetchpriority="high"
+                  decoding="async"
+                  data-hero-image
+                />
+              </picture>
+              <!-- Estado vazio do hero: apenas textura, sem rótulo — o texto
+                   da headline passa por cima desta área no mobile. -->
+              <div class="media__empty"></div>
+            </div>
+          </div>
         </div>
         <div class="hero__scrim" aria-hidden="true"></div>
 
         <div class="hero__inner">
           <div class="hero__content">
-            <p class="hero__eyebrow" data-reveal="fade">
-              <span class="hero__eyebrow-line" aria-hidden="true"></span>
-              <span class="eyebrow">Cabeleireiro</span>
+            <p class="hero__flag" aria-hidden="true">
+              <span class="hero__flag-line"></span>
             </p>
 
-            <h1 class="hero__title" id="hero-title" data-reveal data-reveal-delay="1">
-              <span>Robson</span>
-              <span class="text-metal">Lopes</span>
+            <h1 class="hero__title" id="hero-title">
+              <span class="hero__name">Robson Lopes</span>
+              <span class="hero__statement">
+                <span class="line-mask"><span>Beleza, técnica e</span></span>
+                <span class="line-mask"><span class="text-metal">transformação</span></span>
+                <span class="line-mask"><span>em cada detalhe.</span></span>
+              </span>
             </h1>
 
-            <p class="lead hero__lead" data-reveal data-reveal-delay="2">
-              Coloração, loiros e transformações construídas com técnica,
-              diagnóstico e um resultado que permanece.
+            <p class="hero__role">
+              <span>Cabeleireiro</span>
+              <span class="hero__role-sep" aria-hidden="true">•</span>
+              <span>Especialista em Transformações &amp; <span class="text-gold">Loiros</span></span>
             </p>
 
-            <div class="cluster hero__actions" data-reveal data-reveal-delay="3">
-              <a class="btn btn--primary" data-whatsapp href="#contato">Agendar horário</a>
-              <a class="btn btn--ghost link-underline" href="#transformacoes">Ver transformações</a>
+            <p class="lead hero__lead">
+              Cortes, tratamentos e transformações pensados para revelar a sua
+              melhor versão — com um olhar especial para a arte dos cabelos
+              loiros.
+            </p>
+
+            <div class="cluster hero__actions">
+              <a class="btn btn--primary" data-whatsapp href="#contato">
+                Agendar meu horário
+              </a>
+              <a class="btn btn--outline" href="#sobre">Conhecer meu trabalho</a>
             </div>
           </div>
         </div>
@@ -191,47 +230,189 @@
       </section>
 
       <!-- ==================================================================
-           FAIXA DE AUTORIDADE — conteúdo final confirmado após a FASE 4
+           COMPETÊNCIAS — cabeleireiro completo, com o loiro como assinatura
            ================================================================== -->
-      <section class="authority" aria-label="Autoridade profissional">
-        <div class="container">
-          <ul class="authority__list">
-            <li class="authority__item" data-reveal data-reveal-delay="1">
-              <span class="authority__value">—</span>
-              <span class="authority__label">Anos de carreira</span>
+      <section class="skills" aria-label="Áreas de atuação">
+        <div class="container container--wide">
+          <ul class="skills__list">
+            <li class="skills__item" data-reveal data-reveal-delay="1">
+              <span class="skills__index">01</span>
+              <h2 class="skills__name">Cortes</h2>
+              <p class="skills__desc">
+                Desenho de corte que respeita textura, rosto e rotina.
+              </p>
             </li>
-            <li class="authority__item" data-reveal data-reveal-delay="2">
-              <span class="authority__value">—</span>
-              <span class="authority__label">Transformações realizadas</span>
+            <li class="skills__item" data-reveal data-reveal-delay="2">
+              <span class="skills__index">02</span>
+              <h2 class="skills__name">Tratamentos</h2>
+              <p class="skills__desc">
+                Reconstrução, brilho e saúde do fio antes de qualquer mudança.
+              </p>
             </li>
-            <li class="authority__item" data-reveal data-reveal-delay="3">
-              <span class="authority__value">—</span>
-              <span class="authority__label">Especialista em loiros</span>
+            <li class="skills__item" data-reveal data-reveal-delay="3">
+              <span class="skills__index">03</span>
+              <h2 class="skills__name">Transformações</h2>
+              <p class="skills__desc">
+                Mudanças de cor, forma e estilo conduzidas com planejamento.
+              </p>
             </li>
-            <li class="authority__item" data-reveal data-reveal-delay="4">
-              <span class="authority__value">—</span>
-              <span class="authority__label">Atendimento exclusivo</span>
+            <li class="skills__item skills__item--signature" data-reveal data-reveal-delay="4">
+              <span class="skills__index">04</span>
+              <span class="skills__badge">Assinatura</span>
+              <h2 class="skills__name">Loiros</h2>
+              <p class="skills__desc">
+                Tonalidade, mechas e finalização — a especialidade da casa.
+              </p>
             </li>
           </ul>
         </div>
       </section>
 
       <!-- ==================================================================
-           SOBRE — FASE 2/4
+           SOBRE ROBSON — FASE 2/4
            ================================================================== -->
-      <section class="section section--divided" id="sobre" aria-labelledby="sobre-title">
+      <section class="section" id="sobre" aria-labelledby="sobre-title">
         <div class="container">
-          <header class="section-head" data-reveal>
-            <span class="eyebrow">Sobre</span>
-            <h2 class="title-section" id="sobre-title">O profissional por trás do resultado</h2>
-          </header>
+          <div class="about__grid">
+            <!-- O reveal em máscara fica no .ratio, não no .about__portrait:
+                 o clip-path do reveal recortaria a moldura dourada deslocada. -->
+            <div class="about__portrait">
+              <div class="ratio ratio--tall media" data-media data-reveal="mask">
+                <picture>
+                  <source srcset="assets/fotos/robson-atendimento.webp" type="image/webp" />
+                  <img
+                    src="assets/fotos/robson-atendimento.jpg"
+                    alt="Robson Lopes durante um atendimento no salão"
+                    width="1200"
+                    height="1500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <div class="media__empty">
+                  <span class="media__empty-mark">RL</span>
+                  <span class="media__empty-label">Robson em atendimento</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="phase-slot" data-phase="2" data-reveal>
-            <span class="phase-slot__tag">Fase 2/4</span>
-            <p class="phase-slot__note">
-              Apresentação profissional, posicionamento, retrato do Robson e
-              narrativa de autoridade. Estrutura preparada.
-            </p>
+            <div class="stack about__text">
+              <span class="eyebrow" data-reveal>Sobre Robson</span>
+
+              <h2 class="about__title" id="sobre-title" data-reveal data-reveal-delay="1">
+                Técnica para transformar. Sensibilidade para valorizar.
+              </h2>
+
+              <p class="about__body" data-reveal data-reveal-delay="2">
+                Robson Lopes dedica seu trabalho à arte de transformar cabelos
+                através de <strong>técnica, estilo e leitura de personalidade</strong>.
+                Sua atuação passa por cortes, tratamentos e diferentes tipos de
+                transformação, sempre partindo das características reais de cada
+                cliente — o tipo de fio, a rotina, o rosto e o que ela deseja ver
+                no espelho.
+              </p>
+
+              <p class="about__body" data-reveal data-reveal-delay="3">
+                Entre suas especialidades, os cabelos loiros ocupam um espaço
+                próprio. Da escolha da tonalidade à construção das mechas e à
+                finalização, cada etapa é conduzida para chegar a um resultado
+                <strong>elegante, equilibrado e feito sob medida</strong> — e que
+                continue bonito nas semanas seguintes.
+              </p>
+
+              <div class="about__sign" data-reveal data-reveal-delay="4">
+                <span class="about__sign-name">Robson Lopes</span>
+                <span class="about__sign-role">Cabeleireiro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           ASSINATURA — UM OLHAR ESPECIAL PARA OS LOIROS — FASE 2/4
+           ================================================================== -->
+      <section class="section signature" id="loiros" aria-labelledby="loiros-title">
+        <div class="container">
+          <div class="signature__grid">
+            <div>
+              <span class="eyebrow" data-reveal>A assinatura</span>
+
+              <h2 class="signature__quote" id="loiros-title" data-reveal data-reveal-delay="1">
+                Um olhar especial para os <em class="text-metal">loiros</em>.
+              </h2>
+
+              <p class="signature__body" data-reveal data-reveal-delay="2">
+                O loiro é a cor que menos perdoa pressa. Ele exige entender o
+                histórico do fio antes de clarear, escolher o tom certo para a
+                pele de cada cliente e saber exatamente onde a luz precisa cair.
+                Foi essa exigência que fez o loiro se tornar, ao longo dos anos,
+                a assinatura do trabalho do Robson.
+              </p>
+
+              <ol class="steps">
+                <li class="step" data-reveal data-reveal-delay="1">
+                  <span class="step__num" aria-hidden="true"></span>
+                  <div>
+                    <h3 class="step__title">Diagnóstico do fio</h3>
+                    <p class="step__desc">
+                      Histórico de química, porosidade e resistência definem até
+                      onde é seguro ir — e em quantas etapas.
+                    </p>
+                  </div>
+                </li>
+                <li class="step" data-reveal data-reveal-delay="2">
+                  <span class="step__num" aria-hidden="true"></span>
+                  <div>
+                    <h3 class="step__title">Construção da luz</h3>
+                    <p class="step__desc">
+                      Mechas desenhadas de acordo com o corte e o formato do
+                      rosto, para o loiro crescer bonito em vez de marcar raiz.
+                    </p>
+                  </div>
+                </li>
+                <li class="step" data-reveal data-reveal-delay="3">
+                  <span class="step__num" aria-hidden="true"></span>
+                  <div>
+                    <h3 class="step__title">Tonalização e finalização</h3>
+                    <p class="step__desc">
+                      O tom exato entre o frio e o dourado, com tratamento e
+                      finalização que devolvem brilho e movimento ao fio.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+
+              <p class="signature__note" data-reveal>
+                Ser referência em loiros não estreita o trabalho: é a mesma
+                exigência técnica aplicada a cortes, tratamentos e a qualquer
+                transformação.
+              </p>
+            </div>
+
+            <div class="signature__media">
+              <div class="ratio ratio--tall media" data-media data-reveal="mask" data-reveal-delay="2">
+                <picture>
+                  <source srcset="assets/fotos/loiro-assinatura.webp" type="image/webp" />
+                  <img
+                    src="assets/fotos/loiro-assinatura.jpg"
+                    alt="Resultado de loiro iluminado com mechas trabalhadas, feito por Robson Lopes"
+                    width="1200"
+                    height="1500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <div class="media__empty">
+                  <span class="media__empty-mark">RL</span>
+                  <span class="media__empty-label">Resultado em loiro</span>
+                </div>
+              </div>
+              <p class="signature__caption">
+                <span>Trabalho autoral</span>
+                <span>Loiro iluminado com raiz esfumada</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>

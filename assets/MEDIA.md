@@ -19,24 +19,39 @@ pastas com os nomes abaixo.
 
 ## 2. Fotografias — `assets/fotos/`
 
-Nomenclatura sugerida (facilita a curadoria automática nas fases 2–4):
+### Arquivos que a Fase 2 já referencia (obrigatórios)
+
+| Arquivo | Onde aparece | Enquadramento ideal |
+| --- | --- | --- |
+| `robson-retrato.jpg` | **Hero** | Retrato vertical do Robson, 3:4 ou 4:5. No desktop ocupa a metade direita; no mobile, a tela inteira. Deixe espaço à esquerda do rosto — é onde entra o texto. |
+| `robson-atendimento.jpg` | Seção **Sobre Robson** | Robson trabalhando, vertical 4:5. |
+| `loiro-assinatura.jpg` | Seção **Um olhar especial para os loiros** | O melhor resultado em loiro, vertical 4:5. |
+
+> ⚠️ **Não há fotografia do Robson entre os arquivos enviados até agora** —
+> as quatro imagens recebidas são resultados em clientes. O hero e a seção
+> Sobre exibem um estado vazio elegante até que `robson-retrato.jpg` e
+> `robson-atendimento.jpg` sejam adicionados. É o material mais importante
+> que falta no projeto.
+
+Cada arquivo aceita também a versão `.webp` de mesmo nome — o site já usa
+`<picture>` e serve o WebP automaticamente quando existir.
+
+### Arquivos das fases 3 e 4
 
 ```
-retrato-robson-01.jpg        → Hero e seção Sobre
-resultado-loiro-01.jpg       → Portfólio / carrossel
-resultado-morena-01.jpg      → Portfólio / carrossel
-antes-01.jpg / depois-01.jpg → Comparador antes e depois (mesmo enquadramento)
-processo-01.jpg              → Bastidores / especialidades
+portfolio-01.jpg … portfolio-08.jpg   → Portfólio e carrossel
+antes-01.jpg / depois-01.jpg          → Comparador (mesmo enquadramento!)
+processo-01.jpg                       → Bastidores
 ```
 
 ### Curadoria já definida a partir das 4 fotos enviadas
 
-| Imagem enviada | Melhor uso |
-| --- | --- |
-| Morena iluminada, cabelo ondulado, fundo do salão | **Hero** (vertical, olhar em câmera, alto contraste) |
-| Loiro acinzentado, close frontal | **Portfólio** — destaque de coloração fria |
-| Loiro dourado, cabelo longo, fundo cimento queimado | **Portfólio** / abertura do carrossel — a mais editorial |
-| Loiro mel com franja, blusa marrom | **Transformações** — leitura clara de luz e movimento |
+| Imagem enviada | Melhor uso | Motivo |
+| --- | --- | --- |
+| Loiro dourado, cabelo longo, fundo de cimento queimado | **`loiro-assinatura.jpg`** — seção de loiros | A mais editorial das quatro: luz lateral, fundo neutro, mechas com leitura clara de profundidade |
+| Loiro acinzentado, close frontal | Portfólio — destaque de coloração fria | Mostra domínio do tom frio, mas o close deixa pouco espaço de composição |
+| Morena iluminada, ondulado, fundo do salão | Portfólio / carrossel | Prova de trabalho em cabelos não loiros — importante para o posicionamento completo |
+| Loiro mel com franja, blusa marrom | Transformações | Boa leitura de movimento e finalização |
 
 Todas são verticais (3:4 / 4:5), o que combina com as proporções já definidas
 em `styles/layout.css` (`.ratio--portrait`, `.ratio--tall`).

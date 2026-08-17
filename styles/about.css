@@ -1,0 +1,212 @@
+/* ==========================================================================
+   SOBRE ROBSON + ASSINATURA LOIRO — FASE 2/4
+   ========================================================================== */
+
+/* ---------- Layout editorial: retrato à esquerda, texto à direita ---------- */
+
+.about__grid {
+  display: grid;
+  gap: clamp(2.5rem, 1.5rem + 5vw, 5rem);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(3rem, 1.5rem + 5vw, 6rem);
+  }
+}
+
+/* isolation: cria contexto de empilhamento próprio para que a moldura em
+   z-index -1 fique atrás da fotografia, e não atrás do fundo da página
+   (onde ela simplesmente desaparecia). */
+.about__portrait {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Moldura dourada deslocada — profundidade sem peso */
+.about__portrait::after {
+  content: "";
+  position: absolute;
+  inset: clamp(0.75rem, 0.5rem + 1vw, 1.5rem) calc(clamp(0.75rem, 0.5rem + 1vw, 1.5rem) * -1)
+    calc(clamp(0.75rem, 0.5rem + 1vw, 1.5rem) * -1) clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.about__text {
+  --stack-gap: clamp(1.1rem, 0.9rem + 0.8vw, 1.6rem);
+}
+
+/* Um degrau abaixo de --fs-h2: são duas frases, e no grid editorial o
+   tamanho cheio quebrava o título em quatro linhas. */
+.about__title {
+  font-size: clamp(1.6rem, 1.1rem + 2.1vw, 2.9rem);
+  max-width: 22ch;
+}
+
+.about__body {
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+.about__body strong {
+  color: var(--bone-50);
+  font-weight: 400;
+}
+
+/* Assinatura manuscrita/tipográfica ao final do texto */
+.about__sign {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--hairline-neutral);
+}
+
+.about__sign-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--bone-50);
+  line-height: 1;
+}
+
+.about__sign-role {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ==========================================================================
+   ASSINATURA LOIRO — bloco editorial em três tempos
+   ========================================================================== */
+
+.signature {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-900);
+}
+
+/* Halo dourado muito diluído ao fundo — a única "luz" da seção */
+.signature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    90% 60% at 78% 12%,
+    rgba(207, 167, 79, 0.09),
+    transparent 62%
+  );
+}
+
+.signature__grid {
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 1.5rem + 5vw, 5rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .signature__grid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  }
+}
+
+.signature__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1.15rem + 3vw, 3.4rem);
+  line-height: 1.14;
+  letter-spacing: var(--ls-title);
+  max-width: 16ch;
+}
+
+.signature__quote em {
+  font-style: normal;
+}
+
+.signature__body {
+  margin-top: clamp(1.25rem, 0.9rem + 1.4vw, 1.75rem);
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+
+/* Os três tempos do processo */
+.steps {
+  margin-top: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-md) var(--space-lg);
+  padding-block: clamp(1rem, 0.8rem + 0.8vw, 1.4rem);
+  border-top: 1px solid var(--hairline-neutral);
+}
+
+.step:last-child {
+  border-bottom: 1px solid var(--hairline-neutral);
+}
+
+.step__num {
+  counter-increment: step;
+  font-size: 0.62rem;
+  letter-spacing: var(--ls-label);
+  color: var(--gold-500);
+  padding-top: 0.35rem;
+}
+
+.step__num::before {
+  content: "0" counter(step);
+}
+
+.step__title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--bone-50);
+  margin-bottom: 0.3rem;
+}
+
+.step__desc {
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  max-width: 46ch;
+}
+
+/* Coluna de mídia da assinatura */
+.signature__media {
+  position: relative;
+}
+
+.signature__caption {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: var(--space-md);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.signature__caption span:first-child {
+  color: var(--gold-500);
+}
+
+/* Nota de contexto: o loiro é assinatura, não limite */
+.signature__note {
+  margin-top: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+  padding-left: var(--space-lg);
+  border-left: 1px solid var(--hairline);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  max-width: 54ch;
+}

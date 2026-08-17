@@ -238,6 +238,52 @@ button {
   transform: translateY(1px);
 }
 
+/* Microinteração: brilho metálico que atravessa o botão no hover.
+   Apenas transform/opacity — não dispara layout nem paint da árvore. */
+.btn--primary,
+.btn--outline {
+  overflow: hidden;
+}
+
+.btn--primary::after,
+.btn--outline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 900ms var(--ease-lux);
+}
+
+.btn--outline::after {
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(207, 167, 79, 0.22) 50%,
+    transparent 65%
+  );
+}
+
+.btn--primary:hover::after,
+.btn--outline:hover::after,
+.btn--primary:focus-visible::after,
+.btn--outline:focus-visible::after {
+  transform: translateX(120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--primary::after,
+  .btn--outline::after {
+    display: none;
+  }
+}
+
 /* Primário — dourado sólido, usado uma vez por bloco */
 .btn--primary {
   background: var(--gold-400);
