@@ -171,7 +171,14 @@ Tudo medido em Chromium real, não estimado.
 ## Personalização
 
 **Tudo o que falta de dado real está em `scripts/site.config.js`**, marcado
-como `PENDENTE`: WhatsApp, Instagram, endereço, cidade, horários e e-mail.
+como `PENDENTE`: WhatsApp, Instagram, horários, e-mail e o complemento do
+endereço (torre, andar, sala e CEP).
+
+Já preenchido: **Salvador, BA — Empresarial Mundo Plaza**. A cidade entra no
+`<title>`, na description, no Open Graph e no `PostalAddress` dos dados
+estruturados. Só a localidade foi declarada no schema: número e logradouro
+não foram inventados, porque endereço incorreto em SEO local penaliza em vez
+de ajudar.
 Preencher esse arquivo atualiza header, hero, CTA, rodapé, botão flutuante e
 todos os links de uma só vez — não é preciso editar HTML.
 

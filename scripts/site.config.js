@@ -26,11 +26,11 @@ export const contact = {
   /** PENDENTE */
   email: '',
 
-  /** PENDENTE — endereço completo do local de atendimento */
-  address: '',
+  /** Empresarial Mundo Plaza, em Salvador.
+   *  PENDENTE — falta o complemento (torre, andar e sala) e o CEP. */
+  address: 'Empresarial Mundo Plaza — Salvador, BA',
 
-  /** PENDENTE — ex.: 'São Paulo, SP' */
-  city: '',
+  city: 'Salvador, BA',
 
   /** PENDENTE — ex.: 'Terça a sábado · 9h às 19h' */
   hours: '',
