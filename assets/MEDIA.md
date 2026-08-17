@@ -8,16 +8,23 @@ pastas com os nomes abaixo.
 
 Os seis arquivos enviados no chat já estão no repositório, processados:
 
-| Arquivo | Origem | Onde aparece |
-| --- | --- | --- |
-| `brand/robson-lopes-wordmark.webp` | logo oficial, recorte da assinatura | Header |
-| `brand/robson-lopes-logo.webp` | logo oficial, lockup completo | Rodapé |
-| `brand/robson-lopes-mark.webp` | logo oficial, só o monograma | Reserva (selo, favicon) |
-| `fotos/robson-retrato.webp` | foto oficial em recorte | **Hero** |
-| `fotos/loiro-dourado-01.webp` | foto de trabalho | Seção de loiros, parede, portfólio |
-| `fotos/loiro-acinzentado-01.webp` | foto de trabalho | Parede, portfólio |
-| `fotos/loiro-mel-01.webp` | foto de trabalho | Parede, portfólio |
-| `fotos/morena-iluminada-01.webp` | foto de trabalho | Parede, portfólio |
+| Arquivo | Onde aparece |
+| --- | --- |
+| `brand/robson-lopes-wordmark.webp` | Header |
+| `brand/robson-lopes-logo.webp` | Rodapé |
+| `brand/robson-lopes-mark.webp` | Reserva (selo, favicon) |
+| `fotos/robson-retrato.webp` | **Hero** |
+| `fotos/loiro-dourado-01.webp` | Seção de loiros · parede · portfólio |
+| `fotos/loiro-acinzentado-01.webp` | Parede · portfólio |
+| `fotos/loiro-mel-01.webp` | Parede |
+| `fotos/loiro-franja-01.webp` | Parede · portfólio |
+| `fotos/loiro-bege-01.webp` | Parede · portfólio |
+| `fotos/loiro-luminoso-01.webp` | Parede |
+| `fotos/ruivo-acobreado-01.webp` | Parede · portfólio |
+| `fotos/morena-iluminada-01.webp` | Parede · portfólio |
+
+São **oito fotografias de trabalho distintas**, uma por card da parede — sem
+repetição. Seis são loiro, uma é ruivo e uma é morena iluminada.
 
 **Processamento aplicado:** a logo veio sobre fundo preto texturizado — o fundo
 foi removido por chave de luminância e a arte recortada em três peças. As fotos
@@ -30,14 +37,14 @@ alfa e foi apenas reencodado.
 | Slot | Por que importa |
 | --- | --- |
 | `fotos/robson-atendimento.jpg` | Única mídia ausente que deixa um espaço vazio visível, na seção **Sobre Robson**. Robson trabalhando, vertical 4:5. |
-| Fotos de **corte, tratamento e coloração** | As quatro fotos atuais são todas de trabalho em loiro. A parede diagonal fica convincente, mas contradiz visualmente o posicionamento de "cabeleireiro completo". |
+| Fotos de **corte** e de **tratamento** | As oito atuais são todas de coloração. O ruivo e a morena iluminada já quebram a leitura de "só faz loiro", mas corte e tratamento aparecem no texto sem prova visual. |
 | **Vídeos** | Os cards de vídeo foram retirados da parede até existirem arquivos. Ver seção de vídeos abaixo. |
 | **Antes e depois** | O bloco continua oculto: exige um par do mesmo atendimento. |
 
-> A parede diagonal repete as quatro fotos porque só há quatro. Cada foto
-> aparece em duas proporções diferentes para não ler como card duplicado, e o
-> laço clona o grupo conforme a largura da tela. Ao adicionar fotos novas,
-> acrescente cards em `index.html` e a repetição desaparece sozinha.
+> **Antes de enviar material novo:** duas das imagens recebidas eram a mesma
+> fotografia em recortes diferentes. A verificação foi feita por assinatura
+> perceptual (dHash 16×16), que sobrevive a recompressão e redimensionamento —
+> comparar bytes ou tamanho de arquivo não detecta esse caso.
 
 ### Arquivos da Fase 3 — parede diagonal e portfólio
 
