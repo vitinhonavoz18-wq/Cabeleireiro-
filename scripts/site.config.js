@@ -22,6 +22,21 @@ export const brand = {
   tagline: 'Cortes, tratamentos e transformações — com um olhar especial para os loiros.',
 };
 
+/**
+ * Oferta em destaque ("Super Combo").
+ * Os valores aparecem numa única seção do site; mudá-los aqui atualiza a
+ * tela inteira, inclusive a mensagem que o cliente envia no WhatsApp.
+ * Para tirar a oferta do ar, basta `ativo: false` — a seção some sem
+ * deixar buraco no layout.
+ */
+export const combo = {
+  ativo: true,
+  titulo: 'Combo',
+  itens: ['Mechas', 'tratamento', 'finalização'],
+  precoDe: 'R$ 850,00',
+  precoPor: 'R$ 699,00',
+};
+
 export const contact = {
   /** PENDENTE — número real, formato internacional, só dígitos.
    *  Ex.: 5511987654321 (55 + DDD + número). */
@@ -49,11 +64,13 @@ export const contact = {
   maps: '',
 };
 
-/** Link de agendamento. Sem número cadastrado, cai na seção de contato. */
-export const whatsappUrl = () => {
+/** Link de agendamento. Sem número cadastrado, cai na seção de contato.
+ *  Aceita uma mensagem própria — usada pelo CTA da oferta, para que Robson
+ *  saiba de onde veio o contato. */
+export const whatsappUrl = (message) => {
   if (!contact.whatsapp) return '#contato';
   return `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
-    contact.whatsappMessage
+    message || contact.whatsappMessage
   )}`;
 };
 

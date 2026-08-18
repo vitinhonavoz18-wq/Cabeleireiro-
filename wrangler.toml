@@ -6,9 +6,9 @@
 #
 #     npx wrangler deploy
 #
-# ⚠️ CONFIRMAR ANTES: o domínio abaixo é uma suposição a partir do
-# identificador do app FlyDelivery (br.com.conectfly.flydelivery). Troque
-# pelo domínio real da ConectFly antes do primeiro deploy.
+# Endereço de apresentação confirmado: robsonlopes.conectfly.com.br.
+# Requisito: a zona conectfly.com.br já precisa estar na Cloudflare, na
+# mesma conta do deploy. O registro DNS é criado pelo próprio wrangler.
 # ==========================================================================
 
 name = "robson-lopes"

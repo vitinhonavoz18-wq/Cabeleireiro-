@@ -192,6 +192,26 @@ export const previa = {
 };
 ```
 
+## Oferta em destaque
+
+Logo abaixo do vídeo de apresentação entra o **Super Combo** — mechas,
+tratamento e finalização. A peça foi reconstruída em tipografia, não colada
+como imagem: o texto é real (indexável e legível por leitor de tela), fica
+nítido em qualquer densidade de tela e não pesa nada no carregamento.
+
+Preços e itens ficam em `scripts/site.config.js`:
+
+```js
+export const combo = {
+  ativo: true,          // false tira a seção do ar sem deixar buraco
+  precoDe: 'R$ 850,00',
+  precoPor: 'R$ 699,00',
+};
+```
+
+O botão "Agende já" leva ao WhatsApp com uma mensagem própria, citando o
+combo — assim Robson sabe de qual seção veio o contato.
+
 ## Personalização
 
 **Tudo o que falta de dado real está em `scripts/site.config.js`**, marcado
@@ -215,5 +235,7 @@ Outros pontos que aguardam material real:
 - **Depoimentos** — a seção tem um modelo comentado no HTML; nenhum
   depoimento, nome ou nota foi criado.
 - **Antes e depois** — o bloco só aparece com as duas imagens do par.
-- **Domínio** — marcado como `TODO personalização` no `index.html`,
-  `sitemap.xml` e `robots.txt`.
+- **Domínio** — o site aponta para `robsonlopes.conectfly.com.br`, o endereço
+  de apresentação. Ao contratar o definitivo, trocar em `index.html`,
+  `sitemap.xml`, `robots.txt` e `wrangler.toml`. Os passos completos de
+  entrega estão em `DEPLOY.md`.

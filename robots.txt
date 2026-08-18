@@ -1,7 +1,17 @@
 # Robson Lopes — Cabeleireiro
-# TODO personalização: trocar o domínio quando o definitivo for contratado.
+#
+# MODO APRESENTAÇÃO: robsonlopes.conectfly.com.br é um endereço provisório,
+# usado para mostrar o site ao cliente antes da venda. Indexá-lo criaria
+# conteúdo duplicado concorrendo com o domínio definitivo, por isso o
+# rastreamento está bloqueado.
+#
+# Na entrega, trocar as três linhas abaixo por:
+#     User-agent: *
+#     Allow: /
+# e remover o Disallow — junto com o `noindex` do index.html e
+# `previa.marcaDagua = false` em scripts/site.config.js.
 
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://robsonlopes.com.br/sitemap.xml
+Sitemap: https://robsonlopes.conectfly.com.br/sitemap.xml

@@ -12,6 +12,7 @@ import { initCompare } from './compare.js';
 import { previa } from './site.config.js';
 import {
   initBookingLinks,
+  initCombo,
   initInstagramLinks,
   initContactDetails,
   initFloatingCta,
@@ -78,6 +79,7 @@ function boot() {
   initProgressBar();
 
   initBookingLinks();
+  initCombo();
   initInstagramLinks();
   initContactDetails();
   initFloatingCta();

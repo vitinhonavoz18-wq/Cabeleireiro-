@@ -6,14 +6,16 @@
  * o texto "a confirmar" do HTML permanece — nada é inventado na tela.
  */
 
-import { contact, whatsappUrl, instagramUrl } from './site.config.js';
+import { combo, contact, whatsappUrl, instagramUrl } from './site.config.js';
 
 /** Aplica a URL do WhatsApp a todos os CTAs de agendamento. */
 export function initBookingLinks() {
-  const url = whatsappUrl();
-  const external = url.startsWith('http');
-
   document.querySelectorAll('[data-whatsapp]').forEach((el) => {
+    // data-whatsapp-message permite um texto próprio por CTA (a oferta usa
+    // isso para que Robson saiba de qual seção veio o contato).
+    const url = whatsappUrl(el.getAttribute('data-whatsapp-message'));
+    const external = url.startsWith('http');
+
     el.setAttribute('href', url);
     if (external) {
       el.setAttribute('target', '_blank');
@@ -113,6 +115,60 @@ export function initFloatingCta() {
   }
 
   sync();
+}
+
+/**
+ * Oferta em destaque.
+ * O HTML já traz os valores escritos — a seção aparece igual sem JavaScript.
+ * Aqui só sincronizamos com site.config.js, para que quem for mexer no preço
+ * mexa num lugar só, e desligamos a seção inteira quando `ativo` for false.
+ */
+export function initCombo() {
+  const section = document.querySelector('[data-combo]');
+  if (!section) return;
+
+  if (!combo.ativo) {
+    section.hidden = true;
+    return;
+  }
+
+  const setText = (selector, value) => {
+    if (!value) return;
+    const el = section.querySelector(selector);
+    if (el) el.textContent = value;
+  };
+
+  setText('[data-combo-title]', combo.titulo);
+  setText('[data-combo-de]', combo.precoDe);
+  setText('[data-combo-por]', combo.precoPor);
+
+  // Itens intercalados por "+" dourado; o do meio em itálico, como na arte.
+  const items = section.querySelector('[data-combo-items]');
+  if (items && Array.isArray(combo.itens) && combo.itens.length) {
+    const meio = Math.floor((combo.itens.length - 1) / 2);
+    items.replaceChildren(
+      ...combo.itens.flatMap((item, i) => {
+        const node = document.createElement(i === meio ? 'em' : 'span');
+        node.textContent = item;
+
+        if (i === 0) return [node];
+
+        const plus = document.createElement('span');
+        plus.className = 'combo__plus';
+        plus.setAttribute('aria-hidden', 'true');
+        plus.textContent = '+';
+
+        // O "+" e o item seguinte viajam juntos num grupo que não quebra:
+        // assim a linha quebra antes do sinal e nunca deixa um "+" órfão
+        // no fim. Um &nbsp; solto não basta, porque a borda do inline-block
+        // do sinal já é oportunidade de quebra.
+        const par = document.createElement('span');
+        par.className = 'combo__pair';
+        par.append(plus, document.createTextNode('\u00a0'), node);
+        return [document.createTextNode(' '), par];
+      })
+    );
+  }
 }
 
 /** Copyright sempre no ano corrente. */

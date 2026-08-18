@@ -12,11 +12,17 @@
       content="Robson Lopes, cabeleireiro em Salvador (BA), no Empresarial Mundo Plaza. Cortes, tratamentos, transformações e loiros personalizados. Agende seu horário."
     />
     <meta name="author" content="Robson Lopes" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- MODO APRESENTAÇÃO: enquanto o site roda em robsonlopes.conectfly.com.br
+         com a marca d'água da ConectFly, ele não deve ser indexado — o endereço
+         é provisório e indexá-lo criaria concorrência com o domínio definitivo.
+         Na entrega, troque por:
+           <meta name="robots" content="index, follow, max-image-preview:large" />
+         junto com `previa.marcaDagua = false` e o Allow em robots.txt. -->
+    <meta name="robots" content="noindex, nofollow" />
 
-    <!-- TODO personalização: trocar pelo domínio real quando existir.
-         O mesmo valor precisa ser refletido em sitemap.xml e robots.txt. -->
-    <link rel="canonical" href="https://robsonlopes.com.br/" />
+    <!-- Endereço de apresentação. Ao migrar para o domínio definitivo, este
+         valor precisa mudar aqui, no sitemap.xml e no robots.txt. -->
+    <link rel="canonical" href="https://robsonlopes.conectfly.com.br/" />
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website" />
@@ -30,8 +36,8 @@
       property="og:description"
       content="Cabeleireiro em Salvador, no Empresarial Mundo Plaza. Cortes, tratamentos e transformações — com um olhar especial para a arte dos cabelos loiros."
     />
-    <meta property="og:url" content="https://robsonlopes.com.br/" />
-    <meta property="og:image" content="https://robsonlopes.com.br/assets/brand/og-image.jpg" />
+    <meta property="og:url" content="https://robsonlopes.conectfly.com.br/" />
+    <meta property="og:image" content="https://robsonlopes.conectfly.com.br/assets/brand/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Robson Lopes — Cabeleireiro" />
@@ -44,7 +50,7 @@
       name="twitter:description"
       content="Cabeleireiro em Salvador, no Empresarial Mundo Plaza. Cortes, tratamentos e transformações, com um olhar especial para os loiros."
     />
-    <meta name="twitter:image" content="https://robsonlopes.com.br/assets/brand/og-image.jpg" />
+    <meta name="twitter:image" content="https://robsonlopes.conectfly.com.br/assets/brand/og-image.jpg" />
 
     <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="site.webmanifest" />
@@ -74,6 +80,7 @@
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/hero.css" />
     <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/combo.css" />
     <link rel="stylesheet" href="styles/showcase.css" />
     <link rel="stylesheet" href="styles/compare.css" />
     <link rel="stylesheet" href="styles/lightbox.css" />
@@ -98,9 +105,9 @@
         "name": "Robson Lopes",
         "alternateName": "Robson Lopes Cabeleireiro",
         "description": "Cabeleireiro em Salvador (BA) especializado em cortes, tratamentos, transformações e cabelos loiros.",
-        "url": "https://robsonlopes.com.br/",
-        "image": "https://robsonlopes.com.br/assets/brand/og-image.jpg",
-        "logo": "https://robsonlopes.com.br/assets/brand/robson-lopes-logo.webp",
+        "url": "https://robsonlopes.conectfly.com.br/",
+        "image": "https://robsonlopes.conectfly.com.br/assets/brand/og-image.jpg",
+        "logo": "https://robsonlopes.conectfly.com.br/assets/brand/robson-lopes-logo.webp",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Salvador",
@@ -422,6 +429,67 @@
                 <span class="about__sign-role">Cabeleireiro</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           OFERTA EM DESTAQUE — SUPER COMBO
+           Logo abaixo do vídeo de apresentação: o cliente acabou de ver o
+           trabalho e encontra a oferta antes de precisar procurar.
+           Reconstruído em HTML/CSS em vez de imagem — texto real indexável,
+           nítido em qualquer densidade de tela e sem peso de download.
+           Valores em scripts/site.config.js (`combo`).
+           ================================================================== -->
+      <section class="section combo" id="combo" aria-labelledby="combo-title" data-combo>
+        <div class="container">
+          <div class="combo__card" data-reveal>
+            <span class="combo__corner combo__corner--tl" aria-hidden="true"></span>
+            <span class="combo__corner combo__corner--br" aria-hidden="true"></span>
+
+            <p class="combo__super">
+              <span class="combo__super-rule" aria-hidden="true"></span>
+              Super
+              <span class="combo__super-rule" aria-hidden="true"></span>
+            </p>
+
+            <h2 class="combo__title" id="combo-title">
+              <span class="text-metal" data-combo-title>Combo</span>
+            </h2>
+
+            <p class="combo__items" data-combo-items>
+              <!-- Cada "+" viaja colado ao item seguinte num grupo que não
+                   quebra: a linha quebra antes do sinal, nunca deixando um
+                   "+" órfão no fim. -->
+              <span>Mechas</span>
+              <span class="combo__pair"
+                ><span class="combo__plus" aria-hidden="true">+</span>&nbsp;<em>tratamento</em></span
+              >
+              <span class="combo__pair"
+                ><span class="combo__plus" aria-hidden="true">+</span>&nbsp;<span>finalização</span></span
+              >
+            </p>
+
+            <div class="combo__prices">
+              <p class="combo__from">
+                <span class="combo__from-label">de</span>
+                <s data-combo-de>R$ 850,00</s>
+              </p>
+
+              <p class="combo__to">
+                <span class="combo__to-label">por</span>
+                <strong class="text-metal" data-combo-por>R$ 699,00</strong>
+              </p>
+            </div>
+
+            <a
+              class="btn btn--outline combo__cta"
+              data-whatsapp
+              data-whatsapp-message="Olá, Robson! Vim pelo site e quero o Super Combo (mechas + tratamento + finalização)."
+              href="#contato"
+            >
+              Agende já
+            </a>
           </div>
         </div>
       </section>
