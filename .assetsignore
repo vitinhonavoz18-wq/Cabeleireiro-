@@ -1,0 +1,6 @@
+# Arquivos de projeto que não devem ir para o ar junto com o site
+wrangler.toml
+.assetsignore
+README.md
+DEPLOY.md
+assets/MEDIA.md

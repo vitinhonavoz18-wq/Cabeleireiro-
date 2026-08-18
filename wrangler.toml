@@ -1,0 +1,26 @@
+# ==========================================================================
+# Publicação do site na Cloudflare — Robson Lopes
+#
+# O site é estático, sem build: o Worker apenas serve os arquivos desta
+# pasta. Publicar é um comando, de dentro de robson-lopes/:
+#
+#     npx wrangler deploy
+#
+# ⚠️ CONFIRMAR ANTES: o domínio abaixo é uma suposição a partir do
+# identificador do app FlyDelivery (br.com.conectfly.flydelivery). Troque
+# pelo domínio real da ConectFly antes do primeiro deploy.
+# ==========================================================================
+
+name = "robson-lopes"
+compatibility_date = "2026-08-17"
+
+[assets]
+directory = "."
+# Página única: qualquer caminho cai no index.html em vez de dar 404.
+not_found_handling = "single-page-application"
+
+# Subdomínio de apresentação. Exige que a zona já esteja na Cloudflare —
+# o registro DNS é criado automaticamente pelo deploy.
+[[routes]]
+pattern = "robsonlopes.conectfly.com.br"
+custom_domain = true
