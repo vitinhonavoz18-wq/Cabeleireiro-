@@ -173,6 +173,25 @@ Tudo medido em Chromium real, não estimado.
 - Sete conceitos numa grade de duas colunas deixavam uma célula vazia com
   aparência de card quebrado.
 
+## Marca d'água de apresentação
+
+Enquanto o site é mostrado ao cliente antes da venda, a marca da ConectFly
+fica sobreposta e centralizada na tela, a 45% de opacidade, acompanhando a
+rolagem.
+
+Ela é fixa e `pointer-events: none`: **não intercepta nenhum clique, toque ou
+arraste**, não entra no fluxo do documento e não gera rolagem. Fica acima até
+do lightbox, para que nenhuma tela escape da marcação, e sai da impressão.
+
+**Para remover na entrega**, troque um booleano:
+
+```js
+// scripts/site.config.js
+export const previa = {
+  marcaDagua: false,
+};
+```
+
 ## Personalização
 
 **Tudo o que falta de dado real está em `scripts/site.config.js`**, marcado

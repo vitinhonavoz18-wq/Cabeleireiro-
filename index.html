@@ -79,6 +79,7 @@
     <link rel="stylesheet" href="styles/lightbox.css" />
     <link rel="stylesheet" href="styles/services.css" />
     <link rel="stylesheet" href="styles/sections.css" />
+    <link rel="stylesheet" href="styles/watermark.css" />
 
     <!-- Marca "com JavaScript" antes da primeira pintura: os estados iniciais
          das animações só existem sob .js-ready, então sem JS nada some. -->
@@ -135,6 +136,13 @@
 
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <!-- MARCA D'ÁGUA DE APRESENTAÇÃO — ConectFly.
+         Some ao trocar `previa.marcaDagua` para false em scripts/site.config.js.
+         aria-hidden: é marcação comercial, não conteúdo do site. -->
+    <div class="marca-dagua" aria-hidden="true">
+      <img src="assets/brand/conectfly-marca.webp" alt="" width="1088" height="468" decoding="async" />
+    </div>
     <div class="progress-bar" data-progress aria-hidden="true"></div>
 
     <!-- ====================================================================

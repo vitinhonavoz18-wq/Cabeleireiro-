@@ -1,0 +1,51 @@
+/* ==========================================================================
+   MARCA D'ÁGUA DE APRESENTAÇÃO — ConectFly
+   Camada de demonstração: identifica o autor do site enquanto ele é
+   apresentado ao cliente, antes da venda. Sai do ar com um booleano
+   (`previa.marcaDagua` em scripts/site.config.js).
+
+   Regras que a tornam inofensiva para a navegação:
+   - fixa e centralizada, então acompanha a rolagem sem recalcular nada;
+   - `pointer-events: none` — nenhum clique, toque ou arraste é interceptado;
+   - acima até do lightbox, para que nenhuma tela escape da marcação;
+   - fora do fluxo do documento, sem afetar layout nem gerar rolagem.
+   ========================================================================== */
+
+.marca-dagua {
+  display: none;
+}
+
+.com-marca-dagua .marca-dagua {
+  position: fixed;
+  inset: 0;
+  z-index: 900; /* acima do lightbox (300) */
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.marca-dagua img {
+  width: min(62vw, 780px);
+  max-height: 38vh;
+  object-fit: contain;
+  opacity: 0.45;
+  /* O traço é cinza médio: sobre o preto do site ele aparece, e sobre as
+     fotografias claras da parede ele não some. */
+  filter: drop-shadow(0 0 22px rgba(0, 0, 0, 0.45));
+}
+
+/* Telas baixas e deitadas: a marca não pode cobrir a leitura inteira */
+@media (max-height: 560px) {
+  .marca-dagua img {
+    width: min(46vw, 520px);
+    max-height: 30vh;
+  }
+}
+
+/* Impressão e leitura assistida não precisam da marca */
+@media print {
+  .com-marca-dagua .marca-dagua {
+    display: none;
+  }
+}

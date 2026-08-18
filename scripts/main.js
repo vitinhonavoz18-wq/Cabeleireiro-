@@ -9,6 +9,7 @@ import { initHero } from './hero.js';
 import { initShowcase, initLazyVideos } from './showcase.js';
 import { initLightbox } from './lightbox.js';
 import { initCompare } from './compare.js';
+import { previa } from './site.config.js';
 import {
   initBookingLinks,
   initInstagramLinks,
@@ -51,7 +52,13 @@ function initMediaStates() {
   });
 }
 
+/** Liga a marca d'água de apresentação, se o modo prévia estiver ativo. */
+function initMarcaDagua() {
+  document.documentElement.classList.toggle('com-marca-dagua', previa.marcaDagua);
+}
+
 function boot() {
+  initMarcaDagua();
   initBrandFallback();
   initHero();
 

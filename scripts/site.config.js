@@ -6,6 +6,16 @@
  *   estruturados e todos os links de WhatsApp de uma só vez.
  */
 
+/**
+ * Modo de apresentação.
+ * Enquanto o site está sendo mostrado ao cliente antes da venda, a marca
+ * da ConectFly fica sobreposta e centralizada na tela. Trocar para false
+ * remove a marca — é o único lugar que precisa mudar na entrega.
+ */
+export const previa = {
+  marcaDagua: true,
+};
+
 export const brand = {
   name: 'Robson Lopes',
   role: 'Cabeleireiro',
