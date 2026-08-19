@@ -1,7 +1,11 @@
 # Publicar o site
 
 O site é estático e não tem build. Qualquer hospedagem de arquivos serve.
-Abaixo, os dois caminhos na Cloudflare, onde a ConectFly já tem conta.
+Abaixo, os caminhos na Cloudflare, onde a ConectFly já tem conta.
+
+**Estado atual:** o Worker `robsonlopessss` existe e já detém o subdomínio,
+mas contém o bundle do app SiteCreatorFly/ConectFly — por isso o endereço
+responde com a página errada. Falta publicar este site por cima dele.
 
 ## Endereço
 
@@ -13,7 +17,30 @@ A zona `conectfly.com.br` precisa estar na Cloudflare, na mesma conta do
 deploy. Estando, o registro DNS do subdomínio é criado pelo próprio deploy —
 não é preciso mexer no painel.
 
-## Caminho 1 — Worker (um comando)
+## Caminho 1 — Workers Builds, direto do painel (sem computador)
+
+É o caminho para quem está no tablet ou no celular: **não precisa de terminal,
+não precisa de token, não precisa instalar nada.** A Cloudflare passa a
+construir e publicar o Worker sozinha a cada push no repositório.
+
+1. Painel da Cloudflare → **Workers & Pages** → abra o Worker
+   **`robsonlopessss`**.
+2. **Settings** → **Builds** → **Connect**, e autorize o GitHub.
+3. Repositório `vitinhonavoz18-wq/Flydelivery`.
+4. **Root directory:** `robson-lopes` — sem isso a Cloudflare procura o
+   `wrangler.toml` na raiz do repositório e a build falha.
+5. **Build command:** deixe **vazio**. O site não tem etapa de build.
+6. **Deploy command:** `npx wrangler deploy` (é o padrão).
+7. **Branch control** → mude a branch de produção para
+   `claude/robson-lopes-fase-1-5808qp`. O padrão é a branch principal do
+   repositório, onde este site não existe.
+8. Salve e faça a build rodar. Todo push nessa branch republica o site.
+
+O nome do Worker no painel **precisa ser igual** ao `name` do `wrangler.toml`
+— é exigência da Cloudflare, e é por isso que o `name` aqui é
+`robsonlopessss` e não `robson-lopes`.
+
+## Caminho 2 — Worker por linha de comando
 
 ```bash
 cd robson-lopes
@@ -29,9 +56,10 @@ criaria um Worker novo e o subdomínio continuaria servindo o conteúdo antigo.
 ⚠️ O deploy **substitui inteiramente** o código desse Worker. Ele foi criado
 para este site; confirme que não está servindo nada mais.
 
-## Caminho 2 — Cloudflare Pages (conectado ao repositório)
+## Caminho 3 — Cloudflare Pages (conectado ao repositório)
 
-Útil se quiser que cada push atualize o site sozinho.
+Alternativa ao caminho 1. Exige mover o domínio personalizado do Worker
+para o projeto Pages depois de publicar.
 
 1. Painel da Cloudflare → **Workers & Pages** → **Create** → **Pages** →
    **Connect to Git**.
