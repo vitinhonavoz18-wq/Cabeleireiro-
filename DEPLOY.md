@@ -13,9 +13,27 @@ responde com a página errada. Falta publicar este site por cima dele.
 `index.html` (canonical, Open Graph, dados estruturados), no `sitemap.xml`
 e no `robots.txt`.
 
-A zona `conectfly.com.br` precisa estar na Cloudflare, na mesma conta do
-deploy. Estando, o registro DNS do subdomínio é criado pelo próprio deploy —
-não é preciso mexer no painel.
+### Por que o endereço usa rota e não Custom Domain
+
+A zona `conectfly.com.br` já tem o Worker `conectfly` numa **rota curinga**:
+é ele que gera os subdomínios dos cardápios dos clientes. Isso não pode ser
+alterado.
+
+Rotas rodam **antes** de Custom Domains — o Worker da rota atende a
+requisição e só passa adiante se chamar `fetch()`. Um Custom Domain neste
+hostname, portanto, nunca seria alcançado: o curinga responderia primeiro.
+
+A saída é uma **rota mais específica**, que vence a curinga por cobrir um
+único hostname. É o que está no `wrangler.toml`. O curinga continua intacto
+e os cardápios seguem funcionando.
+
+**Requisito:** rotas não criam DNS. O hostname `robsonlopes` precisa de um
+registro **proxiado** (nuvem laranja) na zona. Se a zona já tem um registro
+curinga `*`, ele cobre.
+
+**Conflito:** um hostname não pode ser Custom Domain e rota ao mesmo tempo.
+Se algum Custom Domain para este endereço tiver sido criado no painel,
+remova-o antes do próximo deploy.
 
 ## Caminho 1 — Workers Builds, direto do painel (sem computador)
 

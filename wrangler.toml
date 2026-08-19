@@ -6,9 +6,7 @@
 #
 #     npx wrangler deploy
 #
-# Endereço de apresentação confirmado: robsonlopes.conectfly.com.br.
-# Requisito: a zona conectfly.com.br já precisa estar na Cloudflare, na
-# mesma conta do deploy. O registro DNS é criado pelo próprio wrangler.
+# Endereço de apresentação: robsonlopes.conectfly.com.br.
 # ==========================================================================
 
 # O nome tem que ser o do Worker que já existe na conta e que já está
@@ -23,8 +21,21 @@ directory = "."
 # Página única: qualquer caminho cai no index.html em vez de dar 404.
 not_found_handling = "single-page-application"
 
-# Subdomínio de apresentação. Exige que a zona já esteja na Cloudflare —
-# o registro DNS é criado automaticamente pelo deploy.
+# ROTA, e não Custom Domain — de propósito.
+#
+# O Worker "conectfly" atende uma rota curinga na zona (é o que gera os
+# subdomínios dos cardápios dos clientes). Custom Domains perdem para
+# rotas: a documentação da Cloudflare diz que o Worker de uma rota roda
+# ANTES do Worker de um Custom Domain, e só chega nele se chamar fetch().
+# Com Custom Domain, o curinga responderia e este site nunca apareceria.
+#
+# Entre rotas, porém, a mais específica vence. Esta cobre um único
+# hostname, então desvia só este endereço e não encosta no curinga — os
+# cardápios continuam funcionando como estão.
+#
+# Diferente do Custom Domain, uma rota NÃO cria registro DNS. O hostname
+# precisa de um registro proxiado (nuvem laranja) na zona — o curinga `*`
+# da zona já serve, se existir.
 [[routes]]
-pattern = "robsonlopes.conectfly.com.br"
-custom_domain = true
+pattern = "robsonlopes.conectfly.com.br/*"
+zone_name = "conectfly.com.br"
