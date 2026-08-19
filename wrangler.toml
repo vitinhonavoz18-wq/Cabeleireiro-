@@ -11,7 +11,11 @@
 # mesma conta do deploy. O registro DNS é criado pelo próprio wrangler.
 # ==========================================================================
 
-name = "robson-lopes"
+# O nome tem que ser o do Worker que já existe na conta e que já está
+# ligado ao subdomínio — senão o deploy cria um Worker novo e o domínio
+# continua servindo o conteúdo antigo. Para renomear depois, troque aqui
+# e mova o domínio personalizado no painel.
+name = "robsonlopessss"
 compatibility_date = "2026-08-17"
 
 [assets]

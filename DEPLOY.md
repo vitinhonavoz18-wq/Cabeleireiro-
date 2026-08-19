@@ -21,8 +21,13 @@ npx wrangler login      # só na primeira vez
 npx wrangler deploy
 ```
 
-Sai um endereço `robson-lopes.<sua-conta>.workers.dev` para teste imediato,
-e o subdomínio definitivo assim que o DNS propagar.
+O `name` do `wrangler.toml` é **`robsonlopessss`**, que é o Worker já criado
+na conta e já ligado ao subdomínio. Isso é proposital: o deploy sobrescreve
+esse Worker e o site entra no ar na hora. Se o nome fosse outro, o wrangler
+criaria um Worker novo e o subdomínio continuaria servindo o conteúdo antigo.
+
+⚠️ O deploy **substitui inteiramente** o código desse Worker. Ele foi criado
+para este site; confirme que não está servindo nada mais.
 
 ## Caminho 2 — Cloudflare Pages (conectado ao repositório)
 
