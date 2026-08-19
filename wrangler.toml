@@ -16,6 +16,13 @@
 name = "robsonlopessss"
 compatibility_date = "2026-08-17"
 
+# Endereço próprio do Worker (robsonlopessss.<conta>.workers.dev).
+# O wrangler DESLIGA o workers.dev sozinho quando existe um bloco [[routes]],
+# e foi por isso que esse endereço respondia "Ainda não há nada aqui".
+# Aqui ele serve como endereço de apresentação independente da zona: não
+# depende de DNS, nem de rota, nem disputa com o curinga do conectfly.
+workers_dev = true
+
 [assets]
 directory = "."
 # Página única: qualquer caminho cai no index.html em vez de dar 404.
