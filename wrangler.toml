@@ -2,7 +2,7 @@
 # Publicação do site na Cloudflare — Robson Lopes
 #
 # O site é estático, sem build: o Worker apenas serve os arquivos desta
-# pasta. Publicar é um comando, de dentro de robson-lopes/:
+# pasta. Publicar é um comando, da raiz do repositório:
 #
 #     npx wrangler deploy
 #

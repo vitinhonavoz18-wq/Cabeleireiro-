@@ -13,7 +13,7 @@ frente, que cuida do domínio e do certificado HTTPS sozinho. Por isso este
 repositório traz um `Dockerfile`: ele é só o nginx com os arquivos dentro,
 sem npm e sem etapa de build, então o deploy leva segundos.
 
-Três arquivos sustentam esse caminho, todos em `robson-lopes/`:
+Três arquivos sustentam esse caminho, na raiz do repositório:
 
 | Arquivo | Para quê |
 | --- | --- |
@@ -32,22 +32,17 @@ a emissão falha e é preciso repetir.
 
 **Create Service → App.** Na aba **Source**:
 
-- **GitHub** → repositório `vitinhonavoz18-wq/Flydelivery`
+- **GitHub** → repositório `vitinhonavoz18-wq/Cabeleireiro-`
 - **Branch:** `claude/website-updates-8tiixx`
 
-> O repositório é **privado**. O EasyPanel gera uma chave SSH para o serviço;
-> copie a chave pública e cadastre no GitHub em **Settings → Deploy keys** do
-> repositório, como **somente leitura**. Sem isso o clone falha.
+> O repositório é **público**, então não é preciso cadastrar chave de deploy
+> nem dar nenhuma permissão — o EasyPanel clona direto.
 
 Na aba **Build**:
 
 - **Método:** `Dockerfile`
-- **Build Path:** `/robson-lopes` ← **o passo que mais se erra.** O
-  repositório guarda o app FlyDelivery na raiz e o site nesta subpasta; sem
-  isso o EasyPanel procura um Dockerfile na raiz e a build quebra.
-- **File:** deixe vazio (ele assume `Dockerfile` dentro do Build Path). Se a
-  build reclamar que não encontrou o arquivo, preencha
-  `/robson-lopes/Dockerfile`.
+- **Build Path:** `/` — o site é a raiz deste repositório.
+- **File:** deixe vazio; ele assume o `Dockerfile` da raiz.
 
 ### 3. Domínio e HTTPS
 
@@ -121,14 +116,12 @@ construir e publicar o Worker sozinha a cada push no repositório.
 1. Painel da Cloudflare → **Workers & Pages** → abra o Worker
    **`robsonlopessss`**.
 2. **Settings** → **Builds** → **Connect**, e autorize o GitHub.
-3. Repositório `vitinhonavoz18-wq/Flydelivery`.
-4. **Root directory:** `robson-lopes` — sem isso a Cloudflare procura o
-   `wrangler.toml` na raiz do repositório e a build falha.
+3. Repositório `vitinhonavoz18-wq/Cabeleireiro-`.
+4. **Root directory:** deixe vazio — o `wrangler.toml` está na raiz.
 5. **Build command:** deixe **vazio**. O site não tem etapa de build.
 6. **Deploy command:** `npx wrangler deploy` (é o padrão).
 7. **Branch control** → mude a branch de produção para
-   `claude/robson-lopes-fase-1-5808qp`. O padrão é a branch principal do
-   repositório, onde este site não existe.
+   `claude/website-updates-8tiixx`.
 8. Salve e faça a build rodar. Todo push nessa branch republica o site.
 
 O nome do Worker no painel **precisa ser igual** ao `name` do `wrangler.toml`
@@ -138,7 +131,6 @@ O nome do Worker no painel **precisa ser igual** ao `name` do `wrangler.toml`
 ## Caminho 2 — Worker por linha de comando
 
 ```bash
-cd robson-lopes
 npx wrangler login      # só na primeira vez
 npx wrangler deploy
 ```
@@ -158,10 +150,10 @@ para o projeto Pages depois de publicar.
 
 1. Painel da Cloudflare → **Workers & Pages** → **Create** → **Pages** →
    **Connect to Git**.
-2. Repositório `vitinhonavoz18-wq/Flydelivery`,
-   branch `claude/robson-lopes-fase-1-5808qp`.
+2. Repositório `vitinhonavoz18-wq/Cabeleireiro-`,
+   branch `claude/website-updates-8tiixx`.
 3. **Build command:** deixe vazio.
-   **Build output directory:** `robson-lopes`.
+   **Build output directory:** deixe vazio (a raiz).
 4. Depois de publicar: **Custom domains** → adicionar o subdomínio.
 
 ## Saída do modo apresentação

@@ -45,7 +45,7 @@ Qualquer servidor estático serve. Não há instalação de dependências.
 ## Estrutura
 
 ```
-robson-lopes/
+.
 ├── index.html            # página única, seções ancoradas
 ├── styles/
 │   ├── tokens.css        # ← identidade visual: cor, tipografia, espaço, movimento

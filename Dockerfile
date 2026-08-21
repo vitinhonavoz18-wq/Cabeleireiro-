@@ -5,8 +5,8 @@
 # A imagem é só o nginx com os arquivos dentro, o que a mantém pequena e
 # faz o deploy no EasyPanel levar segundos.
 #
-# No EasyPanel, o "Build Path" deste serviço precisa ser /robson-lopes —
-# o repositório guarda o app FlyDelivery na raiz, e o site numa subpasta.
+# O site vive na raiz deste repositório, então no EasyPanel o "Build Path"
+# do serviço é / — não há subpasta para apontar.
 # ==========================================================================
 
 FROM nginx:stable-alpine
