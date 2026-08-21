@@ -86,6 +86,7 @@
     <link rel="stylesheet" href="styles/lightbox.css" />
     <link rel="stylesheet" href="styles/services.css" />
     <link rel="stylesheet" href="styles/sections.css" />
+    <link rel="stylesheet" href="styles/localizacao.css" />
     <link rel="stylesheet" href="styles/watermark.css" />
 
     <!-- Marca "com JavaScript" antes da primeira pintura: os estados iniciais
@@ -108,12 +109,21 @@
         "url": "https://robsonlopes.conectfly.com.br/",
         "image": "https://robsonlopes.conectfly.com.br/assets/brand/og-image.jpg",
         "logo": "https://robsonlopes.conectfly.com.br/assets/brand/robson-lopes-logo.webp",
+        "telephone": "+5571981597670",
+        "sameAs": ["https://instagram.com/robsonlopesoficiall"],
         "address": {
           "@type": "PostalAddress",
+          "name": "Empresarial Mundo Plaza — Sala 222",
           "addressLocality": "Salvador",
           "addressRegion": "BA",
           "addressCountry": "BR"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -12.9788299,
+          "longitude": -38.4615469
+        },
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=-12.9788299%2C-38.4615469",
         "areaServed": {
           "@type": "City",
           "name": "Salvador"
@@ -187,6 +197,7 @@
           <a class="nav__link" data-nav-link href="#transformacoes">Transformações</a>
           <a class="nav__link" data-nav-link href="#portfolio">Portfólio</a>
           <a class="nav__link" data-nav-link href="#contato">Contato</a>
+          <a class="nav__link" data-nav-link href="#localizacao">Localização</a>
         </nav>
 
         <div class="header__actions">
@@ -230,6 +241,9 @@
           </li>
           <li class="mobile-menu__item">
             <a class="mobile-menu__link" href="#contato"><span class="mobile-menu__index">06</span>Contato</a>
+          </li>
+          <li class="mobile-menu__item">
+            <a class="mobile-menu__link" href="#localizacao"><span class="mobile-menu__index">07</span>Localização</a>
           </li>
         </ul>
       </nav>
@@ -1393,6 +1407,130 @@
           </div>
         </div>
       </section>
+
+      <!-- ==================================================================
+           LOCALIZAÇÃO
+           Última seção antes do rodapé: quem rolou até aqui já se decidiu e
+           agora precisa de uma coisa só — saber como chegar. Foto para
+           reconhecer o lugar na chegada, endereço em texto real (copiável e
+           indexável), rota em um toque e o mapa por último, porque é o
+           elemento mais pesado e o único que depende de terceiros.
+           ================================================================== -->
+      <section class="section section--elevated" id="localizacao" aria-labelledby="localizacao-title">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow" data-reveal>Onde fica</span>
+            <h2 class="title-section" id="localizacao-title" data-reveal data-reveal-delay="1">
+              O salão.
+            </h2>
+            <p class="lead" data-reveal data-reveal-delay="2">
+              O atendimento acontece no Empresarial Mundo Plaza, em Salvador —
+              um ambiente reservado, com hora marcada e sem espera.
+            </p>
+          </div>
+
+          <div class="local__grid">
+            <!-- A foto ainda não está no repositório: até chegar, o estado
+                 vazio elegante de .media segura o lugar sem quebrar o grid.
+                 Basta commitar assets/fotos/salao-fachada.webp para que
+                 apareça sozinha (ver assets/MEDIA.md). -->
+            <figure
+              class="ratio ratio--landscape media local__foto"
+              data-media
+              data-reveal="mask"
+            >
+              <img
+                src="assets/fotos/salao-fachada.webp"
+                alt="Salão de Robson Lopes no Empresarial Mundo Plaza, em Salvador"
+                loading="lazy"
+                decoding="async"
+                width="1600"
+                height="1000"
+              />
+              <div class="media__empty">
+                <span class="media__empty-mark">RL</span>
+                <span class="media__empty-label">Foto do salão em breve</span>
+              </div>
+            </figure>
+
+            <div class="local__info" data-reveal data-reveal-delay="1">
+              <dl class="local__facts">
+                <div class="local__fact">
+                  <dt>Endereço</dt>
+                  <dd>
+                    <address data-contact-address>
+                      Empresarial Mundo Plaza — Sala 222 · Salvador, BA
+                    </address>
+                  </dd>
+                </div>
+
+                <div class="local__fact">
+                  <dt>Horários</dt>
+                  <dd>
+                    <span data-contact-hours>Horários a confirmar</span>
+                  </dd>
+                </div>
+
+                <div class="local__fact">
+                  <dt>Atendimento</dt>
+                  <dd>
+                    Somente com hora marcada
+                    <span>Confirme o horário pelo WhatsApp antes de vir.</span>
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="cluster">
+                <a
+                  class="btn btn--primary"
+                  data-maps-directions
+                  href="https://www.google.com/maps/dir/?api=1&amp;destination=-12.9788299%2C-38.4615469"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Como chegar
+                </a>
+                <a class="btn btn--outline" data-whatsapp href="#contato">
+                  Agendar pelo WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="local__map" data-reveal data-reveal-delay="2">
+            <div class="local__map-frame">
+              <!-- loading="lazy": sendo a última seção, a maioria das visitas
+                   nunca chega a pedir o mapa ao Google — e quem não chega não
+                   paga por ele. -->
+              <iframe
+                data-map-embed
+                src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d3887.890890445314!2d-38.4615469!3d-12.9788299!3m2!1i1024!2i768!4f13.1!2m1!1smundo%20plaza%20empresarial%20sala%20222!5e0!3m2!1spt-BR!2sbr!4v1787313272103!5m2!1spt-BR!2sbr"
+                title="Mapa da localização do salão no Empresarial Mundo Plaza, em Salvador"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+
+            <div class="local__map-actions">
+              <p class="local__map-note">
+                O pino marca a entrada do Empresarial Mundo Plaza. Já dentro do
+                prédio, o atendimento é na <strong>sala 222</strong>.
+              </p>
+
+              <a
+                class="btn btn--outline"
+                data-maps
+                href="https://www.google.com/maps/search/?api=1&amp;query=-12.9788299%2C-38.4615469"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir no Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ====================================================================
@@ -1432,6 +1570,7 @@
               <li><a href="#transformacoes">Transformações</a></li>
               <li><a href="#portfolio">Portfólio</a></li>
               <li><a href="#contato">Contato</a></li>
+              <li><a href="#localizacao">Localização</a></li>
             </ul>
           </nav>
 
@@ -1447,7 +1586,17 @@
                 </a>
               </li>
               <li>
-                <address data-contact-address>Endereço a confirmar</address>
+                <address>
+                  <a
+                    class="link-underline"
+                    data-maps
+                    href="https://www.google.com/maps/search/?api=1&amp;query=-12.9788299%2C-38.4615469"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-contact-address>Endereço a confirmar</span>
+                  </a>
+                </address>
               </li>
               <li><span data-contact-hours>Horários a confirmar</span></li>
             </ul>

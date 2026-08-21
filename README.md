@@ -183,7 +183,7 @@ Ela é fixa e `pointer-events: none`: **não intercepta nenhum clique, toque ou
 arraste**, não entra no fluxo do documento e não gera rolagem. Fica acima até
 do lightbox, para que nenhuma tela escape da marcação, e sai da impressão.
 
-**Para remover na entrega**, troque um booleano:
+**A marca já foi removida** — `previa.marcaDagua` está em `false`:
 
 ```js
 // scripts/site.config.js
@@ -191,6 +191,14 @@ export const previa = {
   marcaDagua: false,
 };
 ```
+
+Faltam ainda dois resquícios do modo de apresentação, que dependem de uma
+decisão que não é técnica: o site continua com `noindex` no `index.html` e
+`Disallow: /` no `robots.txt`, porque o endereço no ar
+(`robsonlopes.conectfly.com.br`) é provisório. Liberar a indexação agora faria
+esse endereço competir no Google com o domínio definitivo. **Quando o domínio
+final estiver definido**, troque nos quatro lugares: `index.html` (meta
+`robots` e `<link rel="canonical">`), `robots.txt` e `sitemap.xml`.
 
 ## Oferta em destaque
 
@@ -212,17 +220,54 @@ export const combo = {
 O botão "Agende já" leva ao WhatsApp com uma mensagem própria, citando o
 combo — assim Robson sabe de qual seção veio o contato.
 
+## Localização
+
+Última seção antes do rodapé. Quem rolou o site inteiro já se decidiu — o que
+falta é saber como chegar. A ordem segue esse raciocínio: **foto** (reconhecer
+o lugar na chegada), **endereço em texto real** (copiável e indexável),
+**rota em um toque** e só então o **mapa**, que é o elemento mais pesado e o
+único que depende de terceiros.
+
+Três links, todos gerados a partir das coordenadas em `site.config.js`:
+
+| Link | Para quê |
+| --- | --- |
+| `mapsDirectionsUrl()` | Botão "Como chegar" — traça a rota de onde o visitante estiver |
+| `mapsUrl()` | "Abrir no Google Maps" e o endereço no rodapé |
+| `mapsEmbedUrl()` | O mapa incorporado na própria página |
+
+Os três usam **latitude/longitude**, não busca por texto: o pino cai sempre no
+mesmo ponto, independentemente de como o Maps interpreta o nome do prédio. Para
+mudar de endereço, basta trocar `contact.geo` — os três links acompanham.
+
+O HTML já traz as URLs escritas, então a seção funciona sem JavaScript; o
+`initMapLinks()` apenas ressincroniza com o config.
+
+**O mapa não é escurecido.** Um filtro de inversão deixaria o iframe na paleta
+do site, mas inverteria junto o logotipo do Google — alterar a marca deles não
+é decisão nossa. Em vez disso a integração vem da moldura escura com filete
+dourado em volta, e o iframe leva só um `contrast`/`saturate` leve. Ele também
+é `loading="lazy"`: sendo a última seção, a maioria das visitas nunca chega a
+pedir o mapa ao Google — e quem não chega não paga por ele.
+
 ## Personalização
 
 **Tudo o que falta de dado real está em `scripts/site.config.js`**, marcado
-como `PENDENTE`: WhatsApp, Instagram, horários, e-mail e o complemento do
-endereço (torre, andar, sala e CEP).
+como `PENDENTE`: **horários**, **e-mail** e o **logradouro** (rua, número e
+CEP) do endereço.
 
-Já preenchido: **Salvador, BA — Empresarial Mundo Plaza**. A cidade entra no
-`<title>`, na description, no Open Graph e no `PostalAddress` dos dados
-estruturados. Só a localidade foi declarada no schema: número e logradouro
-não foram inventados, porque endereço incorreto em SEO local penaliza em vez
-de ajudar.
+Já preenchido: WhatsApp, Instagram, **Salvador, BA — Empresarial Mundo Plaza,
+sala 222** e as coordenadas do salão. A cidade entra no `<title>`, na
+description, no Open Graph e no `PostalAddress` dos dados estruturados. Rua e
+número seguem de fora do schema: não foram inventados, porque endereço
+incorreto em SEO local penaliza em vez de ajudar. As coordenadas, essas sim
+confirmadas, entram como `geo` — é o que faz o mapa e a rota caírem no ponto
+certo mesmo sem o logradouro escrito.
+
+> ⚠ **Conferir o WhatsApp antes de divulgar.** O número informado foi
+> (71) 8159-7670, com oito dígitos; celular na Bahia tem nove e começa em 9,
+> então o cadastrado é `5571981597670` — (71) 9 8159-7670. Se a conversa não
+> abrir no contato certo, é só essa linha do config que muda.
 Preencher esse arquivo atualiza header, hero, CTA, rodapé, botão flutuante e
 todos os links de uma só vez — não é preciso editar HTML.
 

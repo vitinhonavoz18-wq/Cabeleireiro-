@@ -1,0 +1,153 @@
+/* ==========================================================================
+   LOCALIZAÇÃO — última seção antes do rodapé
+   Fotografia do salão, endereço, mapa incorporado e rota.
+
+   Ordem de leitura pensada para quem chegou até aqui já decidido: primeiro
+   reconhecer o lugar (foto), depois saber onde é (endereço), depois sair
+   andando (botão de rota). O mapa vem por último porque é o elemento mais
+   pesado e o único que depende de terceiros.
+   ========================================================================== */
+
+.local__grid {
+  display: grid;
+  gap: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .local__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+/* ---------- Fotografia do salão ---------- */
+
+/* Filete dourado deslocado, no mesmo idioma da moldura do retrato do "Sobre".
+   Fica atrás da foto e só aparece nas telas onde há folga para ele. */
+.local__foto {
+  position: relative;
+  /* <figure> chega do navegador com margin-inline de 40px. O projeto zera
+     isso por bloco (ver .about__portrait figure), não globalmente — sem
+     esta linha a foto sai 40px para a direita e vaza a grade no celular. */
+  margin: 0;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 900px) {
+  .local__foto::after {
+    content: "";
+    position: absolute;
+    inset: auto -0.9rem -0.9rem auto;
+    width: 42%;
+    height: 42%;
+    border-right: 1px solid var(--hairline-strong);
+    border-bottom: 1px solid var(--hairline-strong);
+    pointer-events: none;
+  }
+}
+
+/* ---------- Bloco de informações ---------- */
+
+.local__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.local__facts {
+  display: grid;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.local__fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.local__fact dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.local__fact dd {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  font-style: normal; /* <address> herda itálico */
+}
+
+.local__fact dd span {
+  display: block;
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+
+/* ---------- Mapa ---------- */
+
+.local__map {
+  margin-top: clamp(2.5rem, 1.6rem + 3vw, 4rem);
+}
+
+/* A moldura carrega o filete dourado e o recorte; o iframe fica solto
+   dentro dela para que o `.ratio` continue controlando a altura sem que a
+   borda seja cortada junto. */
+.local__map-frame {
+  position: relative;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 0 1px var(--hairline), var(--shadow-md);
+  background: var(--ink-800);
+
+  /* Mapa alto e estreito no celular, panorâmico no desktop: no retrato uma
+     faixa 21:9 vira um filete ilegível. */
+  aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 640px) {
+  .local__map-frame {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (min-width: 1100px) {
+  .local__map-frame {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.local__map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius-sm);
+  /* O mapa do Google chega claro e é a única mancha branca do site. Um
+     inverso deixaria tudo escuro, mas inverteria junto o logotipo do
+     Google — mexer na marca deles não é nossa decisão. Então só se tira
+     um pouco do estridente: as ruas continuam legíveis, a atribuição
+     continua fiel, e a integração vem da moldura escura em volta. */
+  filter: contrast(0.96) saturate(0.92);
+}
+
+.local__map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.local__map-note {
+  max-width: 46ch;
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
+}

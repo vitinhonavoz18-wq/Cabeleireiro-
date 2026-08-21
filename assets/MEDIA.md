@@ -60,6 +60,7 @@ não estão no repositório — se precisar reverter, é preciso reenviá-los.
 
 | Slot | Por que importa |
 | --- | --- |
+| **`fotos/salao-fachada.webp`** | A seção **Localização** reserva o lugar para uma foto do salão, hoje ocupado pelo estado vazio "RL". É a primeira imagem que a cliente compara com o que vê ao chegar no Empresarial Mundo Plaza — vale mais a entrada ou a recepção do que um detalhe interno. Proporção 16:10 (`ratio--landscape`), até 1600px de largura. Basta commitar com esse nome: a foto aparece sozinha, sem tocar em HTML. |
 | Foto real do Robson trabalhando | A seção **Sobre Robson** hoje exibe o vídeo de bastidores. Funciona bem, mas uma fotografia própria daria mais nitidez e mais controle de enquadramento. |
 | Fotos de **corte** e de **tratamento** | As oito atuais são todas de coloração. O ruivo e a morena iluminada já quebram a leitura de "só faz loiro", mas corte e tratamento aparecem no texto sem prova visual. |
 | **Antes e depois** (par de fotos) | O bloco segue oculto. Existe material da mesma sessão dentro dos vídeos, mas o "depois" está espelhado e com enquadramento diferente — num slider isso vira um salto. Precisa de duas fotos com o mesmo enquadramento. |

@@ -6,7 +6,15 @@
  * o texto "a confirmar" do HTML permanece — nada é inventado na tela.
  */
 
-import { combo, contact, whatsappUrl, instagramUrl } from './site.config.js';
+import {
+  combo,
+  contact,
+  whatsappUrl,
+  instagramUrl,
+  mapsUrl,
+  mapsDirectionsUrl,
+  mapsEmbedUrl,
+} from './site.config.js';
 
 /** Aplica a URL do WhatsApp a todos os CTAs de agendamento. */
 export function initBookingLinks() {
@@ -57,6 +65,33 @@ export function initContactDetails() {
     document.querySelectorAll(selector).forEach((el) => {
       el.textContent = value;
     });
+  });
+}
+
+/**
+ * Localização: rota, link do mapa e mapa incorporado.
+ *
+ * O HTML já traz as três URLs escritas, então a seção funciona sem
+ * JavaScript. Aqui só sincronizamos com site.config.js, para que mudar de
+ * endereço seja mexer nas coordenadas em um lugar só.
+ */
+export function initMapLinks() {
+  const place = mapsUrl();
+  const directions = mapsDirectionsUrl();
+  const embed = mapsEmbedUrl();
+
+  document.querySelectorAll('[data-maps]').forEach((el) => {
+    el.setAttribute('href', place);
+  });
+
+  document.querySelectorAll('[data-maps-directions]').forEach((el) => {
+    el.setAttribute('href', directions);
+  });
+
+  document.querySelectorAll('[data-map-embed]').forEach((el) => {
+    // Só reescreve se mudou: reatribuir o src idêntico faz o navegador
+    // buscar o mapa de novo, jogando fora o loading="lazy" do HTML.
+    if (el.getAttribute('src') !== embed) el.setAttribute('src', embed);
   });
 }
 

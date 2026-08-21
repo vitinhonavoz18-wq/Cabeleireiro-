@@ -15,6 +15,7 @@ import {
   initCombo,
   initInstagramLinks,
   initContactDetails,
+  initMapLinks,
   initFloatingCta,
   initYear,
 } from './contact.js';
@@ -82,6 +83,7 @@ function boot() {
   initCombo();
   initInstagramLinks();
   initContactDetails();
+  initMapLinks();
   initFloatingCta();
   initYear();
 }
