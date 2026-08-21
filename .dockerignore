@@ -1,0 +1,17 @@
+# Arquivos de projeto que não devem ir para o ar junto com o site.
+# Espelha o .assetsignore (usado pela Cloudflare) — se acrescentar algo lá,
+# acrescente aqui também.
+
+Dockerfile
+.dockerignore
+nginx.conf
+
+README.md
+DEPLOY.md
+assets/MEDIA.md
+
+wrangler.toml
+.assetsignore
+
+.git
+.gitignore
