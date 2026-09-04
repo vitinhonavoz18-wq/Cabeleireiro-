@@ -31,11 +31,11 @@ export function LogoReveal({
     if (typeof window === "undefined") return;
     if (showOncePerSession && sessionStorage.getItem(SESSION_KEY)) {
       setPhase("done");
+      setVisible(false);
       onComplete?.();
       return;
     }
     setVisible(true);
-    if (showOncePerSession) sessionStorage.setItem(SESSION_KEY, "1");
 
     const drawMs = reduce ? 200 : 1400;
     const fillMs = reduce ? 200 : 550;
@@ -48,6 +48,7 @@ export function LogoReveal({
     const t4 = setTimeout(() => {
       setPhase("done");
       setVisible(false);
+      if (showOncePerSession) sessionStorage.setItem(SESSION_KEY, "1");
       onComplete?.();
     }, drawMs + fillMs + holdMs + outMs);
 
