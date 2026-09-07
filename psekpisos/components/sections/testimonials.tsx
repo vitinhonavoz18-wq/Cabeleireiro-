@@ -12,28 +12,28 @@ const testimonials = [
     quote:
       "Chegaram no horário, protegeram tudo e entregaram o piso brilhando como nunca. Um ano depois, continua igualzinho.",
     author: "Marina S.",
-    role: "Apartamento · Perdizes",
+    role: "Apartamento · Savassi, BH",
   },
   {
     id: "t2",
     quote:
       "Contratei para restaurar tacos antigos que eu achava perdidos. O resultado foi melhor que a expectativa e o preço, justo.",
     author: "Ricardo A.",
-    role: "Casa · Alto de Pinheiros",
+    role: "Casa · Belvedere, BH",
   },
   {
     id: "t3",
     quote:
       "Equipe cuidadosa, obra limpa e um acabamento espelhado impressionante. Recomendo de olhos fechados.",
     author: "Camila F.",
-    role: "Escritório · Vila Olímpia",
+    role: "Escritório · Lourdes, BH",
   },
   {
     id: "t4",
     quote:
       "Fizeram sinteco em três ambientes e cumpriram o prazo à risca. Voltaram no vencimento da garantia para conferir.",
     author: "Otávio L.",
-    role: "Casa · Granja Viana",
+    role: "Casa · Buritis, BH",
   },
 ];
 

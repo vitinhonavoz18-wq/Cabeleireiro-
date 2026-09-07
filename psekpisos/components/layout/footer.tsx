@@ -1,6 +1,7 @@
 "use client";
 
-import { Instagram, MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { site } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -11,13 +12,14 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <img
                 src="/brand/logo.png"
-                alt="PsekPisos"
+                alt={site.name}
                 className="h-12 w-auto object-contain"
               />
             </div>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              PsekPisos — sinteco, restauração e verniz para pisos de madeira.
-              Trabalho técnico com garantia e acabamento premium.
+              {site.name} — sinteco, restauração e verniz para pisos de
+              madeira. Trabalho técnico com garantia e acabamento premium em{" "}
+              {site.location.region}.
             </p>
           </div>
 
@@ -52,31 +54,33 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="https://wa.me/5511999999999"
+                  href={site.whatsapp.href}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 transition-colors hover:text-gold-300"
                 >
-                  <MessageCircle className="h-4 w-4" /> WhatsApp
+                  <MessageCircle className="h-4 w-4" /> WhatsApp{" "}
+                  {site.whatsapp.display}
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+5511999999999"
+                  href={site.whatsapp.tel}
                   className="inline-flex items-center gap-2 transition-colors hover:text-gold-300"
                 >
-                  <Phone className="h-4 w-4" /> (11) 99999-9999
+                  <Phone className="h-4 w-4" /> {site.whatsapp.display}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://instagram.com/psekpisos"
-                  target="_blank"
-                  rel="noreferrer"
+                  href={site.email.href}
                   className="inline-flex items-center gap-2 transition-colors hover:text-gold-300"
                 >
-                  <Instagram className="h-4 w-4" /> @psekpisos
+                  <Mail className="h-4 w-4" /> {site.email.display}
                 </a>
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4" /> {site.location.display}
               </li>
             </ul>
           </div>
@@ -85,7 +89,8 @@ export function Footer() {
         <div className="section-divider my-10" />
 
         <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} PsekPisos. Todos os direitos reservados.
+          © {new Date().getFullYear()} {site.name}. Todos os direitos
+          reservados.
         </p>
       </div>
     </footer>

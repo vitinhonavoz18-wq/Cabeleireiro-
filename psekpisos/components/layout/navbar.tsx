@@ -66,7 +66,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/5531991287292" target="_blank" rel="noreferrer">
               <Button size="sm">
                 <Phone className="h-4 w-4" /> Orçamento
               </Button>
@@ -106,7 +106,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5531991287292"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2"

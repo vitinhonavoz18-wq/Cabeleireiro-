@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "PsekPisos — Sinteco, Restauração e Aplicação de Verniz em Pisos de Madeira",
-  description:
-    "PsekPisos: sinteco premium, restauração de tacos e aplicação de verniz com acabamento espelhado. Orçamento sem compromisso, atendimento em toda a região.",
+  metadataBase: new URL(site.url),
+  title: `${site.name} — Sinteco, Restauração e Verniz em ${site.location.city}`,
+  description: `${site.name}: sinteco premium, restauração de tacos e aplicação de verniz com acabamento espelhado em ${site.location.region}. Orçamento sem compromisso.`,
   openGraph: {
-    title: "PsekPisos — Sinteco Premium",
-    description:
-      "Devolvemos o brilho dos seus pisos de madeira: sinteco, restauração, verniz e manutenção.",
+    title: `${site.name} — Sinteco Premium em ${site.location.city}`,
+    description: `Devolvemos o brilho dos seus pisos de madeira: sinteco, restauração, verniz e manutenção em ${site.location.region}.`,
+    url: site.url,
+    siteName: site.name,
     type: "website",
     locale: "pt_BR",
   },
   icons: { icon: "/brand/favicon.svg" },
+  alternates: { canonical: site.url },
 };
 
 export default function RootLayout({
