@@ -1,5 +1,6 @@
 "use client";
 
+import { ConnectflySignature } from "./ConnectflySignature";
 import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { site } from "@/lib/site";
 
@@ -91,6 +92,8 @@ export function Footer() {
         <p className="text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} {site.name}. Todos os direitos
           reservados.
+          <br />
+          <ConnectflySignature />
         </p>
       </div>
     </footer>
