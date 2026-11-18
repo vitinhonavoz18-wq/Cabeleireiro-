@@ -619,6 +619,8 @@ Typical architecture: Navbar, Hero, Social proof, Problem, Solution, Features, P
 
 Do not automatically include every section. Choose sections based on business objectives.
 
+For every new public presentation site developed by CONNECTFLY, include “Feito pela CONNECTFLY” once in the public footer, unless the contract or an authorized configuration specifies otherwise. Link the brand name to https://site.conectfly.com.br and preserve visible keyboard focus. Scope the credit to presentation pages when a project also contains operational screens.
+
 ---
 
 ## 26. HERO SECTION
